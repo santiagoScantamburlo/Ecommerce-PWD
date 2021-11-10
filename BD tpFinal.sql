@@ -101,7 +101,7 @@ VALUES
 --
 CREATE TABLE `compraitem` (
     `idcompraitem` bigint(20) UNSIGNED NOT NULL,
-    `idproducto` bigint(20) NOT NULL,
+    `idproducto` varchar(20) NOT NULL,
     `idcompra` bigint(20) NOT NULL,
     `cicantidad` int(11) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = latin1;
@@ -150,10 +150,10 @@ CREATE TABLE `menurol` (
 -- Estructura de tabla para la tabla `producto`
 --
 CREATE TABLE `producto` (
-    `idproducto` bigint(20) NOT NULL,
-    `proprecio` float(4, 2) NOT NULL,
+    `idproducto` varchar(20) NOT NULL,
+    `proprecio` int(11) NOT NULL,
     `prodescuento` int(3) NOT NULL,
-    `pronombre` int(11) NOT NULL,
+    `pronombre` varchar(30) NOT NULL,
     `prodetalle` varchar(512) NOT NULL,
     `procantventas` int(11) NOT NULL,
     `procantstock` int(11) NOT NULL,
@@ -344,10 +344,10 @@ MODIFY
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
-ALTER TABLE
-    `producto`
-MODIFY
-    `idproducto` bigint(20) NOT NULL AUTO_INCREMENT;
+-- ALTER TABLE
+--     `producto`
+-- MODIFY
+--     `idproducto` varchar(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`

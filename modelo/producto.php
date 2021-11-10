@@ -160,7 +160,7 @@ class Producto
         $resp = false;
         $base = new BaseDatos();
 
-        $sql = "INSERT INTO producto (idproducto, proprecio, prodescuento, pronombre, prodetalle, procanventas, procantstock, prodeshabilitado) VALUES ('" . $this->getIdproducto() . "'," . $this->getProprecio() . "," . $this->getProdescuento() . ",'" . $this->getPronombre() . "','" . $this->getProdetalle() . "'," . $this->getProcantventas() . "," . $this->getProcantstock() . ", '0000-00-00 00:00:00')";
+        $sql = "INSERT INTO producto (idproducto, proprecio, prodescuento, pronombre, prodetalle, procantventas, procantstock, prodeshabilitado) VALUES ('" . $this->getIdproducto() . "'," . $this->getProprecio() . "," . $this->getProdescuento() . ",'" . $this->getPronombre() . "','" . $this->getProdetalle() . "'," . $this->getProcantventas() . "," . $this->getProcantstock() . ", '0000-00-00 00:00:00')";
 
         if ($base->Iniciar()) {
             if ($base = $base->Ejecutar($sql)) {
@@ -223,7 +223,7 @@ class Producto
                 while ($row = $base->Registro()) {
                     // print_r($row);
                     $obj = new Producto();
-                    $obj->setear($row['idproducto'], $row['proingreso'], $row['proprecio'], $row['prodescuento'], $row['pronombre'], $row['prodetalle'], $row['procantventas'], $row['procantstock'], $row['prodeshabilitado']);
+                    $obj->setear($row['idproducto'], $row['proprecio'], $row['prodescuento'], $row['pronombre'], $row['prodetalle'], $row['procantventas'], $row['procantstock'], $row['prodeshabilitado']);
                     array_push($arreglo, $obj);
                 }
             }
@@ -249,5 +249,68 @@ class Producto
             $this->setMensajeOperacion("Producto->estado: " . $base->getError());
         }
         return $resp;
+    }
+
+    public static function listarProdHabilitado()
+    {
+        $arreglo = array();
+        $base = new BaseDatos();
+        $sql = "SELECT * FROM producto WHERE prodeshabilitado = '0000-00-00 00:00:00'";
+        $res = $base->Ejecutar($sql);
+        if ($res > -1) {
+            if ($res > 0) {
+                while ($row = $base->Registro()) {
+                    // print_r($row);
+                    $obj = new Producto();
+                    $obj->setear($row['idproducto'], $row['proprecio'], $row['prodescuento'], $row['pronombre'], $row['prodetalle'], $row['procantventas'], $row['procantstock'], $row['prodeshabilitado']);
+                    array_push($arreglo, $obj);
+                }
+            }
+        } else {
+            $this->setMensajeOperacion("Producto->listar: " . $base->getError());
+        }
+        return $arreglo;
+    }
+
+    public static function listarMasVendido()
+    {
+        $arreglo = array();
+        $base = new BaseDatos();
+        $sql = "SELECT * FROM producto WHERE prodeshabilitado = '0000-00-00 00:00:00' ORDER BY procantventas DESC";
+        $res = $base->Ejecutar($sql);
+        if ($res > -1) {
+            if ($res > 0) {
+                while ($row = $base->Registro()) {
+                    // print_r($row);
+                    $obj = new Producto();
+                    $obj->setear($row['idproducto'], $row['proprecio'], $row['prodescuento'], $row['pronombre'], $row['prodetalle'], $row['procantventas'], $row['procantstock'], $row['prodeshabilitado']);
+                    array_push($arreglo, $obj);
+                }
+            }
+        } else {
+            $this->setMensajeOperacion("Producto->listar: " . $base->getError());
+        }
+        return $arreglo;
+    }
+
+    public static function listarProd()
+    {
+        $arreglo = array();
+        $base = new BaseDatos();
+        $sql = "SELECT * FROM producto WHERE";
+        $res = $base->Ejecutar($sql);
+        if ($res > -1) {
+            if ($res > 0) {
+                while ($row = $base->Registro()) {
+                    // print_r($row);
+                    $obj = new Producto();
+                    $obj->setear($row['idproducto'], $row['proprecio'], $row['prodescuento'], $row['pronombre'], $row['prodetalle'], $row['procantventas'], $row['procantstock'], $row['prodeshabilitado']);
+                    array_push($arreglo, $obj);
+                }
+            }
+        } else {
+            $this->setMensajeOperacion("Producto->listar: " . $base->getError());
+        }
+        return $arreglo;
     }
 }

@@ -19,74 +19,83 @@
 </head>
 
 <body class="d-flex flex-column min-vh-100">
-    <header>
-        <!-- Fixed navbar -->
-        <nav class="navbar navbar-expand-lg navbar-dark" style="background: rgb(194, 2, 160);background: linear-gradient(90deg, rgba(194, 2, 160, 1) 14%, rgba(131, 0, 133, 1) 100%, rgba(0, 212, 255, 1) 100%);">
-            <div class="container-fluid">
-                <a href="../home/index.php"><img src="../../assets/images/LogoFeme.png"></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background: rgb(0,212,255);background: linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(194,2,160,1) 0%, rgba(139,0,142,1) 100%);">
+        <div class="container px-4 px-lg-5">
+            <a href="../home/index.php"><img src="../../assets/images/LogoFeme.png"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
 
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                    <ul class="navbar-nav">
-                    <li class="nav-item dropdown offset-md-5">
-                        </li>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="navbar-brand" href="../home/index.php">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../pages/acerca.php">Información</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Productos</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="../pages/listaProductos.php">Todos los productos</a></li>
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+                            <li><a class="dropdown-item" href="../pages/productosDestacados.php">Productos destacados</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="../pages/aros.php">Aros</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="../pages/cadenitas.php">Cadenitas</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="../pages/pulseras.php">Pulseras</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Administrar productos</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="../pages/administrarProductos.php">Administrar</a></li>
+                            <li><a class="dropdown-item" href="../pages/cargarProducto.php">Cargar Nuevo Producto</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="../pages/administrarUsuarios.php">Administrar Usuarios</a></li>
+                </ul>
 
-                    <li class="nav-item dropdown offset-md-8">
-                        </li>
+                <ul class="navbar-nav d-flex">
+                    <!-- Icon carrito -->
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="../pages/carrito.php" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-shopping-cart"></i> <span class="d-lg-none">Carrito</span><span class="badge bg-white text-black ms-1 rounded-pill">0</span>
+                        </a>
+                    </li>
+                    <!-- Icon visitante -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown-Visitante" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-sign-in-alt"></i><span class="d-lg-none">Usuario</span></a>
 
-                        <li class="nav-item dropdown">
-                            <a class="navbar-brand" href="../home/index.php" aria-expanded="false">HOME</a>
-                        </li>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown-Visitante">
+                            <a class="dropdown-item" href="../pages/login.php"><span class="fas fa-sign-in-alt fa-fw" aria-hidden="true" title="Log in"></span>Entrar</a>
+                            <a class="dropdown-item" href="../pages/registrar.php"><span class="fas fa-pencil-alt fa-fw" aria-hidden="true" title="Sign up"></span>Registrarse</a>
+                        </div>
+                    </li>
+                    <!-- Icon usuario -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown-Usuario" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user"></i> <span class="d-lg-none">Usuario</span>
+                        </a>
 
-                        <li class="nav-item dropdown">
-                            <a class="navbar-brand dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Productos</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="../pages/aros.php">Aros</a></li>
-                                <li><a class="dropdown-item" href="../pages/cadenitas.php">Cadenitas</a></li>
-                                <li><a class="dropdown-item" href="../pages/pulseras.php">Pulseras</a></li>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown-Usuario">
+                            <a class="dropdown-item" href="../pages/perfil.php"><span class="fas fa-user fa-fw" aria-hidden="true" title="Perfil"></span>&nbsp;Perfil</a>
+                            <a class="dropdown-item" href="../pages/configuracion.php"><span class="fas fa-cog fa-fw " aria-hidden="true" title="Configuración"></span>&nbsp;Configuración</a>
 
-                            </ul>
-                        </li>
+                            <div class="dropdown-divider"></div>
 
-                        <li class="nav-item dropdown">
-                            <a class="navbar-brand dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Ofertas</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="../pages/información.php">Métodos de pago y envíos</a></li>
-                                <li><a class="dropdown-item" href="../pages/cuidados.php">Cuidado de los productos</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="nav-item dropdown">
-                            <a class="navbar-brand dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Información</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="../pages/información.php">Métodos de pago y envíos</a></li>
-                                <li><a class="dropdown-item" href="../pages/cuidados.php">Cuidado de los productos</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="nav-item dropdown offset-md-3">
-                        </li>
-
-                        <!-- <li class="nav-item dropdown offset-md-11">
-                        </li> -->
-
-                        <li class="nav-item dropdown col-md-2 offset-md-11">
-                            <a class="navbar-brand" href="../pages/cart.php" aria-expanded="false"><i class="bi bi-cart-fill"></i></a>
-                        </li>
-
-                        <li class="nav-item col-md-2">
-                            <a class="navbar-brand" href="../pages/login.php" aria-expanded="false">Log In</a>
-                        </li>
-                    </ul>
-                </div>
+                            <a class="dropdown-item logout" href="#"><span class="fas fa-sign-out-alt fa-fw" aria-hidden="true" title="Cerrar sesión"></span>&nbsp;Cerrar sesión</a>
+                        </div>
+                    </li>
+                </ul>
             </div>
-        </nav>
-
-        <main role="main">
-        <?php
-// include_once '../../../../configuracion.php';
-?>
-        </main>
-    </header>
+        </div>
+    </nav>
+    <?php
+    include_once '../../configuracion.php';
+    ?>

@@ -8,12 +8,11 @@ class abmproducto
             $obj = new producto();
             $obj->setear(
                 $param['idproducto'],
-                '',
                 $param['proprecio'],
                 $param['prodescuento'],
                 $param['pronombre'],
                 $param['prodetalle'],
-                $param['procantcompras'],
+                $param['procantventas'],
                 $param['procantstock'],
                 ''
             );
@@ -36,7 +35,7 @@ class abmproducto
     private function seteadosCamposClaves($param)
     {
         $resp = false;
-        if (isset($param['idproducto'])){
+        if (isset($param['idproducto'])) {
             $resp = true;
         }
         return $resp;
@@ -78,19 +77,20 @@ class abmproducto
         return $resp;
     }
 
-    public function deshabilitarProd($param){
-        $resp=false;
+    public function deshabilitarProd($param)
+    {
+        $resp = false;
         $objProducto = $this->cargarObjetoConClave($param);
-        $listadoProductos = $objProducto->listar("idproducto='".$param['idproducto']."'");
-        if(count($listadoProductos)>0){
+        $listadoProductos = $objProducto->listar("idproducto='" . $param['idproducto'] . "'");
+        if (count($listadoProductos) > 0) {
             $estadoProducto = $listadoProductos[0]->getProDeshabilitado();
-            if($estadoProducto=='0000-00-00 00:00:00'){
-                if($objProducto->estado(date("Y-m-d H:i:s"))){
-                    $resp=true;
+            if ($estadoProducto == '0000-00-00 00:00:00') {
+                if ($objProducto->estado(date("Y-m-d H:i:s"))) {
+                    $resp = true;
                 }
-            }else{
-                if($objProducto->estado()){
-                    $resp=true;
+            } else {
+                if ($objProducto->estado()) {
+                    $resp = true;
                 }
             }
         }
@@ -111,12 +111,37 @@ class abmproducto
                 $where .= " and pronombre ='" . $param['pronombre'] . "'";
             if (isset($param['prodetalle']))
                 $where .= " and prodetalle ='" . $param['prodetalle'] . "'";
-            if (isset($param['procantcompras']))
+            if (isset($param['procantventas']))
                 $where .= " and procantcompras >=" . $param['procantcompras'];
             if (isset($param['procantstock']))
                 $where .= " and procantstock =" . $param['procantstock'];
+            if (isset($param['tipoproducto'])) {
+                switch ($param['tipoproducto']) {
+                    case 'aros':
+                        $where .= " and idproducto like '%A%'";
+                        break;
+                    case 'pulseras':
+                        $where .= " and idproducto like '%P%'";
+                        break;
+                    case 'cadenitas':
+                        $where .= " and idproducto like '%C%'";
+                        break;
+                }
+            }
         }
-        $arreglo = Producto::listar($where);
+        $arreglo = producto::listar($where);
+        return $arreglo;
+    }
+
+    public function buscarHabilitados()
+    {
+        $arreglo = producto::listarProdHabilitado();
+        return $arreglo;
+    }
+
+    public function buscarMasVendidos()
+    {
+        $arreglo = producto::listarMasVendido();
         return $arreglo;
     }
 }

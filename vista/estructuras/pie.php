@@ -1,5 +1,5 @@
 <footer class="bg-dark mt-auto">
-    <div class="text-center text-white py-2" style="background: rgb(194, 2, 160);background: linear-gradient(90deg, rgba(194, 2, 160, 1) 14%, rgba(131, 0, 133, 1) 100%, rgba(0, 212, 255, 1) 100%);">
+    <div class="text-center text-white py-2" style="background: rgb(0,212,255);background: linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(194,2,160,1) 0%, rgba(139,0,142,1) 100%);">
         <a class="text-white" href="https://www.instagram.com/feme.accesorios_/"><i class="bi bi-instagram"></i> INSTAGRAM</a>
     </div>
 </footer>
