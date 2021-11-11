@@ -157,7 +157,7 @@ CREATE TABLE `producto` (
     `prodetalle` varchar(512) NOT NULL,
     `procantventas` int(11) NOT NULL,
     `procantstock` int(11) NOT NULL,
-    `prodeshabilitado` timestamp NULL DEFAULT NULL
+    `prodeshabilitado` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE = InnoDB DEFAULT CHARSET = latin1;
 
 -- --------------------------------------------------------
@@ -348,7 +348,6 @@ MODIFY
 --     `producto`
 -- MODIFY
 --     `idproducto` varchar(20) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `rol`
 --

@@ -114,7 +114,7 @@ class abmproducto
             if (isset($param['procantventas']))
                 $where .= " and procantcompras >=" . $param['procantcompras'];
             if (isset($param['procantstock']))
-                $where .= " and procantstock =" . $param['procantstock'];
+                $where .= " and procantstock >=" . $param['procantstock'];
             if (isset($param['tipoproducto'])) {
                 switch ($param['tipoproducto']) {
                     case 'aros':
@@ -126,22 +126,29 @@ class abmproducto
                     case 'cadenitas':
                         $where .= " and idproducto like '%C%'";
                         break;
+                    case 'relojes':
+                        $where .= " and idproducto like '%R%'";
+                        break;
                 }
             }
+            if (isset($param['habilitado']))
+                $where .= " and prodeshabilitado = '0000-00-00 00:00:00'";
+            if (isset($param['campoorden']))
+                $where .= "order by " . $param['campoorden'] . " " . $param['ordenado'];
         }
         $arreglo = producto::listar($where);
         return $arreglo;
     }
 
-    public function buscarHabilitados()
-    {
-        $arreglo = producto::listarProdHabilitado();
-        return $arreglo;
-    }
+    // public function buscarHabilitados()
+    // {
+    //     $arreglo = producto::listarProdHabilitado();
+    //     return $arreglo;
+    // }
 
-    public function buscarMasVendidos()
-    {
-        $arreglo = producto::listarMasVendido();
-        return $arreglo;
-    }
+    // public function buscarMasVendidos()
+    // {
+    //     $arreglo = producto::listarMasVendido();
+    //     return $arreglo;
+    // }
 }

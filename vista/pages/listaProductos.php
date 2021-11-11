@@ -1,7 +1,10 @@
 <?php
+$titulo = "Lista Productos";
 include_once '../estructuras/cabecera.php';
 $abmProducto = new abmproducto();
-$listaProductos = $abmProducto->buscarHabilitados(null);
+$datosBusqueda['procantstock'] = 1;
+$datosBusqueda['habilitado'] = true;
+$listaProductos = $abmProducto->buscar($datosBusqueda);
 shuffle($listaProductos);
 ?>
 
@@ -23,8 +26,7 @@ background: linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(246,73,215,1) 0%, 
             <?php
             if (count($listaProductos) > 0) {
                 $cont_prod = 0;
-                for ($cont_prod = 0; $cont_prod <= 7 && $cont_prod < count($listaProductos); $cont_prod++) {
-                    $producto = $listaProductos[$cont_prod];
+                foreach ($listaProductos as $producto) {
             ?>
 
                     <div class='col mb-5'>
@@ -61,7 +63,21 @@ background: linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(246,73,215,1) 0%, 
                             </div>
 
                             <div class='card-footer p-4 pt-0 border-top-0 bg-transparent'>
-                                <div class='text-center'><a class='btn btn-outline-light mt-auto' href='#' style="background: rgb(32,99,230);background: linear-gradient(90deg, rgba(32,99,230,1) 0%, rgba(0,212,255,1) 100%, rgba(0,174,179,1) 100%);">Agregar al carrito</a></div>
+                                <?php
+                                if ($producto->getProcantstock() == 0) {
+                                ?>
+
+                                    <div class='text-center'>Sin stock</div>
+
+                                <?php
+                                } else {
+                                ?>
+
+                                    <div class='text-center'><a class='btn btn-outline-light mt-auto' href='#' style="background: rgb(255,69,207);background: linear-gradient(90deg, rgba(255,69,207,1) 0%, rgba(246,145,255,1) 0%, rgba(185,32,230,1) 100%);">Agregar al carrito</a></div>
+
+                                <?php
+                                }
+                                ?>
                             </div>
 
                         </div>

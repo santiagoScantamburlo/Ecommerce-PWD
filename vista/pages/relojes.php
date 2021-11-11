@@ -1,8 +1,8 @@
 <?php
-$titulo = "Pulseras";
+$titulo = "Aros";
 include_once '../estructuras/cabecera.php';
 $abmProducto = new abmproducto();
-$datosBusqueda['tipoproducto'] = "pulseras";
+$datosBusqueda['tipoproducto'] = "relojes";
 $datosBusqueda['habilitado'] = true;
 $listaProductos = $abmProducto->buscar($datosBusqueda);
 ?>
@@ -11,7 +11,7 @@ $listaProductos = $abmProducto->buscar($datosBusqueda);
 background: linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(246,73,215,1) 0%, rgba(175,0,179,1) 100%);">
     <div class="container px-4 px-lg-5 my-2">
         <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">PULSERAS</h1>
+            <h1 class="display-4 fw-bolder">RELOJES</h1>
             <p class="lead fw-normal text-white-50 mb-0">
             <div class="bi bi-heart-fill"></div>
             </p>
@@ -25,7 +25,7 @@ background: linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(246,73,215,1) 0%, 
             <?php
             if (count($listaProductos) > 0) {
                 $cont_prod = 0;
-                foreach ($listaProductos as $producto) {
+                for ($cont_prod = 0; $cont_prod <= 7 && $cont_prod < count($listaProductos); $cont_prod++) {
                     $producto = $listaProductos[$cont_prod];
             ?>
 

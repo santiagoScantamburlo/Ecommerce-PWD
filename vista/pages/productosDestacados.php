@@ -1,7 +1,11 @@
 <?php
+$titulo = "Productos Destacados";
 include_once '../estructuras/cabecera.php';
 $abmProducto = new abmproducto();
-$listaProductos = $abmProducto->buscarMasVendidos(null);
+$datosBusqueda['habilitado'] = true;
+$datosBusqueda['campoorden'] = "procantventas";
+$datosBusqueda['ordenado'] = "DESC";
+$listaProductos = $abmProducto->buscar($datosBusqueda);
 ?>
 
 <header style="background: rgb(0,212,255);background: linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(246,73,215,1) 0%, rgba(175,0,179,1) 100%);">
@@ -59,7 +63,23 @@ $listaProductos = $abmProducto->buscarMasVendidos(null);
                             </div>
 
                             <div class='card-footer p-4 pt-0 border-top-0 bg-transparent'>
-                                <div class='text-center'><a class='btn btn-outline-dark mt-auto' href='#'>Agregar al carrito</a></div>
+
+                                <?php
+                                if ($producto->getProcantstock() == 0) {
+                                ?>
+
+                                    <div class='text-center'>Sin stock</div>
+
+                                <?php
+                                } else {
+                                ?>
+
+                                    <div class='text-center'><a class='btn btn-outline-light mt-auto' href='#' style="background: rgb(255,69,207);background: linear-gradient(90deg, rgba(255,69,207,1) 0%, rgba(246,145,255,1) 0%, rgba(185,32,230,1) 100%);">Agregar al carrito</a></div>
+
+                                <?php
+                                }
+                                ?>
+
                             </div>
 
                         </div>

@@ -20,15 +20,15 @@
 
 <body class="d-flex flex-column min-vh-100">
     <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background: rgb(0,212,255);background: linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(194,2,160,1) 0%, rgba(139,0,142,1) 100%);">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background: rgb(255,69,207);background: linear-gradient(90deg, rgba(255,69,207,1) 0%, rgba(185,32,230,1) 100%, rgba(244,119,255,1) 100%);">
         <div class="container px-4 px-lg-5">
             <a href="../home/index.php"><img src="../../assets/images/LogoFeme.png"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
 
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <div style="font-size:20px;" class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                    <li class="nav-item"><a class="navbar-brand" href="../home/index.php">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../pages/acerca.php">Información</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../home/index.php">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../pages/informacion.php">Información</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Productos</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -49,6 +49,10 @@
                                 <hr class="dropdown-divider">
                             </li>
                             <li><a class="dropdown-item" href="../pages/pulseras.php">Pulseras</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="../pages/relojes.php">Relojes</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">

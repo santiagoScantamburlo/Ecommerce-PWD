@@ -1,7 +1,9 @@
 <?php
+$titulo = "Aros";
 include_once '../estructuras/cabecera.php';
 $abmProducto = new abmproducto();
 $datosBusqueda['tipoproducto'] = "aros";
+$datosBusqueda['habilitado'] = true;
 $listaProductos = $abmProducto->buscar($datosBusqueda);
 ?>
 
@@ -63,7 +65,7 @@ background: linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(246,73,215,1) 0%, 
                             <div class='card-footer p-4 pt-0 border-top-0 bg-transparent'>
 
                                 <?php
-                                if ($producto->getProdeshabilitado() != "") {
+                                if ($producto->getProcantstock() == 0) {
                                 ?>
 
                                     <div class='text-center'>Sin stock</div>
@@ -72,7 +74,7 @@ background: linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(246,73,215,1) 0%, 
                                 } else {
                                 ?>
 
-                                    <div class='text-center'><a class='btn btn-outline-light mt-auto' href='#' style="background: rgb(32,99,230);background: linear-gradient(90deg, rgba(32,99,230,1) 0%, rgba(0,212,255,1) 100%, rgba(0,174,179,1) 100%);">Agregar al carrito</a></div>
+                                    <div class='text-center'><a class='btn btn-outline-light mt-auto' href='#' style="background: rgb(255,69,207);background: linear-gradient(90deg, rgba(255,69,207,1) 0%, rgba(246,145,255,1) 0%, rgba(185,32,230,1) 100%);">Agregar al carrito</a></div>
 
                                 <?php
                                 }

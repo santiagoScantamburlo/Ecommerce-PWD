@@ -1,6 +1,6 @@
 <?php
 
-class Producto
+class producto
 {
     private $idproducto;
     private $proprecio;
@@ -251,66 +251,66 @@ class Producto
         return $resp;
     }
 
-    public static function listarProdHabilitado()
-    {
-        $arreglo = array();
-        $base = new BaseDatos();
-        $sql = "SELECT * FROM producto WHERE prodeshabilitado = '0000-00-00 00:00:00'";
-        $res = $base->Ejecutar($sql);
-        if ($res > -1) {
-            if ($res > 0) {
-                while ($row = $base->Registro()) {
-                    // print_r($row);
-                    $obj = new Producto();
-                    $obj->setear($row['idproducto'], $row['proprecio'], $row['prodescuento'], $row['pronombre'], $row['prodetalle'], $row['procantventas'], $row['procantstock'], $row['prodeshabilitado']);
-                    array_push($arreglo, $obj);
-                }
-            }
-        } else {
-            $this->setMensajeOperacion("Producto->listar: " . $base->getError());
-        }
-        return $arreglo;
-    }
+    // public static function listarProdHabilitado()
+    // {
+    //     $arreglo = array();
+    //     $base = new BaseDatos();
+    //     $sql = "SELECT * FROM producto WHERE prodeshabilitado = '0000-00-00 00:00:00'";
+    //     $res = $base->Ejecutar($sql);
+    //     if ($res > -1) {
+    //         if ($res > 0) {
+    //             while ($row = $base->Registro()) {
+    //                 // print_r($row);
+    //                 $obj = new Producto();
+    //                 $obj->setear($row['idproducto'], $row['proprecio'], $row['prodescuento'], $row['pronombre'], $row['prodetalle'], $row['procantventas'], $row['procantstock'], $row['prodeshabilitado']);
+    //                 array_push($arreglo, $obj);
+    //             }
+    //         }
+    //     } else {
+    //         $this->setMensajeOperacion("Producto->listar: " . $base->getError());
+    //     }
+    //     return $arreglo;
+    // }
 
-    public static function listarMasVendido()
-    {
-        $arreglo = array();
-        $base = new BaseDatos();
-        $sql = "SELECT * FROM producto WHERE prodeshabilitado = '0000-00-00 00:00:00' ORDER BY procantventas DESC";
-        $res = $base->Ejecutar($sql);
-        if ($res > -1) {
-            if ($res > 0) {
-                while ($row = $base->Registro()) {
-                    // print_r($row);
-                    $obj = new Producto();
-                    $obj->setear($row['idproducto'], $row['proprecio'], $row['prodescuento'], $row['pronombre'], $row['prodetalle'], $row['procantventas'], $row['procantstock'], $row['prodeshabilitado']);
-                    array_push($arreglo, $obj);
-                }
-            }
-        } else {
-            $this->setMensajeOperacion("Producto->listar: " . $base->getError());
-        }
-        return $arreglo;
-    }
+    // public static function listarMasVendido()
+    // {
+    //     $arreglo = array();
+    //     $base = new BaseDatos();
+    //     $sql = "SELECT * FROM producto WHERE prodeshabilitado = '0000-00-00 00:00:00' ORDER BY procantventas DESC";
+    //     $res = $base->Ejecutar($sql);
+    //     if ($res > -1) {
+    //         if ($res > 0) {
+    //             while ($row = $base->Registro()) {
+    //                 // print_r($row);
+    //                 $obj = new Producto();
+    //                 $obj->setear($row['idproducto'], $row['proprecio'], $row['prodescuento'], $row['pronombre'], $row['prodetalle'], $row['procantventas'], $row['procantstock'], $row['prodeshabilitado']);
+    //                 array_push($arreglo, $obj);
+    //             }
+    //         }
+    //     } else {
+    //         $this->setMensajeOperacion("Producto->listar: " . $base->getError());
+    //     }
+    //     return $arreglo;
+    // }
 
-    public static function listarProd()
-    {
-        $arreglo = array();
-        $base = new BaseDatos();
-        $sql = "SELECT * FROM producto WHERE";
-        $res = $base->Ejecutar($sql);
-        if ($res > -1) {
-            if ($res > 0) {
-                while ($row = $base->Registro()) {
-                    // print_r($row);
-                    $obj = new Producto();
-                    $obj->setear($row['idproducto'], $row['proprecio'], $row['prodescuento'], $row['pronombre'], $row['prodetalle'], $row['procantventas'], $row['procantstock'], $row['prodeshabilitado']);
-                    array_push($arreglo, $obj);
-                }
-            }
-        } else {
-            $this->setMensajeOperacion("Producto->listar: " . $base->getError());
-        }
-        return $arreglo;
-    }
+    // public static function listarProd()
+    // {
+    //     $arreglo = array();
+    //     $base = new BaseDatos();
+    //     $sql = "SELECT * FROM producto WHERE";
+    //     $res = $base->Ejecutar($sql);
+    //     if ($res > -1) {
+    //         if ($res > 0) {
+    //             while ($row = $base->Registro()) {
+    //                 // print_r($row);
+    //                 $obj = new Producto();
+    //                 $obj->setear($row['idproducto'], $row['proprecio'], $row['prodescuento'], $row['pronombre'], $row['prodetalle'], $row['procantventas'], $row['procantstock'], $row['prodeshabilitado']);
+    //                 array_push($arreglo, $obj);
+    //             }
+    //         }
+    //     } else {
+    //         $this->setMensajeOperacion("Producto->listar: " . $base->getError());
+    //     }
+    //     return $arreglo;
+    // }
 }

@@ -1,4 +1,5 @@
 <?php
+$titulo = "Administrar Productos";
 include_once '../estructuras/cabecera.php';
 ?>
 
@@ -20,6 +21,7 @@ include_once '../estructuras/cabecera.php';
                     <th scope='col' class='text-center'>Ventas</th>
                     <th scope='col' class='text-center'>Stock</th>
                     <th scope='col' class='text-center'>% Descuento</th>
+                    <th scope='col' class="text-center">Deshabilitado</th>
                     <th scope='col' class="text-center">Modificar</th>
                     <th scope='col' class='text-center'>Alta / Baja</th>
                 </tr>
@@ -38,12 +40,13 @@ include_once '../estructuras/cabecera.php';
                     <td class='text-center'><?php echo $producto->getProcantventas() ?></td>
                     <td class='text-center'><?php echo $producto->getProcantstock() ?></td>
                     <td class='text-center'><?php echo $producto->getProdescuento() ?></td>
-                    <form method='post' action='../acciones/accionModificarProducto.php'>
+                    <td class='text-center'><?php echo $producto->getProdeshabilitado() ?></td>
+                    <form method='post' action='../actions/actionModificarProducto.php'>
                         <td class='text-center'>
                             <input name='idproducto' id='idproducto' type='hidden' value=<?php echo $id ?>><button class='btn btn-warning btn-sm' type='submit'><i class='fas fa-user-edit'></i></button>
                         </td>
                     </form>
-                    <form method='post' action='../acciones/accionEliminarProducto.php'>
+                    <form method='post' action='../actions/actionEliminarProducto.php'>
                         <td class='text-center'>
                             <input name='idproducto' id='idproducto' type='hidden' value=<?php echo $id ?>><button class='btn btn-danger btn-sm' type='submit'><i class='bi bi-trash'></i></button>
                         </td>
@@ -60,7 +63,7 @@ include_once '../estructuras/cabecera.php';
     } else {
     ?>
 
-        <h1 class='text-center'>No hay personas cargadas en la base de datos</h1>
+        <h1 class='text-center'>No hay productos cargados en la base de datos</h1>
 
     <?php
     }
