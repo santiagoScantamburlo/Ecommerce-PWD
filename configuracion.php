@@ -21,3 +21,4 @@ $INICIO = "Location:http://" . $_SERVER['HTTP_HOST'] . "/$PROYECTO/vista/login/l
 $PRINCIPAL = "Location:http://" . $_SERVER['HTTP_HOST'] . "/$PROYECTO/principal.php";
 
 $GLOBALS['ROOT'] = $ROOT;
+$GLOBALS['IMAGENES'] = $ROOT . 'assets/images/';

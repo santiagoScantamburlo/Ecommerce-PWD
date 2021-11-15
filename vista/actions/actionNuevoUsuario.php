@@ -16,10 +16,10 @@ if (!isset($lista[0])) {
         $abmUsuarioRol = new abmusuariorol();
         $exito = $abmUsuarioRol->alta($datos);
     }
-    $exito ? header('Location: ../pages/administrarUsuarios.php?message=' . urlencode("Usuario cargado correctamente")) : header('Location: ../pages/administrarUsuarios.php?message=' . urlencode("Error en la carga"));
+    $exito ? header('Location: ../admin/administrarUsuarios.php?message=' . urlencode("Usuario cargado correctamente")) : header('Location: ../admin/administrarUsuarios.php?message=' . urlencode("Error en la carga"));
     exit;
 } else {
     $message = "El nombre de usuario ya existe";
-    header('Location: ../pages/cargarUsuario.php?message=' . urlencode($message));
+    header('Location: ../admin/cargarUsuario.php?message=' . urlencode($message));
     exit;
 }

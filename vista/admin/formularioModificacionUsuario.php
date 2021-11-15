@@ -1,5 +1,10 @@
 <?php
 include_once '../../configuracion.php';
+$sesion = new session();
+if (!$sesion->activa()) {
+    header('Location: ../login/login.php?message=' . urlencode("No ha iniciado sesión"));
+    exit;
+}
 
 $datos = data_submitted();
 $abmUsuario = new abmusuario();
@@ -58,26 +63,32 @@ if (isset($lista)) {
                     $abmUsuarioRol = new abmusuariorol();
                     $listaUsuarioRol = $abmUsuarioRol->buscar($datos);
                     $rol = $listaUsuarioRol[0]->getObjRol()[0]->getIdrol();
+                    if ($lista[0]->getIdusuario() != $idUsuario) {
                     ?>
 
-                    <div class="col-md-4">
-                        <div class="mt-4">
-                            <input class="form-check-input" id="cliente" name="idrol" type="radio" value="1" <?php if ($rol == 1) { ?> checked <?php } ?>>
-                            <label for="cliente">Cliente</label>
+                        <div class="col-md-4">
+                            <div class="mt-4">
+                                <input class="form-check-input" id="cliente" name="idrol" type="radio" value="1" <?php if ($rol == 1) { ?> checked <?php } ?>>
+                                <label for="cliente">Cliente</label>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="mt-4">
-                            <input class="form-check-input" id="deposito" name="idrol" type="radio" value="2" <?php if ($rol == 2) { ?> checked <?php } ?>>
-                            <label for="deposito">Depósito</label>
+                        <div class="col-md-4">
+                            <div class="mt-4">
+                                <input class="form-check-input" id="deposito" name="idrol" type="radio" value="2" <?php if ($rol == 2) { ?> checked <?php } ?>>
+                                <label for="deposito">Depósito</label>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="mt-4">
-                            <input class="form-check-input" id="admin" name="idrol" type="radio" value="3" <?php if ($rol == 3) { ?> checked <?php } ?>>
-                            <label for="admin">Administrador</label>
+                        <div class="col-md-4">
+                            <div class="mt-4">
+                                <input class="form-check-input" id="admin" name="idrol" type="radio" value="3" <?php if ($rol == 3) { ?> checked <?php } ?>>
+                                <label for="admin">Administrador</label>
+                            </div>
                         </div>
-                    </div>
+
+                    <?php
+                    }
+                    ?>
+
                 </div>
                 <div class="mt-5">
                     <div class="d-grid offset-md-4 col-md-4">

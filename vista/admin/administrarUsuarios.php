@@ -1,4 +1,10 @@
 <?php
+include_once '../../configuracion.php';
+$sesion = new session();
+if(!$sesion->activa()) {
+    header('Location: ../login/login.php?message=' . urlencode("No ha iniciado sesión"));
+    exit;
+}
 $titulo = "Administrar Usuarios";
 include_once '../estructuras/cabecera.php';
 ?>
@@ -37,7 +43,7 @@ include_once '../estructuras/cabecera.php';
 
                 <tr>
                     <td class='text-center'><?php echo $id ?></td>
-                    <td class='text-center'><?php echo $rol ?></td>
+                    <td class='text-center'><?php echo strtoupper($rol) ?></td>
                     <td class='text-center'><?php echo $usuario->getUsnombre() ?></td>
                     <td class='text-center'><?php echo md5($usuario->getUspass()) ?></td>
                     <td class='text-center'><?php echo $usuario->getUsmail() ?></td>

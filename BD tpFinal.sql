@@ -130,12 +130,15 @@ INSERT INTO
         `medeshabilitado`
     )
 VALUES
-    (7, 'nuevo', 'kkkkk', NULL, NULL),
-    (8, 'nuevo', 'kkkkk', NULL, NULL),
-    (9, 'nuevo', 'kkkkk', 7, NULL),
-    (10, 'nuevo', 'kkkkk', NULL, NULL),
-    (11, 'nuevo', 'kkkkk', NULL, NULL);
-
+    (1, 'cliente', '#', NULL, '0000-00-00 00:00:00'),
+    (2, 'deposito', '#', NULL, '0000-00-00 00:00:00'),
+    (3, 'admin', '#', NULL, '0000-00-00 00:00:00'),
+    (4, 'administrar usuarios', 'administrarUsuarios', 3, '0000-00-00 00:00:00'),
+    (5, 'cargar usuario', 'cargarUsuario', 3, '0000-00-00 00:00:00'),
+    (6, 'administrar menus', 'administrarMenus', 3, '0000-00-00 00:00:00'),
+    (7, 'administrar productos', 'administrarProductos', 2, '0000-00-00 00:00:00'),
+    (8, 'cargar producto', 'cargarProducto', 2, '0000-00-00 00:00:00'),
+    (9, 'carrito', 'carrito', 1, '0000-00-00 00:00:00');
 -- --------------------------------------------------------
 --
 -- Estructura de tabla para la tabla `menurol`
@@ -172,9 +175,9 @@ CREATE TABLE `rol` (
 INSERT INTO
     `rol` (`idrol`, `rodescripcion`)
 VALUES
-    (1, 'Cliente'),
-    (2, 'Deposito'),
-    (3, 'Admin');
+    (1, 'cliente'),
+    (2, 'deposito'),
+    (3, 'admin');
 
 -- --------------------------------------------------------
 --

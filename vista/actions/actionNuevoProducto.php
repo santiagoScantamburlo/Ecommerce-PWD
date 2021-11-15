@@ -10,7 +10,7 @@ $listaProductos = $abmProducto->buscar($datos);
 
 if (isset($listaProductos[0])) {
     $message = "El ID ingresado ya existe";
-    header('Location: ../pages/cargarProducto.php?message=' . urlencode($message));
+    header('Location: ../deposito/cargarProducto.php?message=' . urlencode($message));
     exit;
 } else {
     $datos['procantventas'] = 0;
@@ -18,11 +18,11 @@ if (isset($listaProductos[0])) {
 
     if ($exito) {
         $message = "Producto cargado correctamente";
-        header('Location: ../pages/listaProductos.php?message=' . urlencode($message));
+        header('Location: ../deposito/administrarProductos.php?message=' . urlencode($message));
         exit;
     } else {
         $message = "Error en la carga del producto";
-        header('Location: ../pages/cargarProducto.php?message=' . urlencode($message));
+        header('Location: ../deposito/cargarProducto.php?message=' . urlencode($message));
         exit;
     }
 }

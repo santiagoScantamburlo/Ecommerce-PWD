@@ -33,53 +33,76 @@ $sesion = new session();
             <div style="font-size:20px;" class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                     <li class="nav-item"><a class="nav-link" href="../home/index.php">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../pages/informacion.php">Información</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../home/informacion.php">Información</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Productos</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="../pages/listaProductos.php">Todos los productos</a></li>
+                            <li><a class="dropdown-item" href="../cliente/listaProductos.php">Todos los productos</a></li>
                             <li>
                                 <hr class="dropdown-divider" />
                             </li>
-                            <li><a class="dropdown-item" href="../pages/productosDestacados.php">Productos destacados</a></li>
+                            <li><a class="dropdown-item" href="../cliente/productosDestacados.php">Productos destacados</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="../pages/aros.php">Aros</a></li>
+                            <li><a class="dropdown-item" href="../cliente/aros.php">Aros</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="../pages/cadenitas.php">Cadenitas</a></li>
+                            <li><a class="dropdown-item" href="../cliente/cadenitas.php">Cadenitas</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="../pages/pulseras.php">Pulseras</a></li>
+                            <li><a class="dropdown-item" href="../cliente/pulseras.php">Pulseras</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="../pages/relojes.php">Relojes</a></li>
+                            <li><a class="dropdown-item" href="../cliente/relojes.php">Relojes</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Administrar productos</a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="../pages/administrarProductos.php">Administrar</a></li>
-                            <li><a class="dropdown-item" href="../pages/cargarProducto.php">Cargar Nuevo Producto</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Administrar usuarios</a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="../pages/administrarUsuarios.php">Administrar</a></li>
-                            <li><a class="dropdown-item" href="../pages/cargarUsuario.php">Cargar Nuevo Usuario</a></li>
-                        </ul>
-                    </li>
-                </ul>
 
+                    <?php
+                    if ($sesion->activa()) {
+                        $usNombre = $sesion->getUsnombre();
+                        $abmUsuario = new abmusuario();
+                        $listaUs = $abmUsuario->buscar(['usnombre' => $usNombre]);
+                        $idUsuario = $listaUs[0]->getIdusuario();
+                        $abmUsuarioRol = new abmusuariorol();
+                        $listaUsRol = $abmUsuarioRol->buscar(['idusuario' => $idUsuario]);
+                        if ($listaUsRol[0]->getObjRol()[0]->getIdrol() == 2) {
+                    ?>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Administrar productos</a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <li><a class="dropdown-item" href="../deposito/administrarProductos.php">Administrar</a></li>
+                                    <li><a class="dropdown-item" href="../deposito/cargarProducto.php">Cargar Nuevo Producto</a></li>
+                                </ul>
+                            </li>
+
+                        <?php
+                        }
+                        if ($listaUsRol[0]->getObjRol()[0]->getIdrol() == 3) {
+                        ?>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Administrar usuarios</a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <li><a class="dropdown-item" href="../admin/administrarUsuarios.php">Administrar</a></li>
+                                    <li><a class="dropdown-item" href="../admin/cargarUsuario.php">Cargar Nuevo Usuario</a></li>
+                                </ul>
+                            </li>
+
+                    <?php
+                        }
+                    }
+                    ?>
+
+                </ul>
                 <ul class="navbar-nav d-flex">
                     <!-- Icon carrito -->
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="../pages/carrito.php" role="button" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link text-white" href="../cliente/carrito.php" role="button" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-shopping-cart"></i> <span class="d-lg-none">Carrito</span><span class="badge bg-white text-black ms-1 rounded-pill">0</span>
                         </a>
                     </li>
@@ -93,8 +116,8 @@ $sesion = new session();
                             <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown-Visitante" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-sign-in-alt"></i><span class="d-lg-none">Usuario</span></a>
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown-Visitante">
-                                <a class="dropdown-item" href="../pages/login.php"><span class="fas fa-sign-in-alt fa-fw" aria-hidden="true" title="Log in"></span>Entrar</a>
-                                <a class="dropdown-item" href="../pages/registrar.php"><span class="fas fa-pencil-alt fa-fw" aria-hidden="true" title="Sign up"></span>Registrarse</a>
+                                <a class="dropdown-item" href="../login/login.php"><span class="fas fa-sign-in-alt fa-fw" aria-hidden="true" title="Log in"></span>Entrar</a>
+                                <a class="dropdown-item" href="../login/registrar.php"><span class="fas fa-pencil-alt fa-fw" aria-hidden="true" title="Sign up"></span>Registrarse</a>
                             </div>
                         </li>
                         <!-- Icon usuario -->
@@ -109,11 +132,9 @@ $sesion = new session();
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown-Usuario">
-                                <a class="dropdown-item" href="../pages/perfil.php"><span class="fas fa-user fa-fw" aria-hidden="true" title="Perfil"></span>&nbsp;Perfil</a>
+                                <a class="dropdown-item" href="../pages/perfil.php"><span class="fas fa-user fa-fw" aria-hidden="true" title="Perfil"></span>&nbsp;<?php echo $sesion->getUsnombre() ?></a>
                                 <a class="dropdown-item" href="../pages/configuracion.php"><span class="fas fa-cog fa-fw " aria-hidden="true" title="Configuración"></span>&nbsp;Configuración</a>
-
                                 <div class="dropdown-divider"></div>
-
                                 <a class="dropdown-item logout" href="../actions/actionLogout.php"><span class="fas fa-sign-out-alt fa-fw" aria-hidden="true" title="Cerrar sesión"></span>&nbsp;Cerrar sesión</a>
                             </div>
                         </li>

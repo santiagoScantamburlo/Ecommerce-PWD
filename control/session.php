@@ -108,40 +108,40 @@ class session
      * Consigue a un usuario de la bd
      * @return $datosUsuario
      */
-    public function getUsuario()
-    {
-        $abmUsuario = new abmusuario();
-        $where = ['idusuario' => $_SESSION['idusuario']];
-        $listaUsuarios = $abmUsuario->buscar($where);
+    // public function getUsuario()
+    // {
+    //     $abmUsuario = new abmusuario();
+    //     $where = ['idusuario' => $_SESSION['idusuario']];
+    //     $listaUsuarios = $abmUsuario->buscar($where);
 
-        if ($listaUsuarios >= 1) {
-            $datosUsuario = $listaUsuarios[0];
-        }
+    //     if ($listaUsuarios >= 1) {
+    //         $datosUsuario = $listaUsuarios[0];
+    //     }
 
-        return $datosUsuario;
-    }
+    //     return $datosUsuario;
+    // }
 
 
-    /**
-     * Consigue al rol del usuario a loggearse
-     * @return string $rol
-     */
-    public function getRol()
-    {
-        $abmUsuarioRol = new abmusuariorol();
-        $usuario = $this->getUsuario();
-        $idUsuario = $usuario->getIdusuario();
-        $param = ['idusuario' => $idUsuario];
-        $listaRolesUsu = $abmUsuarioRol->buscar($param);
+    // /**
+    //  * Consigue al rol del usuario a loggearse
+    //  * @return string $rol
+    //  */
+    // public function getRol()
+    // {
+    //     $abmUsuarioRol = new abmusuariorol();
+    //     $usuario = $this->getUsuario();
+    //     $idUsuario = $usuario->getIdusuario();
+    //     $param = ['idusuario' => $idUsuario];
+    //     $listaRolesUsu = $abmUsuarioRol->buscar($param);
 
-        if ($listaRolesUsu > 1) {
-            $rol = $listaRolesUsu;
-        } else {
-            $rol = $listaRolesUsu[0];
-        }
+    //     if ($listaRolesUsu > 1) {
+    //         $rol = $listaRolesUsu;
+    //     } else {
+    //         $rol = $listaRolesUsu[0];
+    //     }
 
-        return $rol;
-    }
+    //     return $rol;
+    // }
 
     /**
      * Destruye la session creada.
