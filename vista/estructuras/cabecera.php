@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
 
+<?php
+include_once '../../configuracion.php';
+$sesion = new session();
+?>
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -62,7 +67,13 @@
                             <li><a class="dropdown-item" href="../pages/cargarProducto.php">Cargar Nuevo Producto</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../pages/administrarUsuarios.php">Administrar Usuarios</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Administrar usuarios</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="../pages/administrarUsuarios.php">Administrar</a></li>
+                            <li><a class="dropdown-item" href="../pages/cargarUsuario.php">Cargar Nuevo Usuario</a></li>
+                        </ul>
+                    </li>
                 </ul>
 
                 <ul class="navbar-nav d-flex">
@@ -73,33 +84,45 @@
                         </a>
                     </li>
                     <!-- Icon visitante -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown-Visitante" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-sign-in-alt"></i><span class="d-lg-none">Usuario</span></a>
 
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown-Visitante">
-                            <a class="dropdown-item" href="../pages/login.php"><span class="fas fa-sign-in-alt fa-fw" aria-hidden="true" title="Log in"></span>Entrar</a>
-                            <a class="dropdown-item" href="../pages/registrar.php"><span class="fas fa-pencil-alt fa-fw" aria-hidden="true" title="Sign up"></span>Registrarse</a>
-                        </div>
-                    </li>
-                    <!-- Icon usuario -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown-Usuario" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-user"></i> <span class="d-lg-none">Usuario</span>
-                        </a>
+                    <?php
+                    if (!$sesion->activa()) {
+                    ?>
 
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown-Usuario">
-                            <a class="dropdown-item" href="../pages/perfil.php"><span class="fas fa-user fa-fw" aria-hidden="true" title="Perfil"></span>&nbsp;Perfil</a>
-                            <a class="dropdown-item" href="../pages/configuracion.php"><span class="fas fa-cog fa-fw " aria-hidden="true" title="Configuración"></span>&nbsp;Configuración</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown-Visitante" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-sign-in-alt"></i><span class="d-lg-none">Usuario</span></a>
 
-                            <div class="dropdown-divider"></div>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown-Visitante">
+                                <a class="dropdown-item" href="../pages/login.php"><span class="fas fa-sign-in-alt fa-fw" aria-hidden="true" title="Log in"></span>Entrar</a>
+                                <a class="dropdown-item" href="../pages/registrar.php"><span class="fas fa-pencil-alt fa-fw" aria-hidden="true" title="Sign up"></span>Registrarse</a>
+                            </div>
+                        </li>
+                        <!-- Icon usuario -->
 
-                            <a class="dropdown-item logout" href="#"><span class="fas fa-sign-out-alt fa-fw" aria-hidden="true" title="Cerrar sesión"></span>&nbsp;Cerrar sesión</a>
-                        </div>
-                    </li>
+                    <?php
+                    } else {
+                    ?>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown-Usuario" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-user"></i> <span class="d-lg-none">Usuario</span>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown-Usuario">
+                                <a class="dropdown-item" href="../pages/perfil.php"><span class="fas fa-user fa-fw" aria-hidden="true" title="Perfil"></span>&nbsp;Perfil</a>
+                                <a class="dropdown-item" href="../pages/configuracion.php"><span class="fas fa-cog fa-fw " aria-hidden="true" title="Configuración"></span>&nbsp;Configuración</a>
+
+                                <div class="dropdown-divider"></div>
+
+                                <a class="dropdown-item logout" href="../actions/actionLogout.php"><span class="fas fa-sign-out-alt fa-fw" aria-hidden="true" title="Cerrar sesión"></span>&nbsp;Cerrar sesión</a>
+                            </div>
+                        </li>
+
+                    <?php
+                    }
+                    ?>
+
                 </ul>
             </div>
         </div>
     </nav>
-    <?php
-    include_once '../../configuracion.php';
-    ?>

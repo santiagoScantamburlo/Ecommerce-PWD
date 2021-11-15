@@ -2,8 +2,8 @@
 $titulo = "Lista Productos";
 include_once '../estructuras/cabecera.php';
 $abmProducto = new abmproducto();
-$datosBusqueda['procantstock'] = 1;
 $datosBusqueda['habilitado'] = true;
+$datosBusqueda['procantstock'] = 1;
 $listaProductos = $abmProducto->buscar($datosBusqueda);
 shuffle($listaProductos);
 ?>

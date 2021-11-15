@@ -23,7 +23,8 @@ include_once '../estructuras/cabecera.php';
                     <th scope='col' class='text-center'>% Descuento</th>
                     <th scope='col' class="text-center">Deshabilitado</th>
                     <th scope='col' class="text-center">Modificar</th>
-                    <th scope='col' class='text-center'>Alta / Baja</th>
+                    <th scope='col' class="text-center">Deshabilitar</th>
+                    <th scope='col' class='text-center'>Eliminar</th>
                 </tr>
             </thead>
 
@@ -41,9 +42,32 @@ include_once '../estructuras/cabecera.php';
                     <td class='text-center'><?php echo $producto->getProcantstock() ?></td>
                     <td class='text-center'><?php echo $producto->getProdescuento() ?></td>
                     <td class='text-center'><?php echo $producto->getProdeshabilitado() ?></td>
-                    <form method='post' action='../actions/actionModificarProducto.php'>
+                    <form method='post' action='formularioModificacionProducto.php'>
                         <td class='text-center'>
                             <input name='idproducto' id='idproducto' type='hidden' value=<?php echo $id ?>><button class='btn btn-warning btn-sm' type='submit'><i class='fas fa-user-edit'></i></button>
+                        </td>
+                    </form>
+                    <form method='post' action='../actions/actionDeshabilitarProducto.php'>
+                        <td class='text-center'>
+                            <input name='idproducto' id='idproducto' type='hidden' value=<?php echo $id ?>><button class='btn btn-warning btn-sm' type='submit'>
+
+                                <?php
+                                if ($producto->getProdeshabilitado() == '0000-00-00 00:00:00') {
+                                ?>
+
+                                    <i class="bi bi-toggle-off"></i>
+
+                                <?php
+                                } else {
+                                ?>
+
+                                    <i class="bi bi-toggle-on"></i>
+
+                                <?php
+                                }
+                                ?>
+
+                            </button>
                         </td>
                     </form>
                     <form method='post' action='../actions/actionEliminarProducto.php'>

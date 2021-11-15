@@ -2,8 +2,8 @@
 $titulo = "Aros";
 include_once '../estructuras/cabecera.php';
 $abmProducto = new abmproducto();
-$datosBusqueda['tipoproducto'] = "relojes";
 $datosBusqueda['habilitado'] = true;
+$datosBusqueda['tipoproducto'] = "relojes";
 $listaProductos = $abmProducto->buscar($datosBusqueda);
 ?>
 

@@ -180,26 +180,28 @@ class usuario
         return $resp;
     }
 
-    public static function seleccionar($condicion = "")
+    public static function listar($parametro = "")
     {
         $arreglo = array();
         $base = new BaseDatos();
         $sql = "SELECT * FROM usuario ";
-        if ($condicion != "") {
-            $sql .= 'WHERE ' . $condicion;
+        if ($parametro != "") {
+            $sql .= 'WHERE ' . $parametro;
         }
         $res = $base->Ejecutar($sql);
         if ($res > -1) {
             if ($res > 0) {
                 while ($row = $base->Registro()) {
+                    // print_r($row);
                     $obj = new usuario();
                     $obj->setear($row['idusuario'], $row['usnombre'], $row['uspass'], $row['usmail'], $row['usdeshabilitado']);
                     array_push($arreglo, $obj);
                 }
             }
         } else {
-            $this->setMensajeOperacion("Usuario->seleccionar: " . $base->getError());
+            $this->setMensajeOperacion("Producto->listar: " . $base->getError());
         }
+
         return $arreglo;
     }
 }

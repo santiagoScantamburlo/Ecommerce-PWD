@@ -29,7 +29,7 @@ class abmusuario
                 $where .= " and usdeshabilitado ='" . $param['usdeshabilitado'] . "'";
             }
         }
-        $arreglo = usuario::seleccionar($where);
+        $arreglo = usuario::listar($where);
         return $arreglo;
     }
 
@@ -38,11 +38,10 @@ class abmusuario
         $objUs = null;
         if (array_key_exists('usnombre', $param) && array_key_exists('usmail', $param) && array_key_exists('uspass', $param)) {
             $objUs = new usuario();
-            $pass = md5($param['uspass']);
             $objUs->setear(
                 '',
                 $param['usnombre'],
-                $pass,
+                $param['uspass'],
                 $param['usmail'],
                 ''
             );
@@ -74,8 +73,7 @@ class abmusuario
     {
         $resp = false;
         $objUs = new usuario();
-        $pass = md5($param['uspass']);
-        $objUs->setear($param['idusuario'], $param['usnombre'], $pass, $param['usmail'], $param['usdeshabilitado']);
+        $objUs->setear($param['idusuario'], $param['usnombre'], $param['uspass'], $param['usmail'], $param['usdeshabilitado']);
         if ($objUs->modificar()) {
             $resp = true;
         }
@@ -108,20 +106,21 @@ class abmusuario
 
     //Hace un borrado logico del usuario. 
     //En caso de que ya estuviese deshabilitado, lo vuelve a habilitar.
-    public function deshabilitarUsuario($param){
-        $resp=false;
+    public function deshabilitarUsuario($param)
+    {
+        $resp = false;
         $objUsuario = $this->cargarObjetoConClave($param);
-        $listadoProductos = $objUsuario->seleccionar("idusuario=".$param['idusuario']);
-        if(count($listadoProductos)>0){
+        $listadoProductos = $objUsuario->listar("idusuario=" . $param['idusuario']);
+        if (count($listadoProductos) > 0) {
             // print_r($listadoProductos[0]);
             $estadoUsuario = $listadoProductos[0]->getUsDeshabilitado();
-            if($estadoUsuario=='0000-00-00 00:00:00'){
-                if($objUsuario->estado(date("Y-m-d H:i:s"))){
-                    $resp=true;
+            if ($estadoUsuario == '0000-00-00 00:00:00') {
+                if ($objUsuario->estado(date("Y-m-d H:i:s"))) {
+                    $resp = true;
                 }
-            }else{
-                if($objUsuario->estado()){
-                    $resp=true;
+            } else {
+                if ($objUsuario->estado()) {
+                    $resp = true;
                 }
             }
         }

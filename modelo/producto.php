@@ -104,14 +104,14 @@ class producto
         $this->procantventas = $procantventas;
     }
 
-    public function setProstock($procantstock)
+    public function setProcantstock($procantstock)
     {
         $this->procantstock = $procantstock;
     }
 
-    public function setProDeshabilitado($prodeshabilitado)
+    public function setProdeshabilitado($prodeshabilitado)
     {
-        $this->$prodeshabilitado = $prodeshabilitado;
+        $this->prodeshabilitado = $prodeshabilitado;
     }
 
     public function setMensajeOperacion($mensajeOperacion)
@@ -128,8 +128,8 @@ class producto
         $this->setPronombre($pronombre);
         $this->setProdetalle($prodetalle);
         $this->setProcantventas($procantventas);
-        $this->setProstock($procantstock);
-        $this->setProDeshabilitado($prodeshabilitado);
+        $this->setProcantstock($procantstock);
+        $this->setProdeshabilitado($prodeshabilitado);
     }
 
     public function cargar()
@@ -160,7 +160,7 @@ class producto
         $resp = false;
         $base = new BaseDatos();
 
-        $sql = "INSERT INTO producto (idproducto, proprecio, prodescuento, pronombre, prodetalle, procantventas, procantstock, prodeshabilitado) VALUES ('" . $this->getIdproducto() . "'," . $this->getProprecio() . "," . $this->getProdescuento() . ",'" . $this->getPronombre() . "','" . $this->getProdetalle() . "'," . $this->getProcantventas() . "," . $this->getProcantstock() . ", '0000-00-00 00:00:00')";
+        $sql = "INSERT INTO producto (idproducto, proprecio, prodescuento, pronombre, prodetalle, procantventas, procantstock, prodeshabilitado) VALUES ('" . $this->getIdproducto() . "'," . $this->getProprecio() . "," . $this->getProdescuento() . ",'" . $this->getPronombre() . "','" . $this->getProdetalle() . "'," . $this->getProcantventas() . "," . $this->getProcantstock() . ",'0000-00-00 00:00:00')";
 
         if ($base->Iniciar()) {
             if ($base = $base->Ejecutar($sql)) {
@@ -179,7 +179,7 @@ class producto
     {
         $resp = false;
         $base = new BaseDatos();
-        $sql = "UPDATE producto SET idproducto='" . $this->getIdproducto() . "', proprecio=" . $this->getProprecio() . ", prodescuento=" . $this->getProdescuento() . ", pronombre='" . $this->getPronombre() . "', prodetalle='" . $this->getProdetalle() . "', procantventas=" . $this->getProcantventas() . ", procantstock=" . $this->getProcantstock() . ", prodeshabilitado='0000-00-00 00:00:00' WHERE idproducto='" . $this->getIdproducto() . "'";
+        $sql = "UPDATE producto SET idproducto='" . $this->getIdproducto() . "', proprecio=" . $this->getProprecio() . ", prodescuento=" . $this->getProdescuento() . ", pronombre='" . $this->getPronombre() . "', prodetalle='" . $this->getProdetalle() . "', procantventas=" . $this->getProcantventas() . ", procantstock=" . $this->getProcantstock() . ", prodeshabilitado = '0000-00-00 00:00:00' WHERE idproducto='" . $this->getIdproducto() . "'";
         if ($base->Iniciar()) {
             if ($base->Ejecutar($sql)) {
                 $resp = true;
@@ -250,67 +250,4 @@ class producto
         }
         return $resp;
     }
-
-    // public static function listarProdHabilitado()
-    // {
-    //     $arreglo = array();
-    //     $base = new BaseDatos();
-    //     $sql = "SELECT * FROM producto WHERE prodeshabilitado = '0000-00-00 00:00:00'";
-    //     $res = $base->Ejecutar($sql);
-    //     if ($res > -1) {
-    //         if ($res > 0) {
-    //             while ($row = $base->Registro()) {
-    //                 // print_r($row);
-    //                 $obj = new Producto();
-    //                 $obj->setear($row['idproducto'], $row['proprecio'], $row['prodescuento'], $row['pronombre'], $row['prodetalle'], $row['procantventas'], $row['procantstock'], $row['prodeshabilitado']);
-    //                 array_push($arreglo, $obj);
-    //             }
-    //         }
-    //     } else {
-    //         $this->setMensajeOperacion("Producto->listar: " . $base->getError());
-    //     }
-    //     return $arreglo;
-    // }
-
-    // public static function listarMasVendido()
-    // {
-    //     $arreglo = array();
-    //     $base = new BaseDatos();
-    //     $sql = "SELECT * FROM producto WHERE prodeshabilitado = '0000-00-00 00:00:00' ORDER BY procantventas DESC";
-    //     $res = $base->Ejecutar($sql);
-    //     if ($res > -1) {
-    //         if ($res > 0) {
-    //             while ($row = $base->Registro()) {
-    //                 // print_r($row);
-    //                 $obj = new Producto();
-    //                 $obj->setear($row['idproducto'], $row['proprecio'], $row['prodescuento'], $row['pronombre'], $row['prodetalle'], $row['procantventas'], $row['procantstock'], $row['prodeshabilitado']);
-    //                 array_push($arreglo, $obj);
-    //             }
-    //         }
-    //     } else {
-    //         $this->setMensajeOperacion("Producto->listar: " . $base->getError());
-    //     }
-    //     return $arreglo;
-    // }
-
-    // public static function listarProd()
-    // {
-    //     $arreglo = array();
-    //     $base = new BaseDatos();
-    //     $sql = "SELECT * FROM producto WHERE";
-    //     $res = $base->Ejecutar($sql);
-    //     if ($res > -1) {
-    //         if ($res > 0) {
-    //             while ($row = $base->Registro()) {
-    //                 // print_r($row);
-    //                 $obj = new Producto();
-    //                 $obj->setear($row['idproducto'], $row['proprecio'], $row['prodescuento'], $row['pronombre'], $row['prodetalle'], $row['procantventas'], $row['procantstock'], $row['prodeshabilitado']);
-    //                 array_push($arreglo, $obj);
-    //             }
-    //         }
-    //     } else {
-    //         $this->setMensajeOperacion("Producto->listar: " . $base->getError());
-    //     }
-    //     return $arreglo;
-    // }
 }

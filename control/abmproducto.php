@@ -83,7 +83,7 @@ class abmproducto
         $objProducto = $this->cargarObjetoConClave($param);
         $listadoProductos = $objProducto->listar("idproducto='" . $param['idproducto'] . "'");
         if (count($listadoProductos) > 0) {
-            $estadoProducto = $listadoProductos[0]->getProDeshabilitado();
+            $estadoProducto = $listadoProductos[0]->getProdeshabilitado();
             if ($estadoProducto == '0000-00-00 00:00:00') {
                 if ($objProducto->estado(date("Y-m-d H:i:s"))) {
                     $resp = true;
@@ -139,16 +139,4 @@ class abmproducto
         $arreglo = producto::listar($where);
         return $arreglo;
     }
-
-    // public function buscarHabilitados()
-    // {
-    //     $arreglo = producto::listarProdHabilitado();
-    //     return $arreglo;
-    // }
-
-    // public function buscarMasVendidos()
-    // {
-    //     $arreglo = producto::listarMasVendido();
-    //     return $arreglo;
-    // }
 }

@@ -4,11 +4,11 @@ class abmrol
     private function cargarObjeto($parametro)
     {
         $rol = null;
-        if (array_key_exists('id_rol', $parametro) && array_key_exists('rol_descripcion', $parametro)) {
+        if (array_key_exists('idrol', $parametro) && array_key_exists('rodescripcion', $parametro)) {
             $rol = new rol();
             $rol->setear(
-                $parametro['id_rol'],
-                $parametro['rol_descripcion'],
+                $parametro['idrol'],
+                $parametro['rodescripcion'],
             );
         }
         
@@ -18,9 +18,9 @@ class abmrol
     private function cargarObjetoConClave($parametro)
     {
         $objRol = null;
-        if (isset($parametro['id_rol'])) {
+        if (isset($parametro['idrol'])) {
             $objRol = new rol();
-            $objRol->setear($parametro['id_rol'], null);
+            $objRol->setear($parametro['idrol'], null);
         }
         return $objRol;
     }

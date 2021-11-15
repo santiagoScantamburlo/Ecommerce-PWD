@@ -157,7 +157,7 @@ CREATE TABLE `producto` (
     `prodetalle` varchar(512) NOT NULL,
     `procantventas` int(11) NOT NULL,
     `procantstock` int(11) NOT NULL,
-    `prodeshabilitado` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+    `prodeshabilitado` timestamp NULL DEFAULT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = latin1;
 
 -- --------------------------------------------------------
@@ -169,6 +169,13 @@ CREATE TABLE `rol` (
     `rodescripcion` varchar(50) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = latin1;
 
+INSERT INTO
+    `rol` (`idrol`, `rodescripcion`)
+VALUES
+    (1, 'Cliente'),
+    (2, 'Deposito'),
+    (3, 'Admin');
+
 -- --------------------------------------------------------
 --
 -- Estructura de tabla para la tabla `usuario`
@@ -176,7 +183,7 @@ CREATE TABLE `rol` (
 CREATE TABLE `usuario` (
     `idusuario` bigint(20) NOT NULL,
     `usnombre` varchar(50) NOT NULL,
-    `uspass` int(11) NOT NULL,
+    `uspass` varchar(50) NOT NULL,
     `usmail` varchar(50) NOT NULL,
     `usdeshabilitado` timestamp NULL DEFAULT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = latin1;
@@ -421,7 +428,7 @@ ALTER TABLE
 ADD
     CONSTRAINT `fkmovimiento_1` FOREIGN KEY (`idrol`) REFERENCES `rol` (`idrol`) ON UPDATE CASCADE,
 ADD
-    CONSTRAINT `usuariorol_ibfk_2` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`) ON UPDATE CASCADE;
+    CONSTRAINT `usuariorol_ibfk_2` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`) ON UPDATE CASCADE ON DELETE CASCADE;
 
 COMMIT;
 

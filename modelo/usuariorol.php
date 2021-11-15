@@ -56,7 +56,7 @@ class usuariorol
         $resp = false;
         $base = new BaseDatos();
         $idUsuario = $this->getObjUsuario()->getIdusuario();
-        $idRol = $this->getObjRol()->getIdRol();
+        $idRol = $this->getObjRol()->getIdrol();
         $sql = "SELECT * FROM usuariorol WHERE idusuario= " . $idUsuario . " AND idrol= " . $idRol;
 
         if ($base->Iniciar()) {
@@ -68,14 +68,14 @@ class usuariorol
                     $row = $base->Registro();
 
                     if ($row['idrol'] != null) {
-                        $objRol = new Rol();
-                        $objRol->setIdRol($row['idrol']);
+                        $objRol = new rol();
+                        $objRol->setIdrol($row['idrol']);
                         $objRol->cargar();
                     }
 
                     if ($row['idusuario'] != null) {
 
-                        $objUsuario = new Usuario();
+                        $objUsuario = new usuario();
                         $objUsuario->setIdusuario($row['idusuario']);
                         $objUsuario->cargar();
                     }
@@ -96,17 +96,18 @@ class usuariorol
         $objUsuario = $this->getObjUsuario();
         $objRol = $this->getObjRol();
         $idUsuario = $objUsuario->getIdusuario();
-        $idRol = $objRol->getIdRol();
+        $idRol = $objRol->getIdrol();
         $sql = "INSERT INTO usuariorol(idusuario,idrol)  VALUES(" . $idUsuario . "," . $idRol . ")";
+        echo $sql;
 
         if ($base->Iniciar()) {
             if ($base->Ejecutar($sql)) {
                 $resp = true;
             } else {
-                $this->setmensajeoperacion("Relacion->insertar: " . $base->getError());
+                $this->setmensajeoperacion("UsRolacion->insertar: " . $base->getError());
             }
         } else {
-            $this->setmensajeoperacion("Relacion->insertar: " . $base->getError());
+            $this->setmensajeoperacion("UsRolacion->insertar: " . $base->getError());
         }
 
         return $resp;
@@ -117,7 +118,7 @@ class usuariorol
         $resp = false;
         $base = new BaseDatos();
         $idUsuario = $this->getObjUsuario()->getIdusuario();
-        $idRol = $this->getObjRol()->getIdRol();
+        $idRol = $this->getObjRol()->getIdrol();
         $sql = " UPDATE usuariorol SET ";
         $sql .= " idrol = " . $idRol;
         $sql .= " WHERE idusuario =" . $idUsuario;
@@ -126,10 +127,10 @@ class usuariorol
             if ($base->Ejecutar($sql)) {
                 $resp = true;
             } else {
-                $this->setMensajeOperacion("Relacion->modificar 1: " . $base->getError());
+                $this->setMensajeOperacion("UsRolacion->modificar 1: " . $base->getError());
             }
         } else {
-            $this->setMensajeOperacion("Relacion->modificar 2: " . $base->getError());
+            $this->setMensajeOperacion("UsRolacion->modificar 2: " . $base->getError());
         }
 
         return $resp;
@@ -140,16 +141,16 @@ class usuariorol
     {
         $resp = false;
         $base = new BaseDatos();
-        $sql = "DELETE FROM usuariorol WHERE idusuario=" . $this->getObjUsuario()->getIdusuario() . " and idrol= " . $this->getObjRol()->getIdRol();
+        $sql = "DELETE FROM usuariorol WHERE idusuario=" . $this->getObjUsuario()->getIdusuario() . " and idrol= " . $this->getObjRol()->getIdrol();
 
         if ($base->Iniciar()) {
             if ($base->Ejecutar($sql)) {
                 $resp = true;
             } else {
-                $this->setMensajeOperacion("Relacion->eliminar: " . $base->getError());
+                $this->setMensajeOperacion("UsRolacion->eliminar: " . $base->getError());
             }
         } else {
-            $this->setMensajeOperacion("Relacion->eliminar: " . $base->getError());
+            $this->setMensajeOperacion("UsRolacion->eliminar: " . $base->getError());
         }
 
         return $resp;
@@ -157,7 +158,7 @@ class usuariorol
 
 
 
-    public static function seleccionar($condicion = "")
+    public static function listar($condicion = "")
     {
         $arreglo = array();
         $base = new BaseDatos();
@@ -169,17 +170,17 @@ class usuariorol
         if ($res > -1) {
             if ($res > 0) {
                 while ($row = $base->Registro()) {
-                    $objRel = new Relacion();
-                    $abmUs = new abmUsuario();
+                    $objUsRol = new usuariorol();
+                    $abmUs = new abmusuario();
                     $arrayUs = $abmUs->buscar(['idusuario' => $row['idusuario']]);
-                    $abmRol = new abmRol();
-                    $objRol = $abmRol->buscar($row['idrol']);
-                    $objRel->setear($arrayUs[0], $objRol);
-                    array_push($arreglo, $objRel);
+                    $abmRol = new abmrol();
+                    $objRol = $abmRol->buscar(['idrol' => $row['idrol']]);
+                    $objUsRol->setear($arrayUs[0], $objRol);
+                    array_push($arreglo, $objUsRol);
                 }
             }
         } else {
-            $this->setMensajeOperacion("Relacion->seleccionar: " . $base->getError());
+            $this->setMensajeOperacion("UsRol->listar: " . $base->getError());
         }
 
         return $arreglo;

@@ -2,103 +2,158 @@
 
 class session
 {
+    // Constructor
     public function __construct()
     {
-        if (session_status() === PHP_SESSION_NONE) {
+        if (!isset($_SESSION)) {
             session_start();
         }
     }
 
-    public function setAtributo($nombreAtributo, $valor)
+    // Getters
+    public function getIdusuario()
     {
-        if (session_status() === PHP_SESSION_ACTIVE && is_string($nombreAtributo)) {
-            $_SESSION[$nombreAtributo] = $valor;
-        }
+        return $_SESSION['idusuario'];
     }
 
-    public function getAtributo($nombreAtributo)
+    public function getUsnombre()
     {
-        $atributo = null;
-        if (session_status() === PHP_SESSION_ACTIVE && is_string($nombreAtributo) && isset($_SESSION[$nombreAtributo])) {
-            $atributo = $_SESSION[$nombreAtributo];
-        }
-
-        return $atributo;
+        return $_SESSION['usnombre'];
     }
 
-    public function borrarAtributo($nombreAtributo)
+    public function getUspass()
     {
-        if (session_status() === PHP_SESSION_ACTIVE && is_string($nombreAtributo) && isset($_SESSION[$nombreAtributo])) {
-            unset($_SESSION[$nombreAtributo]);
-        }
+        return $_SESSION['uspass'];
     }
 
-    public function iniciarSession($datos)
+    // Setters
+    public function setIdusuario($idUser)
     {
-        $this->session_started;
-        $this->setAtributo("usuario", $datos["usuario"]);
-        $this->setAtributo("login", $datos["login"]);
-        $this->setAtributo("rol", $datos["rol"]);
-        $this->setAtributo("idusuario", $datos["idusuario"]);
+        $_SESSION['idusuario'] = $idUser;
+    }
 
-        $resp = true;
+    public function setUsnombre($userName)
+    {
+        $_SESSION['usnombre'] = $userName;
+    }
 
-        return $resp;
+    public function setUspass($pass)
+    {
+        $_SESSION['uspass'] = $pass;
+    }
 
-        /*	OPCIÓN PARA RECUPERAR $ID DE SESSION
-		LA DEJO PARA TENERLA
-		$id= session_id();
-		$this-> setSession_id ($id);
-		return $id;
-		}
-		public function setSession_id ($id){
-			$_SESSION["key"]= $id;
-		}*/
+    // Metodos
+    public function iniciar($nombreUsuario, $passUsuario)
+    {
+        $this->setUsnombre($nombreUsuario);
+        $this->setUspass($passUsuario);
     }
 
 
-    public function esAdministrador()
-    {
-        $resp = false;
-        $roles = $_SESSION["rol"];
-        foreach ($roles as $rol) {
-            if ($rol == "admin") {
-                $resp = true;
-            }
-        }
-        return $resp;
-    }
-
-    public function activa()
-    {
-        $resp = true;
-        session_status();
-        if (session_status() !== PHP_SESSION_ACTIVE) {
-            $resp = false;
-        }
-        return $resp;
-    }
-
+    /**
+     * Valida la existencia de un usuario en la bd
+     * @return array ($inicia, $error)
+     */
     public function validar()
     {
-        $resp = false;
-        if (isset($_SESSION["login"])) {
-            $pag = $_SERVER["REQUEST_URI"];
+        $inicia = false;
+        $nombreUsuario = $this->getUsnombre();
+        $passUsuario = $this->getUspass();
+        $abmUsuario = new AbmUsuario();
+        $where = array();
+        $filtro1 = array();
+        $filtro1['usnombre'] = $nombreUsuario;
+        $filtro2 = array();
+        $filtro2['uspass'] = $passUsuario;
+        $where['usnombre'] = $nombreUsuario;
+        $where['uspass'] = $passUsuario;
+        $listaUsuarios = $abmUsuario->buscar($where);
+        $username = $abmUsuario->buscar($filtro1);
+        $pass =  $abmUsuario->buscar($filtro2);
+        $error = "";
 
-            if ($pag == "/tpfinal/vista/listarUsuario.php" || $pag == "/tpfinal/vista/listarRoles.php" || $pag == "/tpfinal/vista/actualizarlogin.php" || $pag == "/tpfinal/vista/eliminarUsuario.php") {
-                if ($this->esAdministrador() != true) {
-                    header("location: http://localhost/tpfinal/vista/home/index.php");
-                }
-            }
-            $resp = true;
+        if ($username == null || $pass == null) {
+            $error .= "Usuario y/o contraseña incorrecto!";
         }
-        return $resp;
+
+        if (count($listaUsuarios) > 0) {
+            $fechaDes = $listaUsuarios[0]->getUsdeshabilitado();
+            if ($fechaDes != "0000-00-00 00:00:00") {
+                $error .= "Este usuario se encuentra deshabilitado!";
+            } else {
+                $inicia = true;
+                $this->setIdusuario($listaUsuarios[0]->getIdusuario());
+            }
+        }
+
+        return array($inicia, $error);
     }
 
+
+    /**
+     * Pone la sesion activa para el usuario loggeado
+     * @return boolean $activa
+     */
+    public function activa()
+    {
+        $activa = false;
+        if (isset($_SESSION['usnombre'])) {
+            $activa = true;
+        }
+        return $activa;
+    }
+
+
+    /**
+     * Consigue a un usuario de la bd
+     * @return $datosUsuario
+     */
+    public function getUsuario()
+    {
+        $abmUsuario = new abmusuario();
+        $where = ['idusuario' => $_SESSION['idusuario']];
+        $listaUsuarios = $abmUsuario->buscar($where);
+
+        if ($listaUsuarios >= 1) {
+            $datosUsuario = $listaUsuarios[0];
+        }
+
+        return $datosUsuario;
+    }
+
+
+    /**
+     * Consigue al rol del usuario a loggearse
+     * @return string $rol
+     */
+    public function getRol()
+    {
+        $abmUsuarioRol = new abmusuariorol();
+        $usuario = $this->getUsuario();
+        $idUsuario = $usuario->getIdusuario();
+        $param = ['idusuario' => $idUsuario];
+        $listaRolesUsu = $abmUsuarioRol->buscar($param);
+
+        if ($listaRolesUsu > 1) {
+            $rol = $listaRolesUsu;
+        } else {
+            $rol = $listaRolesUsu[0];
+        }
+
+        return $rol;
+    }
+
+    /**
+     * Destruye la session creada.
+     */
     public function cerrarSession()
     {
+        session_unset();
         session_destroy();
     }
+
+
+    /*---------------- MOSTRAR VALORES DE SESSION ----------------*/
 
     /*public function mostrarValorVariables()
     {

@@ -2,6 +2,7 @@
 $titulo = "Cadenitas";
 include_once '../estructuras/cabecera.php';
 $abmProducto = new abmproducto();
+$datosBusqueda['habilitado'] = true;
 $datosBusqueda['tipoproducto'] = "cadenitas";
 $listaProductos = $abmProducto->buscar($datosBusqueda);
 ?>
