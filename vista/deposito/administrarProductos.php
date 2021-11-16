@@ -1,7 +1,7 @@
 <?php
 include_once '../../configuracion.php';
 $sesion = new session();
-if(!$sesion->activa()) {
+if (!$sesion->activa()) {
     header('Location: ../login/login.php?message=' . urlencode("No ha iniciado sesión"));
     exit;
 }

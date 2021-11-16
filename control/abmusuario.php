@@ -11,7 +11,7 @@ class abmusuario
         $where = " true ";
         if ($param != null) {
             if (isset($param['idusuario'])) {
-                $where .= " and idusuario ='" . $param['idusuario'] . "'";
+                $where .= " and idusuario =" . $param['idusuario'];
             }
 
             if (isset($param['usnombre'])) {
@@ -113,7 +113,7 @@ class abmusuario
         $listadoProductos = $objUsuario->listar("idusuario=" . $param['idusuario']);
         if (count($listadoProductos) > 0) {
             // print_r($listadoProductos[0]);
-            $estadoUsuario = $listadoProductos[0]->getUsDeshabilitado();
+            $estadoUsuario = $listadoProductos[0]->getUsdeshabilitado();
             if ($estadoUsuario == '0000-00-00 00:00:00') {
                 if ($objUsuario->estado(date("Y-m-d H:i:s"))) {
                     $resp = true;

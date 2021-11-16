@@ -115,7 +115,7 @@ CREATE TABLE `menu` (
     `menombre` varchar(50) NOT NULL COMMENT 'Nombre del item del menu',
     `medescripcion` varchar(124) NOT NULL COMMENT 'Descripcion mas detallada del item del menu',
     `idpadre` bigint(20) DEFAULT NULL COMMENT 'Referencia al id del menu que es subitem',
-    `medeshabilitado` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Fecha en la que el menu fue deshabilitado por ultima vez'
+    `medeshabilitado` timestamp NULL DEFAULT NULL COMMENT 'Fecha en la que el menu fue deshabilitado por ultima vez'
 ) ENGINE = InnoDB DEFAULT CHARSET = latin1;
 
 --
@@ -130,15 +130,52 @@ INSERT INTO
         `medeshabilitado`
     )
 VALUES
-    (1, 'cliente', '#', NULL, '0000-00-00 00:00:00'),
-    (2, 'deposito', '#', NULL, '0000-00-00 00:00:00'),
-    (3, 'admin', '#', NULL, '0000-00-00 00:00:00'),
-    (4, 'administrar usuarios', 'administrarUsuarios', 3, '0000-00-00 00:00:00'),
-    (5, 'cargar usuario', 'cargarUsuario', 3, '0000-00-00 00:00:00'),
-    (6, 'administrar menus', 'administrarMenus', 3, '0000-00-00 00:00:00'),
-    (7, 'administrar productos', 'administrarProductos', 2, '0000-00-00 00:00:00'),
-    (8, 'cargar producto', 'cargarProducto', 2, '0000-00-00 00:00:00'),
-    (9, 'carrito', 'carrito', 1, '0000-00-00 00:00:00');
+    (1, 'Cliente', '#', NULL, '0000-00-00 00:00:00'),
+    (2, 'Deposito', '#', NULL, '0000-00-00 00:00:00'),
+    (3, 'Administrador', '#', NULL, '0000-00-00 00:00:00'),
+    (
+        4,
+        'Administrar Usuarios',
+        'administrarUsuarios',
+        3,
+        '0000-00-00 00:00:00'
+    ),
+    (
+        5,
+        'Cargar Usuario',
+        'cargarUsuario',
+        3,
+        '0000-00-00 00:00:00'
+    ),
+    (
+        6,
+        'Administrar Menus',
+        'administrarMenus',
+        3,
+        '0000-00-00 00:00:00'
+    ),
+    (
+        7,
+        'Administrar Productos',
+        'administrarProductos',
+        2,
+        '0000-00-00 00:00:00'
+    ),
+    (
+        8,
+        'Cargar Producto',
+        'cargarProducto',
+        2,
+        '0000-00-00 00:00:00'
+    ),
+    (
+        9,
+        'Carrito',
+        'carrito',
+        1,
+        '0000-00-00 00:00:00'
+    );
+
 -- --------------------------------------------------------
 --
 -- Estructura de tabla para la tabla `menurol`
@@ -147,6 +184,13 @@ CREATE TABLE `menurol` (
     `idmenu` bigint(20) NOT NULL,
     `idrol` bigint(20) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = latin1;
+
+INSERT INTO
+    `menurol` (`idmenu`, `idrol`)
+VALUES
+    (1, 1),
+    (2, 2),
+    (3, 3);
 
 -- --------------------------------------------------------
 --
@@ -191,6 +235,30 @@ CREATE TABLE `usuario` (
     `usdeshabilitado` timestamp NULL DEFAULT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = latin1;
 
+INSERT INTO
+    `usuario` (
+        `idusuario`,
+        `usnombre`,
+        `uspass`,
+        `usmail`,
+        `usdeshabilitado`
+    )
+VALUES
+    (
+        1,
+        'Pufufifufu1',
+        'turing1',
+        'santiagosca@outlook.com',
+        '0000-00-00 00:00:00'
+    ),
+    (
+        2,
+        'Rgg1',
+        'rograff1',
+        'rociograff@gmail.com',
+        '0000-00-00 00:00:00'
+    );
+
 -- --------------------------------------------------------
 --
 -- Estructura de tabla para la tabla `usuariorol`
@@ -199,6 +267,12 @@ CREATE TABLE `usuariorol` (
     `idusuario` bigint(20) NOT NULL,
     `idrol` bigint(20) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = latin1;
+
+INSERT INTO
+    `usuariorol` (`idusuario`, `idrol`)
+VALUES
+    (1, 3),
+    (2, 2);
 
 --
 -- Índices para tablas volcadas

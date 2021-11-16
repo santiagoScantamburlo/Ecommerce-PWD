@@ -38,7 +38,7 @@ include_once '../estructuras/cabecera.php';
                 $abmUsuarioRol = new abmusuariorol();
                 $datos['idusuario'] = $id;
                 $listaUsuarioRol = $abmUsuarioRol->buscar($datos);
-                $rol = $listaUsuarioRol[0]->getObjRol()[0]->getRodescripcion();
+                $rol = $listaUsuarioRol[0]->getObjRol()->getRodescripcion();
             ?>
 
                 <tr>
