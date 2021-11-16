@@ -16,6 +16,11 @@ class session
         return $_SESSION['idusuario'];
     }
 
+    public function getRoles()
+    {
+        return $_SESSION['roles'];
+    }
+
     public function getUsnombre()
     {
         return $_SESSION['usnombre'];
@@ -32,6 +37,11 @@ class session
         $_SESSION['idusuario'] = $idUser;
     }
 
+    public function setRoles($roles)
+    {
+        $_SESSION['roles'] = $roles;
+    }
+
     public function setUsnombre($userName)
     {
         $_SESSION['usnombre'] = $userName;
@@ -43,8 +53,9 @@ class session
     }
 
     // Metodos
-    public function iniciar($nombreUsuario, $passUsuario)
+    public function iniciar($nombreUsuario, $passUsuario/*, $roles*/)
     {
+        // $this->setRoles($roles);
         $this->setUsnombre($nombreUsuario);
         $this->setUspass($passUsuario);
     }
@@ -59,7 +70,7 @@ class session
         $inicia = false;
         $nombreUsuario = $this->getUsnombre();
         $passUsuario = $this->getUspass();
-        $abmUsuario = new AbmUsuario();
+        $abmUsuario = new abmusuario();
         $where = array();
         $filtro1 = array();
         $filtro1['usnombre'] = $nombreUsuario;
@@ -83,6 +94,12 @@ class session
             } else {
                 $inicia = true;
                 $this->setIdusuario($listaUsuarios[0]->getIdusuario());
+            }
+
+            $abmUsuarioRol = new abmusuariorol();
+            $listaUsRol = $abmUsuarioRol->buscar(['idusuario' => $listaUsuarios[0]->getIdusuario()]);
+            if (count($listaUsRol) > 0) {
+                $this->setRoles(array($listaUsRol[0]->getObjRol()->getIdrol()));
             }
         }
 

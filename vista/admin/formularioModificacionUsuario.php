@@ -62,7 +62,7 @@ if (isset($lista)) {
                     <?php
                     $abmUsuarioRol = new abmusuariorol();
                     $listaUsuarioRol = $abmUsuarioRol->buscar($datos);
-                    $rol = $listaUsuarioRol[0]->getObjRol()[0]->getIdrol();
+                    $rol = $listaUsuarioRol[0]->getObjRol()->getIdrol();
                     if ($lista[0]->getIdusuario() != $idUsuario) {
                     ?>
 

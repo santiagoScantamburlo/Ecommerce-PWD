@@ -9,9 +9,14 @@ if (!$sesion->activa()) {
     $abmUsuario = new abmusuario();
     $lista = $abmUsuario->buscar($datos);
 
+
+
     if (isset($lista[0])) {
+        // $abmUsuarioRol = new abmusuariorol();
+        // $listaUsRol = $abmUsuarioRol->buscar($lista[0]->getIdusuario());
+        // $datos['rol'] = $listaUsRol[0]->getObjRol()->getIdrol();
         if ($lista[0]->getUsdeshabilitado() == '0000-00-00 00:00:00') {
-            $sesion->iniciar($datos['usnombre'], $datos['uspass']);
+            $sesion->iniciar($datos['usnombre'], $datos['uspass']/*, array($datos['rol'])*/);
             list($inicioSesion, $error) = $sesion->validar();
             if (!$inicioSesion) {
                 $sesion->cerrarSession();
