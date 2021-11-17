@@ -12,15 +12,16 @@ $abmUsuario = new abmusuario();
 $lista = $abmUsuario->buscar($datos);
 
 if (isset($lista)) {
+    $idUsuario = $lista[0]->getIdusuario();
     include_once '../estructuras/cabecera.php';
-?>
+    ?>
 
     <div class="container mt-3">
         <div>
             <h1 class="text-center">Modificar Usuario</h1>
             <div class=""></div>
             <form class="col-md-11" method="post" action="../actions/actionModificarUsuario.php">
-                <input type="hidden" name="idusuario" value=<?php echo $lista[0]->getIdusuario() ?>>
+                <input type="hidden" name="idusuario" value=<?php echo $idUsuario ?>>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="m-1">
@@ -60,34 +61,34 @@ if (isset($lista)) {
                 <div class="row">
 
                     <?php
-                    $abmUsuarioRol = new abmusuariorol();
-                    $listaUsuarioRol = $abmUsuarioRol->buscar($datos);
-                    $rol = $listaUsuarioRol[0]->getObjRol()->getIdrol();
-                    if ($lista[0]->getIdusuario() != $idUsuario) {
-                    ?>
+$abmUsuarioRol = new abmusuariorol();
+    $listaUsuarioRol = $abmUsuarioRol->buscar($datos);
+    $rol = $listaUsuarioRol[0]->getObjRol()->getIdrol();
+    if ($sesion->getIdusuario() != $idUsuario) {
+        ?>
 
                         <div class="col-md-4">
                             <div class="mt-4">
-                                <input class="form-check-input" id="cliente" name="idrol" type="radio" value="1" <?php if ($rol == 1) { ?> checked <?php } ?>>
+                                <input class="form-check-input" id="cliente" name="idrol" type="radio" value="1" <?php if ($rol == 1) {?> checked <?php }?>>
                                 <label for="cliente">Cliente</label>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="mt-4">
-                                <input class="form-check-input" id="deposito" name="idrol" type="radio" value="2" <?php if ($rol == 2) { ?> checked <?php } ?>>
+                                <input class="form-check-input" id="deposito" name="idrol" type="radio" value="2" <?php if ($rol == 2) {?> checked <?php }?>>
                                 <label for="deposito">Depósito</label>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="mt-4">
-                                <input class="form-check-input" id="admin" name="idrol" type="radio" value="3" <?php if ($rol == 3) { ?> checked <?php } ?>>
+                                <input class="form-check-input" id="admin" name="idrol" type="radio" value="3" <?php if ($rol == 3) {?> checked <?php }?>>
                                 <label for="admin">Administrador</label>
                             </div>
                         </div>
 
                     <?php
-                    }
-                    ?>
+}
+    ?>
 
                 </div>
                 <div class="mt-5">
@@ -100,7 +101,7 @@ if (isset($lista)) {
     </div>
 
 <?php
-    include_once '../estructuras/pie.php';
+include_once '../estructuras/pie.php';
 } else {
     $message = "Usuario no encontrado en la base de datos";
     header('Location: ../pages/administrarUsuarios.php?message=' . urlencode($message));

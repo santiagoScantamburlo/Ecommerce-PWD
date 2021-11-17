@@ -1,9 +1,9 @@
 <?php
 include_once '../../configuracion.php';
-$sesion = new session();
-if(!$sesion->activa()) {
-    header('Location: ../login/login.php?message=' . urlencode("No ha iniciado sesión"));
-    exit;
+$datos = data_submitted();
+$controlAdmin = new control_admin();
+if (count($datos) == 0) {
+    $controlAdmin->verificarAdmin("cargarUsuario");
 }
 include_once '../estructuras/cabecera.php';
 ?>

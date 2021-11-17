@@ -136,7 +136,7 @@ $activa = $sesion->activa();
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown-Visitante">
                                 <a class="dropdown-item" href="../login/login.php"><span class="fas fa-sign-in-alt fa-fw" aria-hidden="true" title="Log in"></span>Entrar</a>
-                                <a class="dropdown-item" href="../login/registrar.php"><span class="fas fa-pencil-alt fa-fw" aria-hidden="true" title="Sign up"></span>Registrarse</a>
+                                <a class="dropdown-item" href="../login/signin.php"><span class="fas fa-pencil-alt fa-fw" aria-hidden="true" title="Sign in"></span>Registrarse</a>
                             </div>
                         </li>
                         <!-- Icon usuario -->

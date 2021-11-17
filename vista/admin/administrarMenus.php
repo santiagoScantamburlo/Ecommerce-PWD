@@ -1,20 +1,18 @@
 <?php
 include_once '../../configuracion.php';
-$controlAdmin = new control_admin();
-
-$datos = data_submitted();
-if (count($datos) == 0) {
-    $controlAdmin->verificarAdmin("administrarUsuarios");
+$sesion = new session();
+if (!$sesion->activa()) {
+    header('Location: ../login/login.php?message=' . urlencode("No ha iniciado sesión"));
+    exit;
 }
-
 $titulo = "Administrar Usuarios";
 include_once '../estructuras/cabecera.php';
 ?>
 
 <div class="container mt-3">
     <?php
-$abmUsuario = new abmusuario();
-$lista = $abmUsuario->buscar(null);
+$abmMenu = new abmmenu();
+$lista = $abmMenu->buscar(null);
 if (count($lista) > 0) {
     ?>
 
@@ -23,10 +21,9 @@ if (count($lista) > 0) {
             <thead style="color:white;background: rgb(0,212,255);background: linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(194,2,160,1) 0%, rgba(139,0,142,1) 100%);">
                 <tr>
                     <th scope='col' class='text-center'>ID</th>
-                    <th scope='col' class='text-center'>Rol</th>
                     <th scope='col' class='text-center'>Nombre</th>
-                    <th scope='col' class='text-center'>Contraseña</th>
-                    <th scope='col' class='text-center'>Mail</th>
+                    <th scope='col' class='text-center'>Descripción</th>
+                    <th scope='col' class='text-center'>ID Padre</th>
                     <th scope='col' class='text-center'>Deshabilitado</th>
                     <th scope='col' class='text-center'>Modificar</th>
                     <th scope='col' class='text-center'>Deshabilitar</th>
@@ -35,32 +32,31 @@ if (count($lista) > 0) {
             </thead>
 
             <?php
-foreach ($lista as $usuario) {
-        $id = $usuario->getIdusuario();
-        $abmUsuarioRol = new abmusuariorol();
-        $datos['idusuario'] = $id;
-        $listaUsuarioRol = $abmUsuarioRol->buscar($datos);
-        $rol = $listaUsuarioRol[0]->getObjRol()->getRodescripcion();
+foreach ($lista as $menu) {
+        $id = $menu->getIdmenu();
+        $idPadre = $menu->getIdpadre();
+        if (!isset($idPadre)) {
+            $idPadre = "-";
+        }
         ?>
 
                 <tr>
                     <td class='text-center'><?php echo $id ?></td>
-                    <td class='text-center'><?php echo strtoupper($rol) ?></td>
-                    <td class='text-center'><?php echo $usuario->getUsnombre() ?></td>
-                    <td class='text-center'><?php echo md5($usuario->getUspass()) ?></td>
-                    <td class='text-center'><?php echo $usuario->getUsmail() ?></td>
-                    <td class='text-center'><?php echo $usuario->getUsdeshabilitado() ?></td>
+                    <td class='text-center'><?php echo $menu->getMenombre() ?></td>
+                    <td class='text-center'><?php echo $menu->getMedescripcion() ?></td>
+                    <td class='text-center'><?php echo $idPadre ?></td>
+                    <td class='text-center'><?php echo $menu->getMedeshabilitado() ?></td>
                     <form method='post' action='formularioModificacionUsuario.php'>
                         <td class='text-center'>
-                            <input name='idusuario' id='idusuario' type='hidden' value=<?php echo $id ?>><button class='btn btn-warning btn-sm' type='submit'><i class='fas fa-user-edit'></i></button>
+                            <input name='idmenu' id='idmenu' type='hidden' value=<?php echo $id ?>><button class='btn btn-warning btn-sm' type='submit'><i class="fas fa-edit"></i></button>
                         </td>
                     </form>
                     <form method='post' action='../actions/actionDeshabilitarUsuario.php'>
                         <td class='text-center'>
-                            <input name='idusuario' id='idusuario' type='hidden' value=<?php echo $id ?>><button class='btn btn-warning btn-sm' type='submit'>
+                            <input name='idmenu' id='idmenu' type='hidden' value=<?php echo $id ?>><button class='btn btn-warning btn-sm' type='submit'>
 
                                 <?php
-if ($usuario->getUsdeshabilitado() == '0000-00-00 00:00:00') {
+if ($menu->getMedeshabilitado() == '0000-00-00 00:00:00') {
             ?>
 
                                     <i class="bi bi-toggle-off"></i>
@@ -76,11 +72,6 @@ if ($usuario->getUsdeshabilitado() == '0000-00-00 00:00:00') {
         ?>
 
                             </button>
-                        </td>
-                    </form>
-                    <form method='post' action='../actions/actionEliminarUsuario.php'>
-                        <td class='text-center'>
-                            <input name='idusuario' id='idusuario' type='hidden' value=<?php echo $id ?>><button class='btn btn-danger btn-sm' type='submit'><i class='bi bi-trash'></i></button>
                         </td>
                     </form>
                 </tr>

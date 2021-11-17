@@ -8,6 +8,10 @@ if (!$sesion->activa()) {
     exit;
 } else {
     $datos = data_submitted();
+    if (count($datos) == 0) {
+        header('Location: ../home/index.php');
+        exit;
+    }
     $roles = $sesion->getRoles();
     $rolesSesion = array($roles[0]);
     switch ($datos['rol']) {
