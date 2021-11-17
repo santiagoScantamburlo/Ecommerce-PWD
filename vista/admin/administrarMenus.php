@@ -11,9 +11,9 @@ include_once '../estructuras/cabecera.php';
 
 <div class="container mt-3">
     <?php
-$abmMenu = new abmmenu();
-$lista = $abmMenu->buscar(null);
-if (count($lista) > 0) {
+    $abmMenu = new abmmenu();
+    $lista = $abmMenu->buscar(null);
+    if (count($lista) > 0) {
     ?>
 
         <h1 class="text-center">Usuarios en la Base de Datos</h1>
@@ -32,13 +32,13 @@ if (count($lista) > 0) {
             </thead>
 
             <?php
-foreach ($lista as $menu) {
-        $id = $menu->getIdmenu();
-        $idPadre = $menu->getIdpadre();
-        if (!isset($idPadre)) {
-            $idPadre = "-";
-        }
-        ?>
+            foreach ($lista as $menu) {
+                $id = $menu->getIdmenu();
+                $idPadre = $menu->getIdpadre();
+                if (!isset($idPadre)) {
+                    $idPadre = "-";
+                }
+            ?>
 
                 <tr>
                     <td class='text-center'><?php echo $id ?></td>
@@ -56,41 +56,46 @@ foreach ($lista as $menu) {
                             <input name='idmenu' id='idmenu' type='hidden' value=<?php echo $id ?>><button class='btn btn-warning btn-sm' type='submit'>
 
                                 <?php
-if ($menu->getMedeshabilitado() == '0000-00-00 00:00:00') {
-            ?>
+                                if ($menu->getMedeshabilitado() == '0000-00-00 00:00:00') {
+                                ?>
 
                                     <i class="bi bi-toggle-off"></i>
 
                                 <?php
-} else {
-            ?>
+                                } else {
+                                ?>
 
                                     <i class="bi bi-toggle-on"></i>
 
                                 <?php
-}
-        ?>
+                                }
+                                ?>
 
                             </button>
                         </td>
                     </form>
+                    <!-- <form method='post' action='../actions/actionEliminarUsuario.php'>
+                        <td class='text-center'>
+                            <input name='idusuario' id='idusuario' type='hidden' value=<?php echo $id ?>><button class='btn btn-danger btn-sm' type='submit'><i class='bi bi-trash'></i></button>
+                        </td>
+                    </form> -->
                 </tr>
 
             <?php
-}
-    ?>
+            }
+            ?>
 
         </table>
 
     <?php
-} else {
+    } else {
     ?>
 
         <h1 class='text-center'>No hay usuarios cargados en la base de datos</h1>
 
     <?php
-}
-?>
+    }
+    ?>
 
 </div>
 

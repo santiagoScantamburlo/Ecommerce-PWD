@@ -13,14 +13,14 @@ if (isset($lista)) {
     $abmUsuarioRol = new abmusuariorol();
     $exitoModificacionUsuarioRol = $abmUsuarioRol->modificacion($datos);
     if ($exitoModificacionUsuario || $exitoModificacionUsuarioRol) {
-        header('Location: ../admin/administrarUsuarios.php?message=' . urlencode("Usuario modificado correctamente"));
+        header('Location: ../admin/administrarUsuarios.php?messageOk=' . urlencode("Usuario modificado correctamente"));
         exit;
     } else {
-        header('Location: ../admin/formularioModificarUsuario.php?message=' . urlencode("Error en la modificación"));
+        header('Location: ../admin/formularioModificarUsuario.php?messageErr=' . urlencode("Error en la modificación"));
         exit;
     }
 } else {
     $message = "Usuario no encontrado en la base de datos";
-    header('Location: ../admin/administrarUsuarios.php?message=' . urlencode($message));
+    header('Location: ../admin/administrarUsuarios.php?messageErr=' . urlencode($message));
     exit;
 }

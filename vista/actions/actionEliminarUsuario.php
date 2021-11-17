@@ -14,14 +14,14 @@ $idUsuario = $sesion->getIdusuario();
 
 if (isset($lista)) {
     if ($lista[0]->getIdusuario() == $idUsuario) {
-        header('Location: ../admin/administrarUsuarios.php?message=' . urlencode("No se puede eliminar a si mismo"));
+        header('Location: ../admin/administrarUsuarios.php?messageErr=' . urlencode("No se puede eliminar a si mismo"));
         exit;
     }
     $exito = $abmUsuario->baja($datos);
-    $exito ? header('Location: ../admin/administrarUsuarios.php?message=' . urlencode("Usuario eliminado")) : header('Location: ../admin/administrarUsuarios.php?message=' . urlencode("Error en la eliminación"));
+    $exito ? header('Location: ../admin/administrarUsuarios.php?messageOk=' . urlencode("Usuario eliminado")) : header('Location: ../admin/administrarUsuarios.php?messageErr=' . urlencode("Error en la eliminación"));
     exit;
 } else {
     $message = "Usuario no encontrado en la base de datos";
-    header('Location: ../admin/administrarUsuarios.php?message=' . urlencode($message));
+    header('Location: ../admin/administrarUsuarios.php?messageErr=' . urlencode($message));
     exit;
 }

@@ -61,7 +61,7 @@ class abmmenurol
         $listaMenu = $abmMenu->buscar(['idmenu' => $param['idmenu']]);
         $abmRol = new abmrol();
         $objRol = $abmRol->buscar(['idrol' => $param['idrol']]);
-        var_dump($objRol);
+        // var_dump($objRol);
         $objMenuRol->setear($listaMenu[0], $objRol[0]);
 
         if ($objMenuRol->insertar()) {

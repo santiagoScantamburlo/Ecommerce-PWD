@@ -6,7 +6,7 @@ class abmcompraestado
         //print_r ($param);
         $obj = null;
         if (
-            array_key_exists('idcompraestadotipoestado', $param) and array_key_exists('idcompra', $param)
+            array_key_exists('idcompraestadotipo', $param) and array_key_exists('idcompra', $param)
             and array_key_exists('idcompraestadotipo', $param) and array_key_exists('cefechaini', $param)
             and array_key_exists('cefechafin', $param)
         ) {
@@ -23,7 +23,7 @@ class abmcompraestado
 
             //agregarle los otros objetos
             $obj = new compraestado();
-            $obj->setear($param['idcompraestadotipoestado'], $objProducto, $objCompra, $param['cefechaini'], $param['cefechafin']);
+            $obj->setear($param['idcompraestadotipo'], $objProducto, $objCompra, $param['cefechaini'], $param['cefechafin']);
         }
         return $obj;
     }
@@ -31,9 +31,9 @@ class abmcompraestado
     private function cargarObjetoConClave($param)
     {
         $obj = null;
-        if (isset($param['idcompraestadotipoestado'])) {
+        if (isset($param['idcompraestadotipo'])) {
             $obj = new compraestado();
-            $obj->setear($param['idcompraestadotipoestado'], null, null, null, null);
+            $obj->setear($param['idcompraestadotipo'], null, null, null, null);
         }
         return $obj;
     }
@@ -41,7 +41,7 @@ class abmcompraestado
     private function seteadosCamposClaves($param)
     {
         $resp = false;
-        if (isset($param['idcompraestadotipoestado']))
+        if (isset($param['idcompraestadotipo']))
             $resp = true;
         return $resp;
     }
@@ -49,7 +49,7 @@ class abmcompraestado
     public function alta($param)
     {
         $resp = false;
-        $param['idcompraestadotipoestado'] = null;
+        $param['idcompraestadotipo'] = null;
         $elObjtArchivoE = $this->cargarObjeto($param);
         //print_r($elObjtArchivoE);
         if ($elObjtArchivoE != null and $elObjtArchivoE->insertar()) {
@@ -87,8 +87,8 @@ class abmcompraestado
     {
         $where = " true ";
         if ($param <> NULL) {
-            if (isset($param['idcompraestadotipoestado']))
-                $where .= " and idcompraestadotipoestado =" . $param['idcompraestadotipoestado'];
+            if (isset($param['idcompraestado']))
+                $where .= " and idcompraestado =" . $param['idcompraestado'];
             if (isset($param['idcompra']))
                 $where .= " and idcompra =" . $param['idcompra'];
             if (isset($param['idcompraestadotipo']))

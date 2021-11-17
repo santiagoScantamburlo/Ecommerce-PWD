@@ -17,17 +17,17 @@ class compra
     }
     
     // Getters
-    public function getIdCompra()
+    public function getIdcompra()
     {
         return $this->idcompra;
     }
     
-    public function getCoFecha()
+    public function getCofecha()
     {
         return $this->cofecha;
     }
     
-    public function getIdUsuario()
+    public function getIdusuario()
     {
         return $this->idusuario;
     }
@@ -38,17 +38,17 @@ class compra
     }
     
     // Setters
-    public function setIdCompra($idcompra)
+    public function setIdcompra($idcompra)
     {
         $this->idcompra = $idcompra;
     }
 
-    public function setCoFecha($cofecha)
+    public function setCofecha($cofecha)
     {
         $this->cofecha = $cofecha;
     }
 
-    public function setIdUsuario($idusuario)
+    public function setIdusuario($idusuario)
     {
         $this->idusuario = $idusuario;
     }
@@ -61,16 +61,16 @@ class compra
     // Metodos
     public function setear($idcompra, $cofecha, $idusuario)
     {
-        $this->setIdCompra($idcompra);
-        $this->setCoFecha($cofecha);
-        $this->setIdUsuario($idusuario);
+        $this->setIdcompra($idcompra);
+        $this->setCofecha($cofecha);
+        $this->setIdusuario($idusuario);
     }
 
     public function cargar()
     {
         $resp = false;
         $base = new BaseDatos();
-        $sql = "SELECT * FROM compra WHERE idcompra = " . $this->getIdCompra();
+        $sql = "SELECT * FROM compra WHERE idcompra = " . $this->getIdcompra();
         if ($base->Iniciar()) {
             $res = $base->Ejecutar($sql);
             if ($res > -1) {
@@ -80,7 +80,7 @@ class compra
                     $objUsuario = NULL;
                     if ($row['idusuario'] != null) {
                         $objUsuario = new usuario();
-                        $objUsuario->setIdUsuario($row['idusuario']);
+                        $objUsuario->setIdusuario($row['idusuario']);
                         $objUsuario->cargar();
                     }
 
@@ -98,10 +98,10 @@ class compra
     {
         $resp = false;
         $base = new BaseDatos();
-        $sql = "INSERT INTO compra (cofecha, idusuario) VALUES ('{$this->getCoFecha()}','{$this->getIdUsuario()->getIdUsuario()}');";
+        $sql = "INSERT INTO compra (cofecha, idusuario) VALUES ('{$this->getCofecha()}','{$this->getIdusuario()->getIdusuario()}');";
         if ($base->Iniciar()) {
             if ($elid = $base->Ejecutar($sql)) {
-                $this->setIdCompra($elid);
+                $this->setIdcompra($elid);
                 $resp = true;
             } else {
                 $this->setMensajeOperacion("Compra->insertar: " . $base->getError());
@@ -116,7 +116,7 @@ class compra
     {
         $resp = false;
         $base = new BaseDatos();
-        $sql = "UPDATE compra SET idcompra='{$this->getIdCompra()}', cofecha='{$this->getCoFecha()}', idusuario='{$this->getIdUsuario()->getIdUsuario()}' WHERE idcompra='{$this->getIdCompra()}'";
+        $sql = "UPDATE compra SET idcompra='{$this->getIdcompra()}', cofecha='{$this->getCofecha()}', idusuario='{$this->getIdusuario()->getIdusuario()}' WHERE idcompra='{$this->getIdcompra()}'";
         if ($base->Iniciar()) {
             if ($base->Ejecutar($sql)) {
                 $resp = true;
@@ -133,7 +133,7 @@ class compra
     {
         $resp = false;
         $base = new BaseDatos();
-        $sql = "DELETE FROM compra WHERE idcompra=" . $this->getIdCompra();
+        $sql = "DELETE FROM compra WHERE idcompra=" . $this->getIdcompra();
         if ($base->Iniciar()) {
             if ($base->Ejecutar($sql)) {
                 return true;
@@ -164,7 +164,7 @@ class compra
                     $objUsuario = NULL;
                     if ($row['idusuario'] != null) {
                         $objUsuario = new usuario();
-                        $objUsuario->setIdUsuario($row['idusuario']);
+                        $objUsuario->setIdusuario($row['idusuario']);
                         $objUsuario->cargar();
                     }
 

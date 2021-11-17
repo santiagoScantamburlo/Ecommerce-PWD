@@ -15,14 +15,19 @@ $idUsuario = $sesion->getIdusuario();
 
 if (isset($lista[0])) {
     if ($lista[0]->getIdusuario() == $idUsuario) {
-        header('Location: ../admin/administrarUsuarios.php?message=' . urlencode("No se puede deshabilitar a si mismo"));
+        header('Location: ../admin/administrarUsuarios.php?messageErr=' . urlencode("No se puede deshabilitar a si mismo"));
         exit;
     }
+    if($lista[0]->getUsdeshabilitado() == '0000-00-00 00:00:00') {
+        $message = "Usuario deshabilitado";
+    } else {
+        $message = "Usuario habilitado";
+    }
     $exito = $abmUsuario->deshabilitarUsuario($datos);
-    $exito ? header('Location: ../admin/administrarUsuarios.php?message=' . urlencode("Usuario deshabilitado correctamente")) : header('Location: ../admin/administrarUsuarios.php?message=' . urlencode("Error en la deshabilitación"));
+    $exito ? header('Location: ../admin/administrarUsuarios.php?messageOk=' . urlencode($message)) : header('Location: ../admin/administrarUsuarios.php?messageErr=' . urlencode("Error en la deshabilitación"));
     exit;
 } else {
     $message = "Usuario no encontrado en la base de datos";
-    header('Location: ../admin/administrarUsuarios.php?message=' . urlencode($message));
+    header('Location: ../admin/administrarUsuarios.php?messageErr=' . urlencode($message));
     exit;
 }

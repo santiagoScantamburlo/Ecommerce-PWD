@@ -1,5 +1,5 @@
 <?php
-class AbmCompraEstadoTipo
+class abmcompraestadotipo
 {
     private function cargarObjeto($param)
     {
@@ -8,7 +8,7 @@ class AbmCompraEstadoTipo
             array_key_exists('idcompraestadotipo', $param) and array_key_exists('cetdescripcion', $param)
             and array_key_exists('cetdetalle', $param)
         ) {
-            $obj = new CompraEstadoTipo();
+            $obj = new compraestadotipo();
             $obj->setear($param['idcompraestadotipo'], $param['cetdescripcion'], $param['cetdetalle']);
         }
         return $obj;
@@ -19,7 +19,7 @@ class AbmCompraEstadoTipo
         $obj = null;
 
         if (isset($param['idcompraestadotipo'])) {
-            $obj = new CompraEstadoTipo();
+            $obj = new compraestadotipo();
             $obj->setear($param['idcompraestadotipo'], null, null);
         }
         return $obj;
@@ -81,7 +81,7 @@ class AbmCompraEstadoTipo
             if (isset($param['cetdetalle']))
                 $where .= " and cetdetalle ='" . $param['cetdetalle'] . "'";
         }
-        $arreglo = CompraEstadoTipo::listar($where);
+        $arreglo = compraestadotipo::listar($where);
         return $arreglo;
     }
 }

@@ -42,6 +42,11 @@ CREATE TABLE `compra` (
     `idusuario` bigint(20) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = latin1;
 
+INSERT INTO
+    `compra` (`idcompra`, `cofecha`, `idusuario`)
+VALUES
+    (1, '2021-11-17 16:00:00', 3);
+
 -- --------------------------------------------------------
 --
 -- Estructura de tabla para la tabla `compraestado`
@@ -53,6 +58,23 @@ CREATE TABLE `compraestado` (
     `cefechaini` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `cefechafin` timestamp NULL DEFAULT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = latin1;
+
+INSERT INTO
+    `compraestado` (
+        `idcompraestado`,
+        `idcompra`,
+        `idcompraestadotipo`,
+        `cefechaini`,
+        `cefechafin`
+    )
+VALUES
+    (
+        1,
+        1,
+        1,
+        '2021-11-17 16:00:00',
+        NULL
+    );
 
 -- --------------------------------------------------------
 --
@@ -132,7 +154,13 @@ INSERT INTO
 VALUES
     (1, 'Cliente', '#', NULL, '0000-00-00 00:00:00'),
     (2, 'Deposito', '#', NULL, '0000-00-00 00:00:00'),
-    (3, 'Administrador', '#', NULL, '0000-00-00 00:00:00'),
+    (
+        3,
+        'Administrador',
+        '#',
+        NULL,
+        '0000-00-00 00:00:00'
+    ),
     (
         4,
         'Administrar Usuarios',
@@ -156,20 +184,27 @@ VALUES
     ),
     (
         7,
+        'Cargar Menu',
+        'cargarMenu',
+        3,
+        '0000-00-00 00:00:00'
+    ),
+    (
+        8,
         'Administrar Productos',
         'administrarProductos',
         2,
         '0000-00-00 00:00:00'
     ),
     (
-        8,
+        9,
         'Cargar Producto',
         'cargarProducto',
         2,
         '0000-00-00 00:00:00'
     ),
     (
-        9,
+        10,
         'Carrito',
         'carrito',
         1,
@@ -257,6 +292,13 @@ VALUES
         'rograff1',
         'rociograff@gmail.com',
         '0000-00-00 00:00:00'
+    ),
+    (
+        3,
+        'Josejose1',
+        'josejose1',
+        'jose@jose.com',
+        '0000-00-00 00:00:00'
     );
 
 -- --------------------------------------------------------
@@ -272,7 +314,8 @@ INSERT INTO
     `usuariorol` (`idusuario`, `idrol`)
 VALUES
     (1, 3),
-    (2, 2);
+    (2, 2),
+    (3, 1);
 
 --
 -- Índices para tablas volcadas

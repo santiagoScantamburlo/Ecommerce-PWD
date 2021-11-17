@@ -63,59 +63,59 @@ $activa = $sesion->activa();
                     </li>
 
                     <?php
-                    if ($activa) {
-                        foreach ($sesion->getRoles() as $idRol) {
-                            $abmMenuRol = new abmmenurol();
-                            $listaMenuRol = $abmMenuRol->buscar(['idrol' => $idRol]);
-                            if (count($listaMenuRol) > 0) {
-                                $abmMenu = new abmmenu();
-                                $idMenu = $listaMenuRol[0]->getObjMenu()->getIdmenu();
-                                $listaMenu = $abmMenu->buscar(['idmenu' => $idMenu]);
-                                if (count($listaMenu) > 0) {
-                                    $idPadre = $listaMenu[0]->getIdmenu();
-                                    $listaSubMenu = $abmMenu->buscar(['idpadre' => $idPadre]);
-                                }
-                            }
-                            foreach ($listaMenu as $menu) {
-                                if ($menu->getMedeshabilitado() == '0000-00-00 00:00:00') {
-                    ?>
+if ($activa) {
+    foreach ($sesion->getRoles() as $idRol) {
+        $abmMenuRol = new abmmenurol();
+        $listaMenuRol = $abmMenuRol->buscar(['idrol' => $idRol]);
+        if (count($listaMenuRol) > 0) {
+            $abmMenu = new abmmenu();
+            $idMenu = $listaMenuRol[0]->getObjMenu()->getIdmenu();
+            $listaMenu = $abmMenu->buscar(['idmenu' => $idMenu]);
+            if (count($listaMenu) > 0) {
+                $idPadre = $listaMenu[0]->getIdmenu();
+                $listaSubMenu = $abmMenu->buscar(['idpadre' => $idPadre]);
+            }
+        }
+        foreach ($listaMenu as $menu) {
+            if ($menu->getMedeshabilitado() == '0000-00-00 00:00:00') {
+                ?>
 
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"><?php echo $menu->getMenombre() ?></a>
                                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 
                                             <?php
-                                            foreach ($listaSubMenu as $subMenu) {
-                                                if ($subMenu->getMedeshabilitado() == '0000-00-00 00:00:00') {
-                                                    switch ($idRol) {
-                                                        case '3':
-                                                            $enlace = "../admin/";
-                                                            break;
-                                                        case '2':
-                                                            $enlace = "../deposito/";
-                                                            break;
-                                                        case '1':
-                                                            $enlace = "../cliente/";
-                                                            break;
-                                                    }
-                                            ?>
+foreach ($listaSubMenu as $subMenu) {
+                    if ($subMenu->getMedeshabilitado() == '0000-00-00 00:00:00') {
+                        switch ($idRol) {
+                            case '3':
+                                $enlace = "../admin/";
+                                break;
+                            case '2':
+                                $enlace = "../deposito/";
+                                break;
+                            case '1':
+                                $enlace = "../cliente/";
+                                break;
+                        }
+                        ?>
 
                                                     <li><a class="dropdown-item" href="<?php echo $enlace . $subMenu->getMedescripcion() . ".php"; ?>"><?php echo $subMenu->getMenombre() ?></a></li>
 
                                             <?php
-                                                }
-                                            }
-                                            ?>
+}
+                }
+                ?>
 
                                         </ul>
                                     </li>
 
                     <?php
-                                }
-                            }
-                        }
-                    }
-                    ?>
+}
+        }
+    }
+}
+?>
 
                 </ul>
                 <ul class="navbar-nav d-flex">
@@ -128,8 +128,8 @@ $activa = $sesion->activa();
                     <!-- Icon visitante -->
 
                     <?php
-                    if (!$activa) {
-                    ?>
+if (!$activa) {
+    ?>
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown-Visitante" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-sign-in-alt"></i><span class="d-lg-none">Usuario</span></a>
@@ -142,8 +142,8 @@ $activa = $sesion->activa();
                         <!-- Icon usuario -->
 
                     <?php
-                    } else {
-                    ?>
+} else {
+    ?>
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown-Usuario" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -159,9 +159,9 @@ $activa = $sesion->activa();
                         </li>
 
                         <?php
-                        $rolUsuario = $sesion->getRoles()[0];
-                        if ($rolUsuario > 1) {
-                        ?>
+$rolUsuario = $sesion->getRoles()[0];
+    if ($rolUsuario > 1) {
+        ?>
 
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown-Usuario" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -170,37 +170,37 @@ $activa = $sesion->activa();
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown-Usuario">
 
                                     <?php
-                                    for ($i = 1; $i <= $rolUsuario; $i++) {
-                                        $idRolAction = md5($i);
-                                        switch ($i) {
-                                            case 1:
-                                                $rol = "<span class='fas fa-users'></span>&nbsp;Cliente";
-                                                break;
-                                            case 2:
-                                                $rol = "<span class='fas fa-dolly'></span>&nbsp;Depósito";
-                                                break;
-                                            case 3:
-                                                $rol = "<span class='fas fa-user-shield'></span>&nbsp;Administrador";
-                                                break;
-                                        }
-                                    ?>
+for ($i = 1; $i <= $rolUsuario; $i++) {
+            $idRolAction = md5($i);
+            switch ($i) {
+                case 1:
+                    $rol = "<span class='fas fa-users'></span>&nbsp;Cliente";
+                    break;
+                case 2:
+                    $rol = "<span class='fas fa-dolly'></span>&nbsp;Depósito";
+                    break;
+                case 3:
+                    $rol = "<span class='fas fa-user-shield'></span>&nbsp;Administrador";
+                    break;
+            }
+            ?>
 
                                         <a class="dropdown-item" href="../actions/actionCambioRol.php?rol=<?php echo $idRolAction ?>"><?php echo $rol ?></a>
 
                                     <?php
-                                    }
-                                    ?>
+}
+        ?>
 
                                 </div>
                             </li>
 
                         <?php
-                        }
-                        ?>
+}
+    ?>
 
                     <?php
-                    }
-                    ?>
+}
+?>
 
                 </ul>
             </div>
