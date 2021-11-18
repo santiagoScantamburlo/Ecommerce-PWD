@@ -74,8 +74,10 @@ $listaProductos = $abmProducto->buscar($datosBusqueda);
                                 } else {
                                 ?>
 
-                                    <div class='text-center'><a class='btn btn-outline-light mt-auto' href='#' style="background: rgb(255,69,207);background: linear-gradient(90deg, rgba(255,69,207,1) 0%, rgba(246,145,255,1) 0%, rgba(185,32,230,1) 100%);">Agregar al carrito</a></div>
-
+                                    <form method="post" action="../actions/actionCargarItemCarrito.php">
+                                        <input type="hidden" name="idproducto" value="<?php echo $producto->getIdproducto() ?>">
+                                        <div class='text-center'><button class='btn btn-outline-light mt-auto' type="submit" style="background: rgb(255,69,207);background: linear-gradient(90deg, rgba(255,69,207,1) 0%, rgba(246,145,255,1) 0%, rgba(185,32,230,1) 100%);">Agregar al carrito</button></div>
+                                    </form>
                                 <?php
                                 }
                                 ?>

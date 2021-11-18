@@ -38,14 +38,9 @@ SET
 --
 CREATE TABLE `compra` (
     `idcompra` bigint(20) NOT NULL,
-    `cofecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    `cofecha` timestamp NULL DEFAULT NULL,
     `idusuario` bigint(20) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = latin1;
-
-INSERT INTO
-    `compra` (`idcompra`, `cofecha`, `idusuario`)
-VALUES
-    (1, '2021-11-17 16:00:00', 3);
 
 -- --------------------------------------------------------
 --
@@ -58,23 +53,6 @@ CREATE TABLE `compraestado` (
     `cefechaini` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `cefechafin` timestamp NULL DEFAULT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = latin1;
-
-INSERT INTO
-    `compraestado` (
-        `idcompraestado`,
-        `idcompra`,
-        `idcompraestadotipo`,
-        `cefechaini`,
-        `cefechafin`
-    )
-VALUES
-    (
-        1,
-        1,
-        1,
-        '2021-11-17 16:00:00',
-        NULL
-    );
 
 -- --------------------------------------------------------
 --

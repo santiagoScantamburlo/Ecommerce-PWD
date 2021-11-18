@@ -12,8 +12,8 @@ class compraestado
     public function __construct()
     {
         $this->idcompraestado = "";
-        $this->objCompra = null;
-        $this->objCET = null;
+        $this->objCompra = new compra();
+        $this->objCET = new compraestadotipo();
         $this->cefechaini = "";
         $this->cefechafin = "";
         $this->mensajeoperacion = "";
@@ -85,6 +85,7 @@ class compraestado
     public function setear($idcompraestado, $objCompra, $objCompraEstadoTipo, $cefechaini, $cefechafin)
     {
         $this->setIdcompraestado($idcompraestado);
+        // print_r($objCompra);
         $this->setObjCompra($objCompra);
         // print_r($objCompraEstadoTipo);
         $this->setObjCompraEstadoTipo($objCompraEstadoTipo);
@@ -131,7 +132,8 @@ class compraestado
     {
         $resp = false;
         $base = new BaseDatos();
-        $sql = "INSERT INTO compraestado (idcompra, idcompraestadotipo, cefechaini, cefechafin) VALUES ('{$this->getObjCompra()->getIdcompra()}','{$this->getObjCompraEstadoTipo()->getIdcompraestadotipo()},'{$this->getCefechaini()}','{$this->getCefechafin()}');";
+        $sql = "INSERT INTO compraestado (idcompra, idcompraestadotipo, cefechaini, cefechafin) VALUES ({$this->getObjCompra()->getIdcompra()},{$this->getObjCompraEstadoTipo()->getIdcompraestadotipo()},'{$this->getCefechaini()}','{$this->getCefechafin()}');";
+        echo $sql;
         if ($base->Iniciar()) {
             if ($base = $base->Ejecutar($sql)) {
                 $this->setIdcompraestado($base);
@@ -149,7 +151,8 @@ class compraestado
     {
         $resp = false;
         $base = new BaseDatos();
-        $sql = "UPDATE compraestado SET idcompraestado='{$this->getIdcompraestado()}', idcompra='{$this->getObjCompra()->getIdcompra()}', idcompraestadotipo='{$this->getObjCompraEstadoTipo()->getIdcompraestadotipo()}', cefechaini='{$this->getCefechaini()}', cefechafin='{$this->getCefechafin()}' WHERE idcompraestado='{$this->getIdcompraestado()}'";
+        $sql = "UPDATE compraestado SET idcompra={$this->getObjCompra()->getIdcompra()}, idcompraestadotipo={$this->getObjCompraEstadoTipo()->getIdcompraestadotipo()}, cefechaini='{$this->getCefechaini()}', cefechafin='{$this->getCefechafin()}' WHERE idcompraestado={$this->getIdcompraestado()}";
+        echo $sql;
         if ($base->Iniciar()) {
             if ($base->Ejecutar($sql)) {
                 $resp = true;

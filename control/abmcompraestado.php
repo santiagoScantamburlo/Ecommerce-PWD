@@ -5,25 +5,32 @@ class abmcompraestado
     {
         //print_r ($param);
         $obj = null;
-        if (
-            array_key_exists('idcompraestado', $param) and array_key_exists('idcompra', $param)
-            and array_key_exists('idcompraestadotipo', $param) and array_key_exists('cefechaini', $param)
-            and array_key_exists('cefechafin', $param)
-        ) {
-
+        // echo $param['idcompra'];
+        if (array_key_exists('idcompra', $param)) {
             //creo objeto estadotipos
-            $objProducto = new compra();
-            $objProducto->getIdCompra($param['idcompra']);
-            $objProducto->cargar();
-
-            //creo objeto usuario
-            $objCompra = new compraestadotipo();
-            $objCompra->setIdCompraEstadoTipo($param['idcompraestadotipo']);
+            $objCompra = new compra();
+            $objCompra->setIdCompra($param['idcompra']);
             $objCompra->cargar();
 
+
+            //creo objeto usuario
+            $objCompraEstadoTipo = new compraestadotipo();
+            $objCompraEstadoTipo->setIdCompraEstadoTipo($param['idcompraestadotipo']);
+            $objCompraEstadoTipo->cargar();
+
+            $cefechaini = '0000-00-00 00:00:00';
+            if (array_key_exists('cefechaini', $param)) {
+                $cefechaini = $param['cefechaini'];
+            }
+
+            $cefechafin = '0000-00-00 00:00:00';
+            if (array_key_exists('cefechafin', $param)) {
+                $cefechafin = $param['cefechafin'];
+            }
             //agregarle los otros objetos
             $obj = new compraestado();
-            $obj->setear($param['idcompraestado'], $objProducto, $objCompra, $param['cefechaini'], $param['cefechafin']);
+            $obj->setear($param['idcompraestado'], $objCompra, $objCompraEstadoTipo, $cefechaini, $cefechafin);
+            // print_r($obj);
         }
         return $obj;
     }
@@ -77,6 +84,7 @@ class abmcompraestado
         //echo "Estoy en modificacion";
         $resp = false;
         if ($this->seteadosCamposClaves($param)) {
+            echo "SETEADOS CAMPOS CLAVES";
             $elObjtArchivoE = $this->cargarObjeto($param);
             if ($elObjtArchivoE != null and $elObjtArchivoE->modificar()) {
                 $resp = true;
@@ -108,7 +116,6 @@ class abmcompraestado
             if (isset($param['cefechafin'])) {
                 $where .= " and cefechafin ='" . $param['cefechafin'] . "'";
             }
-
         }
         $arreglo = compraestado::listar($where);
         return $arreglo;

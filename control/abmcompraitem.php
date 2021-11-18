@@ -6,11 +6,11 @@ class abmcompraitem
         $obj = null;
         if (array_key_exists('idcompraitem', $param) && array_key_exists('idproducto', $param) && array_key_exists('idcompra', $param) && array_key_exists('cicantidad', $param)) {
             $objProducto = new producto();
-            $objProducto->setIdProducto($param['idproducto']);
+            $objProducto->setIdproducto($param['idproducto']);
             $objProducto->cargar();
 
             $objCompra = new compra();
-            $objCompra->setIdCompra($param['idcompra']);
+            $objCompra->setIdcompra($param['idcompra']);
             $objCompra->cargar();
 
             $obj = new compraitem();
@@ -53,17 +53,18 @@ class abmcompraitem
         return $resp;
     }
 
-    /* public function baja($param){
+    public function baja($param)
+    {
         $resp = false;
-        if ($this->seteadosCamposClaves($param)){
+        if ($this->seteadosCamposClaves($param)) {
             $elObjtArchivoE = $this->cargarObjetoConClave($param);
-            if ($elObjtArchivoE!=null and $elObjtArchivoE->eliminar()){
+            if ($elObjtArchivoE != null and $elObjtArchivoE->eliminar()) {
                 $resp = true;
             }
         }
-        
+
         return $resp;
-    } */
+    }
 
     public function modificacion($param)
     {
@@ -92,6 +93,14 @@ class abmcompraitem
                 $where .= " and cicantidad ='" . $param['cicantidad'] . "'";
         }
         $arreglo = compraitem::listar($where);
+        return $arreglo;
+    }
+
+    public function contar($param)
+    {
+        $where = "SELECT COUNT(cicantidad) AS cantidad FROM compraitem WHERE idcompra=" . $param['idcompra'];
+
+        $arreglo = compraitem::contar($where);
         return $arreglo;
     }
 }

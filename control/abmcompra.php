@@ -4,19 +4,16 @@ class abmcompra
     private function cargarObjeto($param)
     {
         $obj = null;
-        if (
-            array_key_exists('idcompra', $param) and array_key_exists('cofecha', $param)
-            and array_key_exists('idusuario', $param)
-        ) {
+        if (array_key_exists('idusuario', $param) && array_key_exists('idcompra', $param)) {
 
             //creo objeto estadotipos
             $objUsuario = new usuario();
-            $objUsuario->getIdUsuario($param['idusuario']);
+            $objUsuario->setIdUsuario($param['idusuario']);
             $objUsuario->cargar();
 
             //agregarle los otros objetos
             $obj = new compra();
-            $obj->setear($param['idcompra'], $param['cofecha'], $objUsuario);
+            $obj->setear($param['idcompra'], NULL, $objUsuario);
         }
         return $obj;
     }

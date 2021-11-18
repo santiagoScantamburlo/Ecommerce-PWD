@@ -71,6 +71,7 @@ class compra
         $resp = false;
         $base = new BaseDatos();
         $sql = "SELECT * FROM compra WHERE idcompra = " . $this->getIdcompra();
+        // echo $sql;
         if ($base->Iniciar()) {
             $res = $base->Ejecutar($sql);
             if ($res > -1) {
@@ -99,6 +100,7 @@ class compra
         $resp = false;
         $base = new BaseDatos();
         $sql = "INSERT INTO compra (cofecha, idusuario) VALUES ('{$this->getCofecha()}','{$this->getIdusuario()->getIdusuario()}');";
+        echo $sql;
         if ($base->Iniciar()) {
             if ($elid = $base->Ejecutar($sql)) {
                 $this->setIdcompra($elid);
