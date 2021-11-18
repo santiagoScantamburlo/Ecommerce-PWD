@@ -60,13 +60,13 @@ class abmmenu
 
     private function cargarObjetoConClave($param)
     {
-        $objUs = null;
+        $objMenu = null;
 
         if (isset($param['idmenu'])) {
             $objMenu = new menu();
             $objMenu->setear($param['idmenu'], null, null, null, null);
         }
-        return $objUs;
+        return $objMenu;
     }
 
     public function modificacion($param)
@@ -104,16 +104,15 @@ class abmmenu
         return $resp;
     }
 
-    //Hace un borrado logico del usuario. 
+    //Hace un borrado logico del menu. 
     //En caso de que ya estuviese deshabilitado, lo vuelve a habilitar.
     public function deshabilitarMenu($param)
     {
         $resp = false;
         $objMenu = $this->cargarObjetoConClave($param);
-        $listadoProductos = $objMenu->listar("idmenu=" . $param['idmenu']);
-        if (count($listadoProductos) > 0) {
-            // print_r($listadoProductos[0]);
-            $estadoMenu = $listadoProductos[0]->getMedeshabilitado();
+        $listadoMenus = $objMenu->listar("idmenu=" . $param['idmenu']);
+        if (count($listadoMenus) > 0) {
+            $estadoMenu = $listadoMenus[0]->getMedeshabilitado();
             if ($estadoMenu == '0000-00-00 00:00:00') {
                 if ($objMenu->estado(date("Y-m-d H:i:s"))) {
                     $resp = true;

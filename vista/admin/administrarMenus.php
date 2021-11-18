@@ -16,7 +16,7 @@ include_once '../estructuras/cabecera.php';
     if (count($lista) > 0) {
     ?>
 
-        <h1 class="text-center">Usuarios en la Base de Datos</h1>
+        <h1 class="text-center">Menúes en la Base de Datos</h1>
         <table class='table mt-3'>
             <thead style="color:white;background: rgb(0,212,255);background: linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(194,2,160,1) 0%, rgba(139,0,142,1) 100%);">
                 <tr>
@@ -27,7 +27,7 @@ include_once '../estructuras/cabecera.php';
                     <th scope='col' class='text-center'>Deshabilitado</th>
                     <th scope='col' class='text-center'>Modificar</th>
                     <th scope='col' class='text-center'>Deshabilitar</th>
-                    <th scope='col' class='text-center'>Eliminar</th>
+                    <!-- <th scope='col' class='text-center'>Eliminar</th> -->
                 </tr>
             </thead>
 
@@ -46,12 +46,12 @@ include_once '../estructuras/cabecera.php';
                     <td class='text-center'><?php echo $menu->getMedescripcion() ?></td>
                     <td class='text-center'><?php echo $idPadre ?></td>
                     <td class='text-center'><?php echo $menu->getMedeshabilitado() ?></td>
-                    <form method='post' action='formularioModificacionUsuario.php'>
+                    <form method='post' action='formularioModificarMenu.php'>
                         <td class='text-center'>
                             <input name='idmenu' id='idmenu' type='hidden' value=<?php echo $id ?>><button class='btn btn-warning btn-sm' type='submit'><i class="fas fa-edit"></i></button>
                         </td>
                     </form>
-                    <form method='post' action='../actions/actionDeshabilitarUsuario.php'>
+                    <form method='post' action='../actions/actionDeshabilitarMenu.php'>
                         <td class='text-center'>
                             <input name='idmenu' id='idmenu' type='hidden' value=<?php echo $id ?>><button class='btn btn-warning btn-sm' type='submit'>
 
@@ -74,9 +74,9 @@ include_once '../estructuras/cabecera.php';
                             </button>
                         </td>
                     </form>
-                    <!-- <form method='post' action='../actions/actionEliminarUsuario.php'>
+                    <!-- <form method='post' action='eliminarMenu.php'>
                         <td class='text-center'>
-                            <input name='idusuario' id='idusuario' type='hidden' value=<?php echo $id ?>><button class='btn btn-danger btn-sm' type='submit'><i class='bi bi-trash'></i></button>
+                            <input name='idmenu' id='idmenu' type='hidden' value=<?php echo $id ?>><button class='btn btn-danger btn-sm' type='submit'><i class='bi bi-trash'></i></button>
                         </td>
                     </form> -->
                 </tr>
@@ -91,7 +91,7 @@ include_once '../estructuras/cabecera.php';
     } else {
     ?>
 
-        <h1 class='text-center'>No hay usuarios cargados en la base de datos</h1>
+        <h1 class='text-center'>No hay menúes cargados en la base de datos</h1>
 
     <?php
     }

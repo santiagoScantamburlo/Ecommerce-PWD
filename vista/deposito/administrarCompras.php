@@ -37,7 +37,7 @@ if (count($datos) > 0) {
             </div>
 
         <?php
-        }
+}
     }?>
 
         <table class='table mt-3'>
@@ -56,11 +56,11 @@ if (count($datos) > 0) {
 
             <?php
 foreach ($lista as $compraEstado) {
-        $idCompra = $compraEstado->getIdcompra()->getIdcompra();
+        $idCompra = $compraEstado->getObjCompra()->getIdcompra();
         $abmCompra = new abmcompra();
         $listaCompra = $abmCompra->buscar(['idcompra' => $idCompra]);
         $abmCET = new abmcompraestadotipo();
-        $listaCET = $abmCET->buscar(['idcompraestadotipo' => $compraEstado->getIdcompraestadotipo()]);
+        $listaCET = $abmCET->buscar(['idcompraestadotipo' => $compraEstado->getObjCompraEstadoTipo()->getIdcompraestadotipo()]);
         ?>
 
                 <tr>
@@ -68,7 +68,7 @@ foreach ($lista as $compraEstado) {
                     <td class='text-center'><?php echo $compraEstado->getCefechaini() ?></td>
                     <td class='text-center'><?php echo $compraEstado->getCefechafin() ?></td>
                     <td class='text-center'><?php echo $listaCET[0]->getCetdescripcion() ?></td>
-                    <td class='text-center'><?php echo $listaCompra[0]->getIdusuario() ?></td>
+                    <td class='text-center'><?php echo $listaCompra[0]->getIdusuario()->getIdusuario() ?></td>
                     <form method='post' action='../actions/actionMostrarItems.php'>
                         <td class='text-center'>
                             <input name='idcompra' id='idcomra' type='hidden' value=<?php echo $idCompra ?>><button class='btn btn-warning btn-sm' type='submit'><i class="bi bi-list-ul"></i></button>
@@ -77,14 +77,14 @@ foreach ($lista as $compraEstado) {
                     <form method='post' action='../actions/actionCambiarEstadoCompra.php'>
                         <td class='text-center'>
                             <input name='idcompra' id='idcompra' type='hidden' value=<?php echo $idCompra ?>>
-                            <input name='idcompraestadotipo' id='idcompraestadotipo' type='hidden' value=<?php echo $compraEstado->getIdcompraestadotipo() ?>>
+                            <input name='idcompraestadotipo' id='idcompraestadotipo' type='hidden' value=<?php echo $compraEstado->getObjCompraEstadoTipo()->getIdcompraestadotipo() ?>>
                             <button class='btn btn-warning btn-sm' type='submit'></button>
                         </td>
                     </form>
                     <form method='post' action='../actions/actionCancelarCompra.php'>
                         <td class='text-center'>
                             <input name='idusuario' id='idusuario' type='hidden' value=<?php echo $idCompra ?>>
-                            <input name='idcompraestadotipo' id='idcompraestadotipo' type='hidden' value=<?php echo $compraEstado->getIdcompraestadotipo() ?>>
+                            <input name='idcompraestadotipo' id='idcompraestadotipo' type='hidden' value=<?php echo $compraEstado->getObjCompraEstadoTipo()->getIdcompraestadotipo() ?>>
                             <button class='btn btn-danger btn-sm' type='submit'><i class="bi bi-cart-x-fill"></i></button>
                         </td>
                     </form>

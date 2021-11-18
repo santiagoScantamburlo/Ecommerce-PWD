@@ -44,7 +44,6 @@ class abmcompra
         $resp = false;
         $param['idcompra'] = null;
         $elObjtArchivoE = $this->cargarObjeto($param);
-        //print_r($elObjtArchivoE);
         if ($elObjtArchivoE != null and $elObjtArchivoE->insertar()) {
             $resp = true;
         }

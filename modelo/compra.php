@@ -48,9 +48,9 @@ class compra
         $this->cofecha = $cofecha;
     }
 
-    public function setIdusuario($idusuario)
+    public function setIdusuario($objUsuario)
     {
-        $this->idusuario = $idusuario;
+        $this->idusuario = $objUsuario;
     }
 
     public function setMensajeOperacion($msj)
@@ -59,11 +59,11 @@ class compra
     }
     
     // Metodos
-    public function setear($idcompra, $cofecha, $idusuario)
+    public function setear($idcompra, $cofecha, $objUsuario)
     {
         $this->setIdcompra($idcompra);
         $this->setCofecha($cofecha);
-        $this->setIdusuario($idusuario);
+        $this->setIdusuario($objUsuario);
     }
 
     public function cargar()
@@ -168,7 +168,7 @@ class compra
                         $objUsuario->cargar();
                     }
 
-                    $obj->setear($row['idcompra'], $row['cofecha'], $objUsuario, $row['idpadre'], $row['medeshabilitado']);
+                    $obj->setear($row['idcompra'], $row['cofecha'], $objUsuario);
                     array_push($arreglo, $obj);
                 }
             }
