@@ -8,6 +8,7 @@ $sesion = new session();
 $activa = $sesion->activa();
 
 if ($activa) {
+    $roles = $sesion->getRoles();
     $controlCarritoCliente = new control_carrito_cliente();
     $compra = $controlCarritoCliente->verificarCarrito($sesion->getIdusuario());
 
@@ -76,7 +77,7 @@ if ($activa) {
 
                     <?php
                     if ($activa) {
-                        foreach ($sesion->getRoles() as $idRol) {
+                        foreach ($roles as $idRol) {
                             $abmMenuRol = new abmmenurol();
                             $listaMenuRol = $abmMenuRol->buscar(['idrol' => $idRol]);
                             if (count($listaMenuRol) > 0) {
@@ -132,23 +133,43 @@ if ($activa) {
                 </ul>
                 <ul class="navbar-nav d-flex">
                     <!-- Icon carrito -->
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="../cliente/carrito.php" role="button" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-shopping-cart"></i> <span class="d-lg-none">Carrito</span><span class="badge bg-white text-black ms-1 rounded-pill">
-                                <?php
-                                if (count($cantidad) > 0) {
-                                    echo $cantidad[0];
-                                } else {
-                                    echo "0";
-                                }
-                                ?>
-
-                            </span>
-                        </a>
-                    </li>
-                    <!-- Icon visitante -->
 
                     <?php
+                    if ($activa) {
+                        if (count($roles) > 1) {
+                            if ($roles[0] == 1 || $roles[1] == 1) {
+                    ?>
+
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" href="../cliente/carrito.php" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-shopping-cart"></i> <span class="d-lg-none">Carrito</span><span class="badge bg-white text-black ms-1 rounded-pill">
+                                            <?php
+                                            if (count($cantidad) > 0) {
+                                                echo $cantidad[0];
+                                            } else {
+                                                echo "0";
+                                            }
+                                            ?>
+
+                                        </span>
+                                    </a>
+                                </li>
+
+                        <?php
+                            }
+                        }
+                    } else {
+                        ?>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="../cliente/carrito.php" role="button" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-shopping-cart"></i> <span class="d-lg-none">Carrito</span><span class="badge bg-white text-black ms-1 rounded-pill">0</span>
+                            </a>
+                        </li>
+                        <!-- Icon visitante -->
+
+                    <?php
+                    }
                     if (!$activa) {
                     ?>
 

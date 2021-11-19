@@ -47,17 +47,18 @@ class abmcompra
         return $resp;
     }
 
-    /* public function baja($param){
+    public function baja($param)
+    {
         $resp = false;
-        if ($this->seteadosCamposClaves($param)){
+        if ($this->seteadosCamposClaves($param)) {
             $elObjtArchivoE = $this->cargarObjetoConClave($param);
-            if ($elObjtArchivoE!=null and $elObjtArchivoE->eliminar()){
+            if ($elObjtArchivoE != null and $elObjtArchivoE->eliminar()) {
                 $resp = true;
             }
         }
-        
+
         return $resp;
-    } */
+    }
 
     public function modificacion($param)
     {

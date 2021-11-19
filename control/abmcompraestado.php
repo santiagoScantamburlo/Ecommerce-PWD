@@ -67,17 +67,18 @@ class abmcompraestado
         return $resp;
     }
 
-    /* public function baja($param){
-    $resp = false;
-    if ($this->seteadosCamposClaves($param)){
-    $elObjtArchivoE = $this->cargarObjetoConClave($param);
-    if ($elObjtArchivoE!=null and $elObjtArchivoE->eliminar()){
-    $resp = true;
-    }
-    }
+    public function baja($param)
+    {
+        $resp = false;
+        if ($this->seteadosCamposClaves($param)) {
+            $elObjtArchivoE = $this->cargarObjetoConClave($param);
+            if ($elObjtArchivoE != null and $elObjtArchivoE->eliminar()) {
+                $resp = true;
+            }
+        }
 
-    return $resp;
-    } */
+        return $resp;
+    }
 
     public function modificacion($param)
     {

@@ -7,7 +7,7 @@ class control_carrito_cliente
     {
         $abmCompra = new abmcompra();
         //Busco todas las compras realizadas por el usuario
-        $listaCompras = $abmCompra->buscar($idusuario);
+        $listaCompras = $abmCompra->buscar(['idusuario' => $idusuario]);
 
         //Seteo la compra de retorno en null
         $compraRetorno = null;

@@ -65,7 +65,7 @@ background: linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(246,73,215,1) 0%, 
                             <div class='card-footer p-4 pt-0 border-top-0 bg-transparent'>
 
                                 <?php
-                                if ($producto->getProdeshabilitado() != "") {
+                                if ($producto->getProcantstock() == 0) {
                                 ?>
 
                                     <div class='text-center'>Sin stock</div>
