@@ -16,7 +16,11 @@ if (isset($listaProductos[0])) {
     $datos['procantventas'] = 0;
     $exito = $abmProducto->alta($datos);
 
+    print_r($_FILES);
+
     if ($exito) {
+        $control_carga_imagen = new control_imagen();
+        $control_carga_imagen->cargarImagen($_FILES, $datos['idproducto']);
         $message = "Producto cargado correctamente";
         header('Location: ../deposito/administrarProductos.php?message=' . urlencode($message));
         exit;

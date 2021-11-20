@@ -19,8 +19,36 @@ if (count($listaCE) > 0) {
             $message = "Compra enviada";
             break;
     }
+
     $exito = $abmCompraEstado->modificacion($datos);
+
     if ($exito) {
+        $abmCompraItem = new abmcompraitem();
+        $listaCI = $abmCompraItem->buscar(['idcompra' => $datos['idcompra']]);
+
+        foreach ($listaCI as $item) {
+            $objProducto = $item->getObjProducto();
+            $idProducto = $objProducto->getIdproducto();
+            $cantidad = $item->getCicantidad();
+            $cantidadStock = $objProducto->getProcantstock();
+            $cantidadVentas = $objProducto->getProcantventas();
+            $precio = $objProducto->getProprecio();
+            $descuento = $objProducto->getProdescuento();
+            $nombre = $objProducto->getPronombre();
+            $detalle = $objProducto->getProdetalle();
+
+            $abmProducto = new abmproducto();
+            $datosModificacion = [
+                'idproducto' => $idProducto,
+                'procantventas' => ($cantidadVentas + $cantidad),
+                'procantstock' => ($cantidadStock - $cantidad),
+                'pronombre' => $nombre,
+                'prodetalle' => $detalle,
+                'prodescuento' => $descuento,
+                'proprecio' => $precio
+            ];
+            $abmProducto->modificacion($datosModificacion);
+        }
         header('Location: ../deposito/administrarCompras.php?messageOk=' . urlencode($message));
         exit;
     } else {

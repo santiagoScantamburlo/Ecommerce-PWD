@@ -1,6 +1,0 @@
-{
-    "require": {
-        "respect/validation": "^2.2",
-        "respect/stringifier": "^0.2.0"
-    }
-}

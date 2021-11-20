@@ -46,7 +46,7 @@ include_once '../estructuras/cabecera.php';
                     <td class='text-center'><?php echo $menu->getMedescripcion() ?></td>
                     <td class='text-center'><?php echo $idPadre ?></td>
                     <td class='text-center'><?php echo $menu->getMedeshabilitado() ?></td>
-                    <form method='post' action='formularioModificarMenu.php'>
+                    <form method='post' action='formularioModificacionMenu.php'>
                         <td class='text-center'>
                             <input name='idmenu' id='idmenu' type='hidden' value=<?php echo $id ?>><button class='btn btn-warning btn-sm' type='submit'><i class="fas fa-edit"></i></button>
                         </td>
@@ -74,11 +74,6 @@ include_once '../estructuras/cabecera.php';
                             </button>
                         </td>
                     </form>
-                    <!-- <form method='post' action='eliminarMenu.php'>
-                        <td class='text-center'>
-                            <input name='idmenu' id='idmenu' type='hidden' value=<?php echo $id ?>><button class='btn btn-danger btn-sm' type='submit'><i class='bi bi-trash'></i></button>
-                        </td>
-                    </form> -->
                 </tr>
 
             <?php

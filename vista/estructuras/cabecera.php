@@ -41,7 +41,7 @@ if ($activa) {
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark" style="background: rgb(255,69,207);background: linear-gradient(90deg, rgba(255,69,207,1) 0%, rgba(185,32,230,1) 100%, rgba(244,119,255,1) 100%);">
         <div class="container px-4 px-lg-5">
-            <a href="../home/index.php"><img src="../../assets/images/LogoFeme.png"></a>
+            <a href="../home/index.php"><img src="../../archivos/images/LogoFeme.png"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
 
             <div style="font-size:20px;" class="collapse navbar-collapse" id="navbarNavDropdown">
@@ -136,42 +136,44 @@ if ($activa) {
 
                     <?php
                     if ($activa) {
-                        if (count($roles) > 1) {
-                            if ($roles[0] == 1 || $roles[1] == 1) {
+                        if ($roles[0] > 1) {
+                            if (count($roles) > 1) {
+                                if ($roles[0] == 1 || $roles[1] == 1) {
                     ?>
 
-                                <li class="nav-item">
-                                    <a class="nav-link text-white" href="../cliente/carrito.php" role="button" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-shopping-cart"></i> <span class="d-lg-none">Carrito</span><span class="badge bg-white text-black ms-1 rounded-pill">
-                                            <?php
-                                            if (count($cantidad) > 0) {
-                                                echo $cantidad[0];
-                                            } else {
-                                                echo "0";
-                                            }
-                                            ?>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-white" href="../cliente/carrito.php" role="button" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-shopping-cart"></i> <span class="d-lg-none">Carrito</span><span class="badge bg-white text-black ms-1 rounded-pill">
+                                                <?php
+                                                if (count($cantidad) > 0) {
+                                                    echo $cantidad[0];
+                                                } else {
+                                                    echo "0";
+                                                }
+                                                ?>
 
-                                        </span>
-                                    </a>
-                                </li>
+                                            </span>
+                                        </a>
+                                    </li>
+
+                            <?php
+                                }
+                            }
+                        } else {
+                            ?>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="../cliente/carrito.php" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-shopping-cart"></i> <span class="d-lg-none">Carrito</span><span class="badge bg-white text-black ms-1 rounded-pill">0</span>
+                                </a>
+                            </li>
+                            <!-- Icon visitante -->
 
                         <?php
-                            }
                         }
-                    } else {
-                        ?>
-
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="../cliente/carrito.php" role="button" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-shopping-cart"></i> <span class="d-lg-none">Carrito</span><span class="badge bg-white text-black ms-1 rounded-pill">0</span>
-                            </a>
-                        </li>
-                        <!-- Icon visitante -->
-
-                    <?php
                     }
                     if (!$activa) {
-                    ?>
+                        ?>
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown-Visitante" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-sign-in-alt"></i><span class="d-lg-none">Usuario</span></a>
@@ -189,7 +191,7 @@ if ($activa) {
                         <!-- Icon usuario -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown-Usuario" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-user"></i> <span class="d-lg-none">Usuario</span>
+                                <i class="fas fa-user"></i>&nbsp;Usuario <span class="d-lg-none">Usuario</span>
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown-Usuario">
@@ -207,7 +209,7 @@ if ($activa) {
 
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown-Usuario" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fas fa-user-cog"></i> <span class="d-lg-none">Roles</span>
+                                    <i class="fas fa-user-cog"></i>&nbsp;Roles<span class="d-lg-none">Roles</span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown-Usuario">
 

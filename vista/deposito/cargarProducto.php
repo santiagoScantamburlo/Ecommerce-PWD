@@ -11,7 +11,7 @@ include_once '../estructuras/cabecera.php';
 
 <div class="container mt-3">
     <h1 class="text-center">Nuevo Producto</h1>
-    <form class="col-md-11 mt-4" method="post" action="../actions/actionNuevoProducto.php">
+    <form class="col-md-11 mt-4" method="post" enctype="multipart/form-data" action="../actions/actionNuevoProducto.php">
         <div class="row">
             <div class="col-md-6">
                 <div class="form-floating">
@@ -59,6 +59,12 @@ include_once '../estructuras/cabecera.php';
                         <input class="form-control" id="prodescuento" name="prodescuento" type="text" placeholder="Descuento">
                         <label for="prodescuento">Descuento</label>
                     </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mt-4">
+                    <label class="mb-3" for="imagen">Seleccione una imagen de producto</label>
+                    <input type="file" name="imagen" id="imagen" required>
                 </div>
             </div>
         </div>

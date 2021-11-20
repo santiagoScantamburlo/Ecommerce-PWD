@@ -152,7 +152,7 @@ class compraestado
         $resp = false;
         $base = new BaseDatos();
         $sql = "UPDATE compraestado SET idcompra={$this->getObjCompra()->getIdcompra()}, idcompraestadotipo={$this->getObjCompraEstadoTipo()->getIdcompraestadotipo()}, cefechaini='{$this->getCefechaini()}', cefechafin='{$this->getCefechafin()}' WHERE idcompraestado={$this->getIdcompraestado()}";
-        echo $sql;
+        // echo $sql;
         if ($base->Iniciar()) {
             if ($base->Ejecutar($sql)) {
                 $resp = true;

@@ -40,7 +40,7 @@ background: linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(246,73,215,1) 0%, 
                             }
                             ?>
 
-                            <img class='card-img-top' src='https://dummyimage.com/450x300/dee2e6/6c757d.jpg' alt='...' />
+                            <img class='card-img-top' src='../../archivos/images/<?php echo md5($producto->getIdproducto()) . ".jpeg"; ?>' alt='...' />
                             <div class='card-body p-4'>
                                 <div class='text-center'>
                                     <h5 class='fw-bolder'> <?php echo $producto->getPronombre() ?> </h5>

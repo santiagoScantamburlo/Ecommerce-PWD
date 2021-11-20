@@ -3,7 +3,7 @@ include_once '../../configuracion.php';
 $datos = data_submitted();
 $sesion = new session();
 $idUsuario = $sesion->getIdusuario(); //Tomo el ID del usuario con la sesion activa
-echo $idUsuario;
+// echo $idUsuario;
 $controlCarritoCliente = new control_carrito_cliente();
 $compra = $controlCarritoCliente->verificarCarrito($idUsuario); //Invoco a la funcion, usando el id de usuario para buscar
 

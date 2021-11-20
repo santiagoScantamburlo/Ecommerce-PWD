@@ -40,7 +40,7 @@ $listaProductos = $abmProducto->buscar($datosBusqueda);
                             }
                             ?>
 
-                            <img class='card-img-top' src='https://dummyimage.com/450x300/dee2e6/6c757d.jpg' alt='...' />
+                            <img class='card-img-top' src='../../archivos/images/<?php echo md5($producto->getIdproducto()) . ".jpeg"; ?>' alt='...' />
                             <div class='card-body p-4'>
                                 <div class='text-center'>
                                     <h5 class='fw-bolder'> <?php echo $producto->getPronombre() ?> </h5>

@@ -7,8 +7,7 @@ $datosBusqueda['tipoproducto'] = "aros";
 $listaProductos = $abmProducto->buscar($datosBusqueda);
 ?>
 
-<header style="background: rgb(0,212,255);
-background: linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(246,73,215,1) 0%, rgba(175,0,179,1) 100%);">
+<header style="background: rgb(0,212,255);background: linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(246,73,215,1) 0%, rgba(175,0,179,1) 100%);">
     <div class="container px-4 px-lg-5 my-2">
         <div class="text-center text-white">
             <h1 class="display-4 fw-bolder">AROS</h1>
@@ -40,7 +39,7 @@ background: linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(246,73,215,1) 0%, 
                             }
                             ?>
 
-                            <img class='card-img-top' src='https://dummyimage.com/450x300/dee2e6/6c757d.jpg' alt='...' />
+                            <img class='card-img-top' src='../../archivos/images/<?php echo md5($producto->getIdproducto()) . ".jpeg"; ?>' alt='...'>
                             <div class='card-body p-4'>
                                 <div class='text-center'>
                                     <h5 class='fw-bolder'> <?php echo $producto->getPronombre() ?> </h5>

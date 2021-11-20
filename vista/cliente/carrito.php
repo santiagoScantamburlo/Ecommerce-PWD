@@ -57,7 +57,7 @@ if (is_null($compra)) {
                                                     <div class="d-flex justify-content-between">
                                                         <div class="d-flex flex-row align-items-center" style="width: 45%">
                                                             <div>
-                                                                <img src="https://mdbootstrap.com/img/Photos/new-templates/bootstrap-shopping-carts/img1.jpg" class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+                                                                <img src='../../archivos/images/<?php echo md5($idProducto) . ".jpeg"; ?>' class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
                                                             </div>
                                                             <div class="ms-3">
                                                                 <h5><?php echo $objProducto->getPronombre() ?></h5>
@@ -156,19 +156,16 @@ if (is_null($compra)) {
 
                                         <div class="mt-4">
                                             <div class="d-grid offset-md-4 col-md-3">
-                                                <button class="btn" style="color: white;background: rgba(252, 51, 255)" type="submit">
-                                                    <div class="d-flex justify-content-between">
-                                                        <span>Pagar <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
-                                                    </div>
-                                                </button>
+                                                <form metehod="post" action="../actions/actionAceptarCompra.php">
+                                                    <input type="hidden" name="idcompra" value="<?php echo $compra->getIdcompra() ?>">
+                                                    <button class="btn" style="color: white;background: rgba(252, 51, 255)" type="submit">
+                                                        <div class="d-flex justify-content-between">
+                                                            <span>Pagar <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
+                                                        </div>
+                                                    </button>
+                                                </form>
                                             </div>
                                         </div>
-
-                                        <!-- <button type="submit" class=" btn-lg" style="background:rgba(0,212,255,1)">
-                                            <div class="d-flex justify-content-between">
-                                                <span>Pagar <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
-                                            </div>
-                                        </button> -->
 
                                     </div>
                                 </div>
@@ -176,12 +173,10 @@ if (is_null($compra)) {
                             </div>
 
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
     </section>
 
 <?php
