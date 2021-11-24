@@ -18,7 +18,7 @@ if (isset($lista)) {
 
     <div class="container mt-3">
         <h1 class="text-center">Modificar Producto</h1>
-        <form class="col-md-11 mt-4" method="post" action="../actions/actionModificarProducto.php">
+        <form id="datosProducto" class="col-md-11 mt-4" method="post" action="../actions/actionModificarProducto.php">
             <input type="hidden" name="idproducto" value="<?php echo $producto->getIdproducto() ?>">
             <div class="row">
                 <div class="col-md-6">

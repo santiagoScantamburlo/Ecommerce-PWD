@@ -4,7 +4,7 @@ include_once '../estructuras/cabecera.php';
 ?>
 <div class="container mt-3">
     <div class="offset-md-4">
-        <form action="../actions/actionNuevoMenu.php" method="post" class="col-md-6 mt-3 " id="menuNuevo" name="menuNuevo">
+        <form id="datosMenu" action="../actions/actionNuevoMenu.php" method="post" class="col-md-6 mt-3 " id="menuNuevo" name="menuNuevo">
             <h1 class="h3 mb-3 text-center">Cargar Menú</h1>
             <div class="">
                 <div class="form-floating mt-3">
@@ -21,7 +21,7 @@ include_once '../estructuras/cabecera.php';
             <div class="row">
                 <div class="col-md-4">
                     <div class="mt-4">
-                        <input class="form-check-input" id="cliente" name="idpadre" type="radio" value="1">
+                        <input class="form-check-input" id="cliente" name="idpadre" type="radio" value="1" checked>
                         <label for="cliente">Cliente</label>
                     </div>
                 </div>

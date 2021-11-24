@@ -3,7 +3,7 @@ include_once '../estructuras/cabecera.php';
 ?>
 
 <div class="container mt-3">
-    <form class="form-signin" id="login" name="login" action="../actions/actionLogin.php" method="post">
+    <form class="form-signin" id="datosUsuario" name="login" action="../actions/actionLogin.php" method="post">
         <div class="login container col-md-3">
             <h1 class="h3 mb-3 text-center">Entrar al sitio</h1>
             <div class="form-group">

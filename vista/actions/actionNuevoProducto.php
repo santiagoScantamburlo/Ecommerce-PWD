@@ -8,7 +8,7 @@ $abmProducto = new abmproducto();
 $datosBusqueda['idproducto'] = $datos['idproducto'];
 $listaProductos = $abmProducto->buscar($datos);
 
-if (isset($listaProductos[0])) {
+if (count($listaProductos) > 0) {
     $message = "El ID ingresado ya existe";
     header('Location: ../deposito/cargarProducto.php?message=' . urlencode($message));
     exit;

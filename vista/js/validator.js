@@ -1,6 +1,6 @@
-//Nueva Persona
+//DATOS DEL USUARIO
 $(document).ready(function() {
-    $('#datosPersona').bootstrapValidator({
+    $('#datosUsuario').bootstrapValidator({
         message: 'Este valor no es valido',
         feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
@@ -8,61 +8,59 @@ $(document).ready(function() {
             validating: 'glyphicon glyphicon-refresh'
         },
         fields: {
-            nombre: {
-                message: 'Nombre no valido',
+            usnombre: {
+                message: 'Nombre no válido',
                 validators: {
                     notEmpty: {
                         message: 'El nombre es obligatorio'
                     },
                     regexp: {
-                        regexp: /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/,
-                        message: 'La primer letra en mayúscula. Solo letras.'
+                        regexp: /^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$/,
+                        message: 'Longitud mínima de 8 caracteres. Al menos una mayúscula. Al menos una minúscula. Al menos un número'
                     }
                 }
             },
-            apellido: {
-                message: 'Apellido no valido',
+            uspass: {
+                message: 'Contraseña no válida',
                 validators: {
                     notEmpty: {
-                        message: 'El apellido es obligatorio'
+                        message: 'La contraseña es obligatoria'
                     },
                     regexp: {
-                        regexp: /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/,
-                        message: 'La primer letra en mayúscula. Solo letras.'
+                        regexp: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+                        message: ' Longitud minima de 8 caracteres. Al menos una mayúscula o minúscula y un número.\n'
+                    },
+                    different: {
+                        field: 'usnombre',
+                        message: 'La contraseña y el nombre de usuario no pueden ser iguales'
                     }
                 }
             },
-            nro_dni: {
-                message: 'DNI no valido',
+            uspass2: {
+                message: 'Contraseña no válida',
                 validators: {
                     notEmpty: {
-                        message: 'El Dni es obligatorio'
+                        message: 'La contraseña es obligatoria'
                     },
                     regexp: {
-                        regexp: /^\d{8}$/,
-                        message: 'Debe ingresar 8 dígitos.'
+                        regexp: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+                        message: ' Longitud minima de 8 caracteres. Al menos una mayúscula o minúscula y un número.\n'
+                    },
+                    identical: {
+                        field: 'uspass',
+                        message: 'Las contraseñas deben ser iguales'
                     }
                 }
             },
-            domicilio: {
-                message: 'Domicilio invalido',
+            usmail: {
+                message: 'Mail no valido',
                 validators: {
                     notEmpty: {
-                        message: 'Se requiere un domicilio'
-                    }
-                }
-            },
-            fecha_nac: {
-                validators: {
-                    notEmpty: {
-                        message: 'Debe ingresar una fecha'
-                    }
-                }
-            },
-            telefono: {
-                validators: {
-                    notEmpty: {
-                        message: 'Ingrese nro de teléfono'
+                        message: 'El mail es obligatorio'
+                    },
+                    regexp: {
+                        regexp: /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/,
+                        message: 'Mail no válido'
                     }
                 }
             }
@@ -70,9 +68,9 @@ $(document).ready(function() {
     });
 });
 
-//Buscar Persona
+//DATOS DEL PRODUCTO
 $(document).ready(function() {
-    $('#buscarPersona').bootstrapValidator({
+    $('#datosProducto').bootstrapValidator({
         message: 'Este valor no es valido',
         feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
@@ -80,15 +78,75 @@ $(document).ready(function() {
             validating: 'glyphicon glyphicon-refresh'
         },
         fields: {
-            nro_dni: {
-                message: 'DNI no valido',
+            idproducto: {
+                message: 'ID no válido',
                 validators: {
                     notEmpty: {
-                        message: 'El Dni es obligatorio'
+                        message: 'El ID es obligatorio'
                     },
                     regexp: {
-                        regexp: /^\d{8}$/,
-                        message: 'Debe ingresar 8 dígitos.'
+                        regexp: /^[A-Z][0-9]+/,
+                        message: 'Identificador de tipo y número'
+                    }
+                }
+            },
+            pronombre: {
+                message: 'Nombre no válido',
+                validators: {
+                    notEmpty: {
+                        message: 'El nombre no es válido'
+                    },
+                    regexp: {
+                        regexp: /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/,
+                        message: 'La primer letra en mayúscula. Solo letras.'
+                    }
+                }
+            },
+            prodetalle: {
+                message: 'Detalle no válido',
+                validators: {
+                    notEmpty: {
+                        message: 'El detalle es obligatorio'
+                    },
+                    regexp: {
+                        regexp: /^[a-zA-Z0-9]/,
+                        message: 'Detalle no válido'
+                    }
+                }
+            },
+            proprecio: {
+                message: 'Precio no válido',
+                validators: {
+                    notEmpty: {
+                        message: 'El precio es obligatorio'
+                    },
+                    regexp: {
+                        regexp: /^[0-9]/,
+                        message: 'Precio no válido'
+                    }
+                }
+            },
+            prodescuento: {
+                message: 'Descuento no válido',
+                validators: {
+                    notEmpty: {
+                        message: 'El descuento es obligatorio'
+                    },
+                    regexp: {
+                        regexp: /^[0-9]/,
+                        message: 'Descuento no válido'
+                    }
+                }
+            },
+            procantstock: {
+                message: 'Cantidad en stock no válida',
+                validators: {
+                    notEmpty: {
+                        message: 'La cantidad en stock es obligatoria'
+                    },
+                    regexp: {
+                        regexp: /^[0-9]/,
+                        message: 'Cantidad en stock no válida'
                     }
                 }
             }
@@ -96,9 +154,9 @@ $(document).ready(function() {
     });
 });
 
-//Modificar Persona
+//DATOS DEL MENU
 $(document).ready(function() {
-    $('#modificarPersona').bootstrapValidator({
+    $('#datosMenu').bootstrapValidator({
         message: 'Este valor no es valido',
         feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
@@ -106,42 +164,27 @@ $(document).ready(function() {
             validating: 'glyphicon glyphicon-refresh'
         },
         fields: {
-            nombre: {
-                message: 'Nombre no valido',
+            menombre: {
+                message: 'Nombre no válido',
                 validators: {
                     notEmpty: {
                         message: 'El nombre es obligatorio'
                     },
                     regexp: {
-                        regexp: /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/,
-                        message: 'La primer letra en mayúscula. Solo letras.'
+                        regexp: /^[a-zA-Z]/,
+                        message: 'Nombre no válido'
                     }
                 }
             },
-            apellido: {
-                message: 'Apellido no valido',
+            medescripcion: {
+                message: 'Descripcion no válida',
                 validators: {
                     notEmpty: {
-                        message: 'El apellido es obligatorio'
+                        message: 'La descripción es obligatoria'
                     },
                     regexp: {
-                        regexp: /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/,
-                        message: 'La primer letra en mayúscula. Solo letras.'
-                    }
-                }
-            },
-            domicilio: {
-                message: 'Domicilio invalido',
-                validators: {
-                    notEmpty: {
-                        message: 'Se requiere un domicilio'
-                    }
-                }
-            },
-            telefono: {
-                validators: {
-                    notEmpty: {
-                        message: 'Ingrese nro de teléfono'
+                        regexp: /^[a-zA-Z]/,
+                        message: 'Descripción no válida'
                     }
                 }
             }

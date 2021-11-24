@@ -12,7 +12,7 @@ shuffle($listaProductos);
 background: linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(246,73,215,1) 0%, rgba(175,0,179,1) 100%);">
     <div class="container px-4 px-lg-5 my-2">
         <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">Productos lindos UwU</h1>
+            <h1 class="display-4 fw-bolder">Productos</h1>
             <p class="lead fw-normal text-white-50 mb-0">
             <div class="bi bi-heart-fill"></div>
             </p>

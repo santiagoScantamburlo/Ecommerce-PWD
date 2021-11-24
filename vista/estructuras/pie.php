@@ -12,7 +12,7 @@
 <script src="../js/bootstrap/bootstrap.bundle.min.js"></script>
 <script src="../js/bootstrap/bootstrap.min.js"></script>
 <script src="../js/bootstrap/bootstrapValidator.min.js"></script>
-<!-- <script type="text/javascript" src="../../../js/validator.js"></script> -->
+<script type="text/javascript" src="../js/validator.js"></script>
 </body>
 
 </html>

@@ -19,7 +19,7 @@ $objMenu = $listaMenus[0];
     <h4 class="text-center">Modificar Menú</h4>
     <div class="col-md-4"></div>
     <div class="offset-md-4">
-        <form action="../actions/actionModificarMenu.php" method="post" class="col-md-6 mt-3 " id="modificarMenu" name="modificarMenu">
+        <form id="datosMenu" action="../actions/actionModificarMenu.php" method="post" class="col-md-6 mt-3 " id="modificarMenu" name="modificarMenu">
             <div class="">
                 <div class="form-floating mb-3">
                     <input class="form-control" id="idmenu" name="idmenu" type="text" placeholder="ID menú" value="<?php echo $objMenu->getIdmenu() ?>" hidden>

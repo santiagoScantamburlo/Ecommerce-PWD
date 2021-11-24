@@ -48,34 +48,54 @@ if ($activa) {
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                     <li class="nav-item"><a class="nav-link" href="../home/index.php">Inicio</a></li>
                     <li class="nav-item"><a class="nav-link" href="../home/informacion.php">Información</a></li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Productos</a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="../cliente/listaProductos.php">Todos los productos</a></li>
-                            <li>
-                                <hr class="dropdown-divider" />
-                            </li>
-                            <li><a class="dropdown-item" href="../cliente/productosDestacados.php">Productos destacados</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="../cliente/aros.php">Aros</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="../cliente/cadenitas.php">Cadenitas</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="../cliente/pulseras.php">Pulseras</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="../cliente/relojes.php">Relojes</a></li>
-                        </ul>
-                    </li>
 
                     <?php
+                    $mostrar = false;
+                    if (!$activa) {
+                        $mostrar = true;
+                    }
+                    if ($activa) {
+                        if ($roles[0] > 1) {
+                            if (count($roles) > 1) {
+                                if ($roles[1] == 1) {
+                                    $mostrar = true;
+                                }
+                            }
+                        }
+                    }
+
+                    if ($mostrar) {
+                    ?>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Productos</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" href="../cliente/listaProductos.php">Todos los productos</a></li>
+                                <li>
+                                    <hr class="dropdown-divider" />
+                                </li>
+                                <li><a class="dropdown-item" href="../cliente/productosDestacados.php">Productos destacados</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="../cliente/aros.php">Aros</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="../cliente/cadenitas.php">Cadenitas</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="../cliente/pulseras.php">Pulseras</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="../cliente/relojes.php">Relojes</a></li>
+                            </ul>
+                        </li>
+
+                        <?php
+                    }
                     if ($activa) {
                         foreach ($roles as $idRol) {
                             $abmMenuRol = new abmmenurol();
@@ -91,7 +111,7 @@ if ($activa) {
                             }
                             foreach ($listaMenu as $menu) {
                                 if ($menu->getMedeshabilitado() == '0000-00-00 00:00:00') {
-                    ?>
+                        ?>
 
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"><?php echo $menu->getMenombre() ?></a>
@@ -191,7 +211,7 @@ if ($activa) {
                         <!-- Icon usuario -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown-Usuario" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-user"></i>&nbsp;Usuario <span class="d-lg-none">Usuario</span>
+                                <i class="fas fa-user"></i>&nbsp;Usuario
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown-Usuario">
@@ -209,7 +229,7 @@ if ($activa) {
 
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown-Usuario" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fas fa-user-cog"></i>&nbsp;Roles<span class="d-lg-none">Roles</span>
+                                    <i class="fas fa-user-cog"></i>&nbsp;Roles
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown-Usuario">
 

@@ -5,12 +5,13 @@ $controlAdmin = new control_admin();
 if (count($datos) == 0) {
     $controlAdmin->verificarAdmin("cargarUsuario");
 }
+$titulo = "Cargar Usuario";
 include_once '../estructuras/cabecera.php';
 ?>
 
 <div class="container mt-3">
     <h1 class="text-center">Nuevo Usuario</h1>
-    <form class="col-md-11 mt-4" method="post" action="../actions/actionNuevoUsuario.php">
+    <form id="datosUsuario" class="col-md-11 mt-4" method="post" action="../actions/actionNuevoUsuario.php">
         <div class="row">
             <div class="col-md-6">                   
                 <div class="form-floating">
@@ -46,7 +47,7 @@ include_once '../estructuras/cabecera.php';
         <div class="row">
             <div class="col-md-4">
                 <div class="mt-4">
-                    <input class="form-check-input" id="cliente" name="idrol" type="radio" value="1">
+                    <input class="form-check-input" id="cliente" name="idrol" type="radio" value="1" checked>
                     <label for="cliente">Cliente</label>
                 </div>
             </div>
