@@ -3,8 +3,14 @@ include_once '../../configuracion.php';
 $controlAdmin = new control_admin();
 
 $datos = data_submitted();
-if (count($datos) == 0) {
-    $controlAdmin->verificarAdmin("administrarUsuarios");
+$valido = false;
+if (!$valido) {
+    $controlAdmin = new control_admin();
+    $valido = $controlAdmin->verificarAdmin("administrarUsuarios");
+    if (!$valido) {
+        header('Location: ../home/index.php?messageErr=' . urlencode("No tiene los permisos para acceder"));
+        exit;
+    }
 }
 
 $titulo = "Administrar Usuarios";

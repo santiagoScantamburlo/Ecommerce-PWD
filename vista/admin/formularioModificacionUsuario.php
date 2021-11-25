@@ -1,10 +1,16 @@
 <?php
 include_once '../../configuracion.php';
-$sesion = new session();
-if (!$sesion->activa()) {
-    header('Location: ../login/login.php?message=' . urlencode("No ha iniciado sesión"));
-    exit;
+$datos = data_submitted();
+$valido = false;
+if (!$valido) {
+    $controlAdmin = new control_admin();
+    $valido = $controlAdmin->verificarAdmin("formularioModificacionUsuario");
+    if (!$valido) {
+        header('Location: ../home/index.php?messageErr=' . urlencode("No tiene los permisos para acceder"));
+        exit;
+    }
 }
+$sesion = new session();
 
 $datos = data_submitted();
 $abmUsuario = new abmusuario();

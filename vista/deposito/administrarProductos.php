@@ -3,6 +3,12 @@ include_once '../../configuracion.php';
 $sesion = new session();
 
 $datos = data_submitted();
+$controlAdmin = new control_deposito();
+$valido = $controlAdmin->verificarDeposito("administrarProductos");
+if (!$valido) {
+    header('Location: ../home/index.php?messageErr=' . urlencode("No tiene los permisos para acceder"));
+    exit;
+}
 
 if (!$sesion->activa()) {
     header('Location: ../login/login.php?message=' . urlencode("No ha iniciado sesión"));
@@ -55,7 +61,7 @@ include_once '../estructuras/cabecera.php';
                     <th scope='col' class="text-center">Deshabilitado</th>
                     <th scope='col' class="text-center">Modificar</th>
                     <th scope='col' class="text-center">Deshabilitar</th>
-                    <th scope='col' class='text-center'>Eliminar</th>
+                    <!-- <th scope='col' class='text-center'>Eliminar</th> -->
                 </tr>
             </thead>
 
@@ -101,11 +107,11 @@ include_once '../estructuras/cabecera.php';
                             </button>
                         </td>
                     </form>
-                    <form method='post' action='../actions/actionEliminarProducto.php'>
+                    <!-- <form method='post' action='../actions/actionEliminarProducto.php'>
                         <td class='text-center'>
                             <input name='idproducto' id='idproducto' type='hidden' value=<?php echo $id ?>><button class='btn btn-danger btn-sm' type='submit'><i class='bi bi-trash'></i></button>
                         </td>
-                    </form>
+                    </form> -->
                 </tr>
 
             <?php

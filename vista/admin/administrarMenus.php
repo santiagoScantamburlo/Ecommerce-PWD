@@ -1,11 +1,17 @@
 <?php
 include_once '../../configuracion.php';
 $datos = data_submitted();
-$sesion = new session();
-if (!$sesion->activa()) {
-    header('Location: ../login/login.php?message=' . urlencode("No ha iniciado sesión"));
-    exit;
+$valido = false;
+if (!$valido) {
+    $controlAdmin = new control_admin();
+    $valido = $controlAdmin->verificarAdmin("administrarMenus");
+    if (!$valido) {
+        header('Location: ../home/index.php?messageErr=' . urlencode("No tiene los permisos para acceder"));
+        exit;
+    }
 }
+
+
 $titulo = "Administrar Usuarios";
 include_once '../estructuras/cabecera.php';
 ?>
@@ -50,7 +56,6 @@ include_once '../estructuras/cabecera.php';
                     <th scope='col' class='text-center'>Deshabilitado</th>
                     <th scope='col' class='text-center'>Modificar</th>
                     <th scope='col' class='text-center'>Deshabilitar</th>
-                    <!-- <th scope='col' class='text-center'>Eliminar</th> -->
                 </tr>
             </thead>
 

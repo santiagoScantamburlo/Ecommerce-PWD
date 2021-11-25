@@ -6,7 +6,7 @@ $datos = data_submitted();
 $abmProducto = new abmproducto();
 
 $datosBusqueda['idproducto'] = $datos['idproducto'];
-$listaProductos = $abmProducto->buscar($datos);
+$listaProductos = $abmProducto->buscar($datosBusqueda);
 
 if (count($listaProductos) > 0) {
     $message = "El ID ingresado ya existe";

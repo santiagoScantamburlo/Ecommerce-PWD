@@ -1,9 +1,14 @@
 <?php
 include_once '../../configuracion.php';
 $datos = data_submitted();
-$controlAdmin = new control_admin();
-if (count($datos) == 0) {
-    $controlAdmin->verificarAdmin("cargarUsuario");
+$valido = false;
+if (!$valido) {
+    $controlAdmin = new control_admin();
+    $valido = $controlAdmin->verificarAdmin("cargarUsuario");
+    if (!$valido) {
+        header('Location: ../home/index.php?messageErr=' . urlencode("No tiene los permisos para acceder"));
+        exit;
+    }
 }
 $titulo = "Cargar Usuario";
 include_once '../estructuras/cabecera.php';

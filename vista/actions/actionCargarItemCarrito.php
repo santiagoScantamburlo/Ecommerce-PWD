@@ -46,9 +46,16 @@ if (is_null($compra)) { //En caso de que no haya encontrado una compra valida
         header('Location: ../cliente/carrito.php');
         exit;
     } else {
+        $abmProducto = new abmproducto();
+        $listaProducto = $abmProducto->buscar(['idproducto' => $datos['idproducto']]);
         $cantidad = $listaCI[0]->getCicantidad() + 1;
-        $abmCompraItem->modificacion(['idcompraitem' => $listaCI[0]->getIdcompraitem(), 'idcompra' => $compra->getIdcompra(), 'idproducto' => $datos['idproducto'], 'cicantidad' => $cantidad]);
-        header('Location: ../cliente/carrito.php');
-        exit;
+        if ($listaProducto[0]->getProcantstock() >= $cantidad) {
+            $abmCompraItem->modificacion(['idcompraitem' => $listaCI[0]->getIdcompraitem(), 'idcompra' => $compra->getIdcompra(), 'idproducto' => $datos['idproducto'], 'cicantidad' => $cantidad]);
+            header('Location: ../cliente/carrito.php');
+            exit;
+        } else {
+            header('Location: ../cliente/carrito.php?messageErr=' . urlencode("No hay mas stock del producto"));
+            exit;
+        }
     }
 }

@@ -1,12 +1,12 @@
 <?php
 include_once '../../configuracion.php';
-$sesion = new session();
-if (!$sesion->activa()) {
-    header('Location: ../login/login.php?message=' . urlencode("No ha iniciado sesión"));
+$datos = data_submitted();
+$controlAdmin = new control_deposito();
+$valido = $controlAdmin->verificarDeposito("formularioModificacionProducto");
+if (!$valido) {
+    header('Location: ../home/index.php?messageErr=' . urlencode("No tiene los permisos para acceder"));
     exit;
 }
-
-$datos = data_submitted();
 
 $abmProducto = new abmproducto();
 $lista = $abmProducto->buscar($datos);

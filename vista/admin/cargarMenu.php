@@ -1,5 +1,16 @@
 <?php
-$titulo = "Registro";
+include_once '../../configuracion.php';
+$datos = data_submitted();
+$valido = false;
+if (!$valido) {
+    $controlAdmin = new control_admin();
+    $valido = $controlAdmin->verificarAdmin("cargarMenu");
+    if (!$valido) {
+        header('Location: ../home/index.php?messageErr=' . urlencode("No tiene los permisos para acceder"));
+        exit;
+    }
+}
+$titulo = "Cargar Menu";
 include_once '../estructuras/cabecera.php';
 ?>
 <div class="container mt-3">

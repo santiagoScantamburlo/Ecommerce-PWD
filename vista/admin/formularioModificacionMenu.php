@@ -6,6 +6,15 @@ $titulo = 'Modificar Menú';
 include_once '../estructuras/cabecera.php';
 
 $datos = data_submitted();
+$valido = false;
+if (!$valido) {
+    $controlAdmin = new control_admin();
+    $valido = $controlAdmin->verificarAdmin("formularioModificacionMenu");
+    if (!$valido) {
+        header('Location: ../home/index.php?messageErr=' . urlencode("No tiene los permisos para acceder"));
+        exit;
+    }
+}
 $abmMenu = new abmmenu();
 
 $arrayBusqueda = ["idmenu" => $datos['idmenu']];
