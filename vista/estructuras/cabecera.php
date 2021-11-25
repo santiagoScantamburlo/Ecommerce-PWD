@@ -27,10 +27,18 @@ if ($activa) {
 
     <!-- Bootstrap CSS -->
     <link type="text/css" rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/carrusel.css">
     <link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="../css/bootstrap/boostrapValidator.min.css">
+
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+    <!-- Fonts Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Rubik:ital,wght@1,300&display=swap" rel="stylesheet">
+    <!-- Fontawesone -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <!-- Icons Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
     <!-- Cabecera redirect index php htdocs -->
@@ -47,7 +55,6 @@ if ($activa) {
             <div style="font-size:20px;" class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                     <li class="nav-item"><a class="nav-link" href="../home/index.php">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../home/informacion.php">Información</a></li>
 
                     <?php
                     $mostrar = false;
@@ -55,6 +62,9 @@ if ($activa) {
                         $mostrar = true;
                     }
                     if ($activa) {
+                        if ($roles[0] == 1) {
+                            $mostrar = true;
+                        }
                         if ($roles[0] > 1) {
                             if (count($roles) > 1) {
                                 if ($roles[1] == 1) {
@@ -87,10 +97,6 @@ if ($activa) {
                                     <hr class="dropdown-divider">
                                 </li>
                                 <li><a class="dropdown-item" href="../cliente/pulseras.php">Pulseras</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="../cliente/relojes.php">Relojes</a></li>
                             </ul>
                         </li>
 
@@ -152,7 +158,6 @@ if ($activa) {
 
                 </ul>
                 <ul class="navbar-nav d-flex">
-                    <!-- Icon carrito -->
 
                     <?php
                     if ($activa) {
@@ -182,12 +187,12 @@ if ($activa) {
                         } else {
                             ?>
 
+                            <!-- Icon carrito -->
                             <li class="nav-item">
                                 <a class="nav-link text-white" href="../cliente/carrito.php" role="button" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-shopping-cart"></i> <span class="d-lg-none">Carrito</span><span class="badge bg-white text-black ms-1 rounded-pill">0</span>
                                 </a>
                             </li>
-                            <!-- Icon visitante -->
 
                         <?php
                         }
@@ -195,6 +200,7 @@ if ($activa) {
                     if (!$activa) {
                         ?>
 
+                        <!-- Icon visitante -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown-Visitante" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-sign-in-alt"></i><span class="d-lg-none">Usuario</span></a>
 
@@ -215,8 +221,8 @@ if ($activa) {
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown-Usuario">
-                                <a class="dropdown-item" href="../pages/perfil.php"><span class="fas fa-user fa-fw" aria-hidden="true" title="Perfil"></span>&nbsp;<?php echo $sesion->getUsnombre() ?></a>
-                                <a class="dropdown-item" href="../pages/configuracion.php"><span class="fas fa-cog fa-fw " aria-hidden="true" title="Configuración"></span>&nbsp;Configuración</a>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="fas fa-user fa-fw" aria-hidden="true" title="Perfil"></span>&nbsp;<?php echo $sesion->getUsnombre() ?>
+                                <a class="dropdown-item" href="../login/configuracion.php"><span class="fas fa-cog fa-fw " aria-hidden="true" title="Configuración"></span>&nbsp;Configuración</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item logout" href="../actions/actionLogout.php"><span class="fas fa-sign-out-alt fa-fw" aria-hidden="true" title="Cerrar sesión"></span>&nbsp;Cerrar sesión</a>
                             </div>

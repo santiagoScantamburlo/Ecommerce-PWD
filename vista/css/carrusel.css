@@ -1,0 +1,19 @@
+
+
+.carousel-caption h5 {
+    color: white;
+    font-family: 'Dancing Script';
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.carousel-caption p {
+    color: beige;
+    font-family: 'Rubik', sans-serif;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.carousel-caption a {
+    text-decoration: none;
+}

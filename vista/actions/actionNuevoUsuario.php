@@ -7,7 +7,7 @@ $datosBusqueda['usnombre'] = $datos['usnombre'];
 
 $lista = $abmUsuario->buscar($datosBusqueda);
 
-if (!isset($lista[0])) {
+if (count($lista) == 0) {
     $exito = false;
     $exitoAltaUsuario = $abmUsuario->alta($datos);
     if ($exitoAltaUsuario) {

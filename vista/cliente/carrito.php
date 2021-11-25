@@ -80,8 +80,8 @@ if (is_null($compra)) {
                                                                 </button>
                                                             </form>
                                                         </div>
-                                                        <div class="d-flex flex-row align-items-center" style="width: 5%">
-                                                            <h5 class="mb-0"><?php echo $subTotalProducto ?></h5>
+                                                        <div class="d-flex flex-row align-items-center" style="width: 10%">
+                                                            <h5 class="mb-0"><?php echo "$ " . $subTotalProducto ?></h5>
                                                         </div>
                                                         <div class="d-flex flex-row align-items-center">
                                                             <form method="post" action="../actions/actionEliminarDelCarrito.php">
@@ -119,64 +119,61 @@ if (is_null($compra)) {
                                         <a href="#!" type="submit" class="text-white"><i class="fab fa-cc-amex fa-2x me-2"></i></a>
                                         <a href="#!" type="submit" class="text-white"><i class="fab fa-cc-paypal fa-2x"></i></a>
 
-                                        <form class="mt-4">
+                                        <form method="post" id="datosTarjeta" name="datosTarjeta" class="mt-4" action="../actions/actionAceptarCompra.php">
                                             <div class="form-outline form-white mb-4">
-                                                <input type="text" id="typeName" class="form-control form-control-lg" siez="17" placeholder="Nombre y Apellido" />
-                                                <label class="form-label" for="typeName">Nombre y Apellido</label>
+                                                <input type="text" name="nombreapellido" id="nombreapellido" class="form-control form-control-lg" siez="17" placeholder="Nombre y Apellido" />
+                                                <label class="form-label" for="nombreapellido">Nombre y Apellido</label>
                                             </div>
 
                                             <div class="form-outline form-white mb-4">
-                                                <input type="text" id="typeText" class="form-control form-control-lg" siez="17" placeholder="1234 5678 9012 3456" minlength="19" maxlength="19" />
-                                                <label class="form-label" for="typeText">Número de tarjeta</label>
+                                                <input type="text" name="numtarjeta" id="numtarjeta" class="form-control form-control-lg" siez="17" placeholder="1234 5678 9012 3456" minlength="16" maxlength="16" />
+                                                <label class="form-label" for="numtarjeta">Número de tarjeta</label>
                                             </div>
 
                                             <div class="row mb-4">
                                                 <div class="col-md-6">
                                                     <div class="form-outline form-white">
-                                                        <input type="text" id="typeExp" class="form-control form-control-lg" placeholder="MM/AAAA" size="7" id="exp" minlength="7" maxlength="7" />
-                                                        <label class="form-label" for="typeExp">Vencimiento</label>
+                                                        <input type="text" name="vencimiento" id="vencimiento" class="form-control form-control-lg" placeholder="MM/AAAA" size="7" id="exp" minlength="7" maxlength="7" />
+                                                        <label class="form-label" for="vencimiento">Vencimiento</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-outline form-white">
-                                                        <input type="password" id="typeText" class="form-control form-control-lg" placeholder="&#9679;&#9679;&#9679;" size="1" minlength="3" maxlength="3" />
+                                                        <input type="password" name="codigo" id="codigo" class="form-control form-control-lg" placeholder="&#9679;&#9679;&#9679;" size="1" minlength="3" maxlength="3" />
                                                         <label class="form-label" for="typeText">Código de seguridad</label>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                        </form>
+                                            <hr class="my-4">
 
-                                        <hr class="my-4">
+                                            <div class="d-flex justify-content-between mb-4">
+                                                <p class="mb-2">Sub Total: $<?php echo round($subtotalCompra, 2) ?></p>
+                                                <p class="mb-2">Total: $<?php echo $subtotalCompra * 1.21 ?></p>
+                                            </div>
 
-                                        <div class="d-flex justify-content-between mb-4">
-                                            <p class="mb-2">Sub Total: $<?php echo round($subtotalCompra, 2) ?></p>
-                                            <p class="mb-2">Total: $<?php echo $subtotalCompra * 1.21 ?></p>
-                                        </div>
-
-                                        <div class="mt-4">
-                                            <div class="d-grid offset-md-4 col-md-3">
-                                                <form metehod="post" action="../actions/actionAceptarCompra.php">
+                                            <div class="mt-4">
+                                                <div class="d-grid offset-md-4 col-md-3">
                                                     <input type="hidden" name="idcompra" value="<?php echo $compra->getIdcompra() ?>">
                                                     <button class="btn" style="color: white;background: rgba(252, 51, 255)" type="submit">
-                                                        <div class="d-flex justify-content-between">
+                                                        <div class="d-flex justify-content-center">
                                                             <span>Pagar <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
                                                         </div>
                                                     </button>
-                                                </form>
-                                            </div>
-                                        </div>
-
+                                        </form>
                                     </div>
                                 </div>
 
                             </div>
-
                             </div>
+
                         </div>
+
                     </div>
                 </div>
             </div>
+        </div>
+        </div>
     </section>
 
 <?php

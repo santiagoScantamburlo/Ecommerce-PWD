@@ -1,4 +1,5 @@
 <?php
+$titulo = "Registro";
 include_once '../../configuracion.php';
 $sesion = new session();
 if ($sesion->activa()) {

@@ -22,11 +22,10 @@ background: linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(246,73,215,1) 0%, 
 <section class="py-5">
     <div class="container px-4 px-lg-5 mt-5">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
             <?php
             if (count($listaProductos) > 0) {
-                $cont_prod = 0;
-                for ($cont_prod = 0; $cont_prod <= 7 && $cont_prod < count($listaProductos); $cont_prod++) {
-                    $producto = $listaProductos[$cont_prod];
+                foreach ($listaProductos as $producto) {
             ?>
 
                     <div class='col mb-5'>

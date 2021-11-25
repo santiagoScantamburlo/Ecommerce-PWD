@@ -10,10 +10,10 @@ $lista = $abmProducto->buscar($datosBusqueda);
 
 if (isset($lista)) {
     $exito = $abmProducto->modificacion($datos);
-    $exito ? header('Location: ../deposito/administrarProductos.php?message=' . urlencode("Producto modificado")) : header('Location: ../deposito/administrarProductos.php?message=' . urlencode("Error en la modificacion"));
+    $exito ? header('Location: ../deposito/administrarProductos.php?messageOk=' . urlencode("Producto modificado")) : header('Location: ../deposito/administrarProductos.php?messageErr=' . urlencode("Error en la modificacion"));
     exit;
 } else {
     $message = "Producto no encontrado en la base de datos";
-    header('Location: ../deposito/administrarProductos.php?message=' . urlencode($message));
+    header('Location: ../deposito/administrarProductos.php?messageErr=' . urlencode($message));
     exit;
 }

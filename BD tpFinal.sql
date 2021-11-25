@@ -260,21 +260,21 @@ VALUES
     (
         1,
         'Pufufifufu1',
-        'turing1',
+        'Turing12',
         'santiagosca@outlook.com',
         '0000-00-00 00:00:00'
     ),
     (
         2,
-        'Rgg1',
-        'rograff1',
+        'Rograff1',
+        'Chocotorta1',
         'rociograff@gmail.com',
         '0000-00-00 00:00:00'
     ),
     (
         3,
         'Josejose1',
-        'josejose1',
+        'Ciruela1',
         'jose@jose.com',
         '0000-00-00 00:00:00'
     );

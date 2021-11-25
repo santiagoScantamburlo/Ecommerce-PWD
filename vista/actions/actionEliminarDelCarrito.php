@@ -10,7 +10,7 @@ $idCompra = $listaCI[0]->getObjCompra()->getIdcompra();
 
 $abmCompraItem->baja(['idcompraitem' => $datos['idcompraitem']]);
 
-$listaCI = $abmCompraItem->buscar(['idcompra' => $idCompra, 'idcompraitem' => $datos['idcompraitem']]);
+$listaCI = $abmCompraItem->buscar(['idcompra' => $idCompra]);
 
 if (count($listaCI) == 0) {
     $abmCompraEstado = new abmcompraestado();

@@ -11,7 +11,7 @@ if (!$sesion->activa()) {
 
 
 
-    if (isset($lista[0])) {
+    if (count($lista) > 0) {
         // $abmUsuarioRol = new abmusuariorol();
         // $listaUsRol = $abmUsuarioRol->buscar($lista[0]->getIdusuario());
         // $datos['rol'] = $listaUsRol[0]->getObjRol()->getIdrol();
@@ -20,18 +20,18 @@ if (!$sesion->activa()) {
             list($inicioSesion, $error) = $sesion->validar();
             if (!$inicioSesion) {
                 $sesion->cerrarSession();
-                header('Location: ../login/login.php?message=' . urlencode($error));
+                header('Location: ../login/login.php?messageErr=' . urlencode($error));
                 exit;
             } else {
                 header('Location: ../home/index.php');
                 exit;
             }
         } else {
-            header('Location: ../login/login.php?message=' . urlencode($error));
+            header('Location: ../login/login.php?messageErr=' . urlencode($error));
             exit;
         }
     } else {
-        header('Location: ../login/login.php?message=' . urlencode("Usuario no encontrado"));
+        header('Location: ../login/login.php?messageErr=' . urlencode("Usuario y/o contraseña incorrectos"));
         exit;
     }
 } else {

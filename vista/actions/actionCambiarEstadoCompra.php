@@ -19,6 +19,8 @@ if (count($listaCE) > 0) {
             $datos['idcompraestadotipo'] = 3;
             $enviada = true;
             $message = "Compra enviada";
+            $datos['cefechafin'] = $listaCE[0]->getCefechafin();
+            $datos['cefechaini'] = $listaCE[0]->getCefechaini();
             break;
     }
 

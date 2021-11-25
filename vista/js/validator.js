@@ -191,3 +191,64 @@ $(document).ready(function() {
         }
     });
 });
+
+//DATOS DE LA TARJETA
+$(document).ready(function() {
+    $('#datosTarjeta').bootstrapValidator({
+        message: 'Este valor no es valido',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            nombreapellido: {
+                message: 'Datos no válidos',
+                validators: {
+                    notEmpty: {
+                        message: 'Estos datos son obligatorios'
+                    },
+                    regexp: {
+                        regexp: /^[a-z ,.'-]+$/i,
+                        message: 'Datos no válidos'
+                    }
+                }
+            },
+            numtarjeta: {
+                message: 'Datos no válidos',
+                validators: {
+                    notEmpty: {
+                        message: 'Estos datos son obligatorios'
+                    },
+                    regexp: {
+                        regexp: /[0-9]{16}/,
+                        message: 'Datos no válidos'
+                    }
+                }
+            },
+            vencimiento: {
+                message: 'Datos no válidos',
+                validators: {
+                    notEmpty: {
+                        message: 'Estos datos son obligatorios'
+                    }
+                    // regexp: {
+                    //     regexp:
+                    // }
+                }
+            },
+            codigo: {
+                message: 'Datos no válidos',
+                validators: {
+                    notEmpty: {
+                        message: 'Estos datos son obligatorios'
+                    },
+                    regexp: {
+                        regexp: /^[0-9]{3}/,
+                        message: 'Datos no válidos'
+                    }
+                }
+            }
+        }
+    });
+});

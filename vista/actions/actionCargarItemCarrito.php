@@ -28,6 +28,8 @@ if (is_null($compra)) { //En caso de que no haya encontrado una compra valida
 
         //Agrego a la tabla compraitem la nueva compra con el producto seleccionado
         $abmCompraItem = new abmcompraitem();
+
+
         $altaCompraItem = $abmCompraItem->alta(['idcompra' => $compra->getIdcompra(), 'idproducto' => $datos['idproducto'], 'cicantidad' => 1]);
         header('Location: ../cliente/carrito.php');
         exit;
@@ -35,7 +37,18 @@ if (is_null($compra)) { //En caso de que no haya encontrado una compra valida
 } else {
     //En caso de retornar una compra abierta, crea una nueva compraitem para el nuevo producto seleccionado
     $abmCompraItem = new abmcompraitem();
-    $altaCompraItem = $abmCompraItem->alta(['idcompra' => $compra->getIdcompra(), 'idproducto' => $datos['idproducto'], 'cicantidad' => 1]);
-    header('Location: ../cliente/carrito.php');
-    exit;
+    $datosBusqueda['idcompra'] = $compra->getIdcompra();
+    $datosBusqueda['idproducto'] = $datos['idproducto'];
+    $listaCI = $abmCompraItem->buscar($datosBusqueda);
+
+    if (count($listaCI) == 0) {
+        $altaCompraItem = $abmCompraItem->alta(['idcompra' => $compra->getIdcompra(), 'idproducto' => $datos['idproducto'], 'cicantidad' => 1]);
+        header('Location: ../cliente/carrito.php');
+        exit;
+    } else {
+        $cantidad = $listaCI[0]->getCicantidad() + 1;
+        $abmCompraItem->modificacion(['idcompraitem' => $listaCI[0]->getIdcompraitem(), 'idcompra' => $compra->getIdcompra(), 'idproducto' => $datos['idproducto'], 'cicantidad' => $cantidad]);
+        header('Location: ../cliente/carrito.php');
+        exit;
+    }
 }
