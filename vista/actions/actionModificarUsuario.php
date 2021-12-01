@@ -2,6 +2,9 @@
 include_once '../../configuracion.php';
 
 $datos = data_submitted();
+
+$controlAdmin = new control_admin();
+$respuesta = $controlAdmin->modificarUsuario($datos);
 $datosBusqueda['idusuario'] = $datos['idusuario'];
 
 $abmUsuario = new abmUsuario();

@@ -1,14 +1,14 @@
 <?php
 include_once '../../configuracion.php';
 $datos = data_submitted();
-$controlAdmin = new control_deposito();
-$valido = $controlAdmin->verificarDeposito("administrarCompras");
+$controlDeposito = new control_deposito();
+$titulo = "Administrar Compras";
+$valido = $controlDeposito->verificarDeposito("administrarCompras", $titulo);
 if (!$valido) {
     header('Location: ../home/index.php?messageErr=' . urlencode("No tiene los permisos para acceder"));
     exit;
 }
 
-$titulo = "Administrar Compras";
 include_once '../estructuras/cabecera.php';
 ?>
 

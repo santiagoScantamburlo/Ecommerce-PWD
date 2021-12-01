@@ -25,6 +25,22 @@ if ($activa) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- JQuery EasyUI -->
+    <!-- <link rel="stylesheet" type="text/css" href="../js/jquery/jquery-easyui-1.6.6/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../js/jquery/jquery-easyui-1.6.6/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="../js/jquery/jquery-easyui-1.6.6/themes/color.css">
+    <link rel="stylesheet" type="text/css" href="../js/jquery/jquery-easyui-1.6.6/demo/demo.css">
+    <script type="text/javascript" src="../js/jquery/jquery-easyui-1.6.6/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/jquery/jquery-easyui-1.6.6/jquery.easyui.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- <script src="../js/jquery/jquery-3.6.0.slim.min.js"></script> -->
+    <script src="../js/bootstrap/bootstrap.bundle.js"></script>
+    <script src="../js/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="../js/bootstrap/bootstrap.min.js"></script>
+    <script src="../js/bootstrap/bootstrapValidator.min.js"></script>
+
     <!-- Bootstrap CSS -->
     <link type="text/css" rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/carrusel.css">

@@ -2,8 +2,9 @@
 include_once '../../configuracion.php';
 $sesion = new session();
 $datos = data_submitted();
+$titulo = "Cargar Producto";
 $controlAdmin = new control_deposito();
-$valido = $controlAdmin->verificarDeposito("cargarProducto");
+$valido = $controlAdmin->verificarDeposito("cargarProducto", $titulo);
 if (!$valido) {
     header('Location: ../home/index.php?messageErr=' . urlencode("No tiene los permisos para acceder"));
     exit;
@@ -12,7 +13,6 @@ if (!$sesion->activa()) {
     header('Location: ../login/login.php?message=' . urlencode("No ha iniciado sesión"));
     exit;
 }
-$titulo = "Cargar Producto";
 include_once '../estructuras/cabecera.php';
 ?>
 

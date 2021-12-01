@@ -7,20 +7,22 @@ $datosBusqueda['idusuario'] = $datos['idusuario'];
 $abmUsuario = new abmUsuario();
 
 $lista = $abmUsuario->buscar($datosBusqueda);
+$respuesta = [];
 
 if (count($lista) > 0) {
-    $exitoModificacionUsuario = $abmUsuario->modificacion($datos);
-    $abmUsuarioRol = new abmusuariorol();
-    $exitoModificacionUsuarioRol = $abmUsuarioRol->modificacion($datos);
-    if ($exitoModificacionUsuario || $exitoModificacionUsuarioRol) {
-        header('Location: ../home/index.php?messageOk=' . urlencode("Usuario modificado correctamente"));
-        exit;
-    } else {
-        header('Location: ../login/configuracion.php?messageErr=' . urlencode("Error en la modificación"));
-        exit;
-    }
+    $controlAdmin = new control_admin();
+    $respuesta = $controlAdmin->configuracion($datos);
 } else {
-    $message = "Usuario no encontrado en la base de datos";
-    header('Location: ../login/configuracion.php?messageErr=' . urlencode($message));
-    exit;
+    $message = "?messageErr=" . urlencode("Usuario no encontrado en la base de datos");
 }
+
+if (count($respuesta) > 0) {
+    if ($respuesta['messageErr'] != "") {
+        $message = $respuesta['messageErr'];
+    } else {
+        $message = $respuesta['messageOk'];
+    }
+}
+
+header('Location: ../login/configuracion.php' . $message);
+exit;

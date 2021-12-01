@@ -1,10 +1,10 @@
 <?php
 include_once '../../configuracion.php';
 $sesion = new session();
-
+$titulo = "Administrar Productos";
 $datos = data_submitted();
 $controlAdmin = new control_deposito();
-$valido = $controlAdmin->verificarDeposito("administrarProductos");
+$valido = $controlAdmin->verificarDeposito("administrarProductos", $titulo);
 if (!$valido) {
     header('Location: ../home/index.php?messageErr=' . urlencode("No tiene los permisos para acceder"));
     exit;
@@ -14,7 +14,6 @@ if (!$sesion->activa()) {
     header('Location: ../login/login.php?message=' . urlencode("No ha iniciado sesión"));
     exit;
 }
-$titulo = "Administrar Productos";
 include_once '../estructuras/cabecera.php';
 ?>
 

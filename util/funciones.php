@@ -2,22 +2,15 @@
 function data_submitted()
 {
     $_AAux = array();
-    if (!empty($_POST)) {
-        $_AAux = $_POST;
-    } else
-    if (!empty($_GET)) {
-        $_AAux = $_GET;
-    }
+    if (!empty($_REQUEST))
+        $_AAux = $_REQUEST;
     if (count($_AAux)) {
         foreach ($_AAux as $indice => $valor) {
-            if ($valor == "") {
+            if ($valor == "")
                 $_AAux[$indice] = 'null';
-            }
-
         }
     }
     return $_AAux;
-
 }
 
 function verEstructura($e)
@@ -39,7 +32,7 @@ spl_autoload_register(function ($clase) {
     foreach ($directorys as $directory) {
         if (file_exists($directory . $clase . '.php')) {
             //  echo "se incluyo".$directory. $class_name . '.php';
-            require_once ($directory . $clase . '.php');
+            require_once($directory . $clase . '.php');
             return;
         }
     }

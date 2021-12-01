@@ -2,16 +2,14 @@
 include_once '../../configuracion.php';
 $datos = data_submitted();
 
-$abmProducto = new abmproducto();
+$controlDeposito = new control_deposito();
+$respuesta = $controlDeposito->deshabilitarProducto($datos);
 
-$lista = $abmProducto->buscar($datos);
-
-if(isset($lista[0])) {
-    $exito = $abmProducto->deshabilitarProd($datos);
-    $exito ? header('Location: ../deposito/administrarProductos.php?messageOk=' . urlencode("Producto deshabilitado correctamente")) : header('Location: ../deposito/administrarProductos.php?messageErr=' . urlencode("Error en la deshabilitación"));
-    exit;
+if ($respuesta['messageErr'] != "?messageErr=") {
+    $message = $respuesta['messageErr'];
 } else {
-    $message = "Producto no encontrado en la base de datos";
-    header('Location: ../deposito/administrarProductos.php?messageErr=' . urlencode($message));
-    exit;
+    $message = $respuesta['messageOk'];
 }
+
+header('Location: ../deposito/administrarProductos.php' . $message);
+exit;

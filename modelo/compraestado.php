@@ -133,7 +133,7 @@ class compraestado
         $resp = false;
         $base = new BaseDatos();
         $sql = "INSERT INTO compraestado (idcompra, idcompraestadotipo, cefechaini, cefechafin) VALUES ({$this->getObjCompra()->getIdcompra()},{$this->getObjCompraEstadoTipo()->getIdcompraestadotipo()},'{$this->getCefechaini()}','{$this->getCefechafin()}');";
-        echo $sql;
+        // echo $sql;
         if ($base->Iniciar()) {
             if ($base = $base->Ejecutar($sql)) {
                 $this->setIdcompraestado($base);

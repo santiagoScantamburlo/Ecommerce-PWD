@@ -1,8 +1,9 @@
 <?php
 include_once '../../configuracion.php';
 $datos = data_submitted();
+$titulo = "Modificar Producto";
 $controlAdmin = new control_deposito();
-$valido = $controlAdmin->verificarDeposito("formularioModificacionProducto");
+$valido = $controlAdmin->verificarDeposito("formularioModificacionProducto", $titulo);
 if (!$valido) {
     header('Location: ../home/index.php?messageErr=' . urlencode("No tiene los permisos para acceder"));
     exit;

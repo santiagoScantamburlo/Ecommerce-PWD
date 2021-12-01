@@ -70,7 +70,7 @@ $lista = $abmCompraEstado->buscar(['idcompra'])
                                 <input name='idcompraestado' id='idcompraestado' type='hidden' value=<?php echo $idCompraEstado ?>>
 
                                 <?php
-                                if ($idCET < 3) {
+                                if ($idCET < 2) {
                                 ?>
 
                                     <button class='btn btn-danger btn-sm' type='submit'><i class="bi bi-cart-x-fill"></i></button>

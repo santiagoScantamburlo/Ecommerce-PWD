@@ -2,29 +2,15 @@
 include_once '../../configuracion.php';
 
 $datos = data_submitted();
-print_r($datos);
-$abmCompraItem = new abmcompraitem();
-$listaCI = $abmCompraItem->buscar(['idcompraitem' => $datos['idcompraitem']]);
 
-$compraItem = $listaCI[0];
+$controlCarrito = new control_carrito_cliente();
+$respuesta = $controlCarrito->restarCantidad($datos);
 
-$cantidad = $compraItem->getCicantidad();
-$idCompra = $compraItem->getObjCompra()->getIdcompra();
-$idCompraItem = $compraItem->getIdcompraitem();
-$idProducto = $compraItem->getObjProducto()->getIdproducto();
-
-if ($cantidad == 1) {
-    header('Location: ../cliente/carrito.php');
-    exit;
+if ($respuesta['messageErr'] != "?messageErr=") {
+    $message = $respuesta['messageErr'];
 } else {
-    $cantidad--;
-    $datosModificacion = [
-        'idcompraitem' => $idCompraItem,
-        'idcompra' => $idCompra,
-        'idproducto' => $idProducto,
-        'cicantidad' => $cantidad
-    ];
-    $abmCompraItem->modificacion($datosModificacion);
-    header('Location: ../cliente/carrito.php');
-    exit;
+    $message = $respuesta['messageOk'];
 }
+
+header('Location: ../cliente/carrito.php' . $message);
+exit;

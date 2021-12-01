@@ -3,24 +3,19 @@ include_once '../../configuracion.php';
 
 $datos = data_submitted();
 
-$message = "Compra no encontrada";
+$message = "messageErr=" . urlencode("Compra no encontrada");
 $abmCompraEstado = new abmcompraestado();
 $listaCE = $abmCompraEstado->buscar(['idcompraestado' => $datos['idcompraestado']]);
 if (count($listaCE) > 0) {
-    $datos['cefechaini'] = $listaCE[0]->getCefechaini();
-    $datos['idcompraestadotipo'] = 4;
-    $datos['cefechafin'] = date('Y-m-d H:i:s');
-    $exito = $abmCompraEstado->modificacion($datos);
-    if ($exito) {
-        $message = "Compra cancelada";
-        header('Location: ../deposito/administrarCompras.php?messageOk=' . urlencode($message));
-        exit;
+    $controlDeposito = new control_deposito();
+    $respuesta = $controlDeposito->cancelarCompra($datos, $listaCE);
+
+    if ($respuesta['messageErr'] != "") {
+        $message = $respuesta['messageErr'];
     } else {
-        $message = "Error en la cancelacion";
-        header('Location: ../deposito/administrarCompras.php?messageErr=' . urlencode($message));
-        exit;
+        $message = $respuesta['messageOk'];
     }
 }
 
-header('Location: ../deposito/administrarCompras.php?messageErr=' . urlencode($message));
+header('Location: ../deposito/administrarCompras.php?' . $message);
 exit;
