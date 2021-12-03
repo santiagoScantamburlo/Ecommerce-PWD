@@ -136,7 +136,7 @@ include_once '../estructuras/cabecera.php';
                 } else {
                     $('#mensaje').removeClass("alert-success");
                     $('#mensaje').addClass("alert-danger");
-                    $('#mensaje').html('<i class="bi bi-exclamation-triangle-fill text-center">ERROR</i>')
+                    $('#mensaje').html('<i class="bi bi-exclamation-triangle-fill text-center">ERROR</i>');
                 }
             }
         })

@@ -163,7 +163,7 @@ class control_admin
         $lista = $abmUsuario->buscar($datos);
 
         if (isset($lista[0])) {
-            if ($lista[0]->getIdusuario() == $idUsuario) {
+            if ($lista[0]->getIdusuario() == $idUsuario) { //Verifico que el usuario a deshabilitar sea diferente al usuario de la sesion actual
                 $retorno['error'] = "ERROR";
             } else {
                 $exito = $abmUsuario->deshabilitarUsuario($datos);
